@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Coastal Safety Alerts</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "primary": "#1193d4",
+            "background-light": "#f6f7f8",
+            "background-dark": "#101c22",
+          },
+          fontFamily: {
+            "display": ["Plus Jakarta Sans"]
+          },
+          borderRadius: {
+            "DEFAULT": "0.5rem",
+            "lg": "1rem",
+            "xl": "1.5rem",
+            "full": "9999px"
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings:
+        'FILL' 0,
+        'wght' 400,
+        'GRAD' 0,
+        'opsz' 24
+    }
+  </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display">
+<div class="relative flex min-h-screen w-full flex-col">
+<header class="sticky top-0 z-10 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm border-b border-background-dark/10 dark:border-background-light/10">
+<div class="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-background-dark dark:text-background-light">
+<span class="material-symbols-outlined text-primary text-3xl">
+              surfing
+            </span>
+<h1 class="text-lg font-bold">Coastal Safety Guide</h1>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Beaches</a>
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Activities</a>
+<a class="text-sm font-bold text-primary" href="#">Safety Alerts</a>
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Plan Your Trip</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-background-dark/50 dark:text-background-light/50">
+              search
+            </span>
+<input class="form-input w-full rounded-full border-none bg-background-dark/10 dark:bg-background-light/10 py-2 pl-10 pr-4 text-sm text-background-dark dark:text-background-light placeholder:text-background-dark/50 dark:placeholder:text-background-light/50 focus:ring-2 focus:ring-primary" placeholder="Search" type="text"/>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-full bg-background-dark/10 dark:bg-background-light/10 text-background-dark dark:text-background-light hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">
+<span class="material-symbols-outlined">
+              notifications
+            </span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxjg-Y5HIIrUaKzbTq6yluZYiJt2_H1wftTb5ux3JFFEJ0FOtGoIYFzN5UeeQacL-EVf_e2MmJb3WunPOWEGZaFhQpAatDE9ssOjhuTSAxShuXqN1-zJw6meG4OTWUBB8LeOcu1YpZN0_MmPJphwpqQIjgoNjXPjC0uQRoh4C44Mw8MS7Ovwn-FkLz_dhc1745d5C15gCpREMxLodVEr6mf5ngtLNxwo7CclhaOu1kzW1bg8-9oy5CT-VcYhLsRPKTDdSY_fABeflF");'></div>
+</div>
+</div>
+</header>
+<main class="flex-grow">
+<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+<div class="mb-12 text-center">
+<h2 class="text-4xl font-extrabold tracking-tight text-background-dark dark:text-background-light sm:text-5xl">Safety Alerts</h2>
+<p class="mt-4 text-lg text-background-dark/70 dark:text-background-light/70">Stay informed about the latest coastal safety updates.</p>
+</div>
+<div class="mb-8 flex flex-wrap items-center justify-center gap-4">
+<div class="relative">
+<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span>State: All</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span>Severity: All</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+<div class="relative">
+<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span>Type: All</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+</div>
+<div class="relative pl-8">
+<div class="absolute left-0 top-0 h-full w-0.5 bg-primary/20 dark:bg-primary/30"></div>
+<div class="relative mb-8">
+<div class="absolute -left-11 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">waves</span>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 p-6 shadow-sm">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60 mb-1">June 10, 2024 - 08:00 AM</p>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">High Tide Advisory</h3>
+<p class="mt-2 text-background-dark/80 dark:text-background-light/80">Goa - Caution advised for swimmers and beachgoers.</p>
+<span class="mt-3 inline-block rounded-full bg-yellow-500/20 px-3 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-400">Moderate</span>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute -left-11 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">thunderstorm</span>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 p-6 shadow-sm">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60 mb-1">June 9, 2024 - 05:30 PM</p>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Storm Warning</h3>
+<p class="mt-2 text-background-dark/80 dark:text-background-light/80">Kerala - Potential for strong winds and heavy rain.</p>
+<span class="mt-3 inline-block rounded-full bg-red-500/20 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-400">High</span>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute -left-11 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">waves</span>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 p-6 shadow-sm">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60 mb-1">June 9, 2024 - 11:00 AM</p>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Strong Currents</h3>
+<p class="mt-2 text-background-dark/80 dark:text-background-light/80">Tamil Nadu - Riptides reported at several beaches.</p>
+<span class="mt-3 inline-block rounded-full bg-yellow-500/20 px-3 py-1 text-xs font-semibold text-yellow-700 dark:text-yellow-400">Moderate</span>
+</div>
+</div>
+<div class="relative mb-8">
+<div class="absolute -left-11 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">scuba_diving</span>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 p-6 shadow-sm">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60 mb-1">June 8, 2024 - 02:15 PM</p>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Jellyfish Alert</h3>
+<p class="mt-2 text-background-dark/80 dark:text-background-light/80">Andhra Pradesh - Increased presence of jellyfish reported.</p>
+<span class="mt-3 inline-block rounded-full bg-blue-500/20 px-3 py-1 text-xs font-semibold text-blue-700 dark:text-blue-400">Low</span>
+</div>
+</div>
+<div class="relative">
+<div class="absolute -left-11 top-1 flex h-8 w-8 items-center justify-center rounded-full bg-primary text-white">
+<span class="material-symbols-outlined">block</span>
+</div>
+<div class="rounded-lg bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 p-6 shadow-sm">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60 mb-1">June 7, 2024 - 09:00 AM</p>
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Beach Closure</h3>
+<p class="mt-2 text-background-dark/80 dark:text-background-light/80">Maharashtra - Select beaches closed due to erosion.</p>
+<span class="mt-3 inline-block rounded-full bg-red-500/20 px-3 py-1 text-xs font-semibold text-red-700 dark:text-red-400">High</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-background-light dark:bg-background-dark border-t border-background-dark/10 dark:border-background-light/10">
+<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="flex flex-col gap-4 lg:col-span-2">
+<div class="flex items-center gap-3 text-background-dark dark:text-background-light">
+<span class="material-symbols-outlined text-primary text-3xl">surfing</span>
+<h1 class="text-lg font-bold">Coastal Safety Guide</h1>
+</div>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70 max-w-md">
+              Your real-time guide to India's beaches. We provide safety alerts, activity suggestions, and everything you need for a safe and enjoyable coastal trip.
+            </p>
+</div>
+<div>
+<h3 class="text-md font-semibold text-background-dark dark:text-background-light mb-4">Quick Links</h3>
+<nav class="flex flex-col gap-2">
+<a class="text-sm text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">About Us</a>
+<a class="text-sm text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Contact Us</a>
+<a class="text-sm text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="text-sm text-background-dark/70 dark:text-background-light/70 hover:text-primary dark:hover:text-primary transition-colors" href="#">Terms of Service</a>
+</nav>
+</div>
+<div>
+<h3 class="text-md font-semibold text-background-dark dark:text-background-light mb-4">Stay Updated</h3>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70 mb-4">
+              Subscribe to our newsletter for the latest safety alerts and beach news.
+            </p>
+<form class="flex flex-col sm:flex-row gap-2">
+<input class="form-input flex-grow rounded-md border-background-dark/20 dark:border-background-light/20 bg-transparent py-2 px-3 text-sm text-background-dark dark:text-background-light placeholder:text-background-dark/50 dark:placeholder:text-background-light/50 focus:ring-2 focus:ring-primary focus:border-primary" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-white font-semibold text-sm rounded-md px-4 py-2 hover:bg-primary/90 transition-colors" type="submit">
+                Subscribe
+              </button>
+</form>
+</div>
+</div>
+<div class="mt-8 border-t border-background-dark/10 dark:border-background-light/10 pt-8 flex flex-col sm:flex-row justify-between items-center">
+<p class="text-sm text-background-dark/60 dark:text-background-light/60">© 2024 Coastal Safety Guide. All rights reserved.</p>
+<div class="flex gap-4 mt-4 sm:mt-0">
+<a class="text-background-dark/60 dark:text-background-light/60 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<svg class="h-5 w-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+</svg>
+</a>
+<a class="text-background-dark/60 dark:text-background-light/60 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<svg class="h-5 w-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22 4s-.7 2.1-2 3.4c1.6 1.4 2.8 3.2 3 5.2-1.4 1.4-3.2 2.2-5.2 2.6-.4 2.8-2.2 4.8-4.6 5.8-2.4 1-5 .8-7.2-.6-2.2-1.4-3.8-3.6-4.2-6.2-.4-2.6.8-5.2 2.8-6.8 2-1.6 4.6-2.4 7.2-2.2 2.6.2 4.8 1.6 6.4 3.2z"></path>
+</svg>
+</a>
+<a class="text-background-dark/60 dark:text-background-light/60 hover:text-primary dark:hover:text-primary transition-colors" href="#">
+<svg class="h-5 w-5" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

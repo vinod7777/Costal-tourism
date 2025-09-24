@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Real-Time Coastal Safety &amp; Tourism Guide</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                        "text-light": "#101c22",
+                        "text-dark": "#f6f7f8",
+                        "text-muted-light": "#6b7280",
+                        "text-muted-dark": "#9ca3af",
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1a2831",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#374151"
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
+<div class="flex flex-col min-h-screen">
+<header class="sticky top-0 z-30 bg-surface-light/80 dark:bg-surface-dark/80 backdrop-blur-sm border-b border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex items-center justify-between h-16">
+<div class="flex items-center space-x-8">
+<a class="flex items-center space-x-2" href="#">
+<span class="material-symbols-outlined text-primary text-3xl">surfing</span>
+<span class="text-xl font-bold">Coastal Guide</span>
+</a>
+<nav class="hidden md:flex items-center space-x-6">
+<a class="text-sm font-semibold hover:text-primary transition-colors" href="#">Beaches</a>
+<a class="text-sm font-semibold text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">Activities</a>
+<a class="text-sm font-semibold text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">Safety</a>
+</nav>
+</div>
+<div class="flex items-center space-x-4">
+<div class="hidden md:block relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark">search</span>
+<input class="bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-full w-48 pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Search" type="text"/>
+</div>
+<button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">location_on</span>
+</button>
+<button class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button>
+<img alt="User avatar" class="size-9 rounded-full" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAdRYw3cK1wz4ZWYeBJbKIBRr3SsBXZT9z476SJcfNL3850b705ovyrUwS0XSOltn153f_Mn3w4TM1pwItAylN8M4XiWjDENEmq1DCZX7PvUQsjUhNvQelAZHsxqL2sS87mIJhBpbfd7w0-zdTbvWfbkua7xCQpBFH-6ufo3Al4zZkqrfA0xEZ8XkyRSbK3TRRoEz1hu0HhhatNRSM4MiyNjb3283rtoyOgPgrYocrJgTczqs4a2nUuV1m4Nf3ph4XrfB2PHqztij4q"/>
+</button>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-grow container mx-auto px-4 sm:px-6 lg:px-8 py-8">
+<div class="mb-8">
+<h1 class="text-4xl font-extrabold tracking-tight mb-2">Explore Indian Beaches</h1>
+<p class="text-text-muted-light dark:text-text-muted-dark max-w-2xl">Discover the perfect coastal getaway. Get real-time weather alerts and activity guidance for India's most stunning beaches.</p>
+</div>
+<div class="mb-8 space-y-4">
+<div class="relative">
+<span class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark text-xl">search</span>
+<input class="w-full bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-lg pl-12 pr-4 py-3 text-base focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Search for a beach, state, or activity..." type="text"/>
+</div>
+<div class="flex flex-wrap items-center gap-2">
+<button class="flex items-center gap-1 px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-full text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+<span>State</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex items-center gap-1 px-4 py-2 bg-primary text-white rounded-full text-sm font-semibold">
+<span>Activity</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+<button class="flex items-center gap-1 px-4 py-2 bg-surface-light dark:bg-surface-dark border border-border-light dark:border-border-dark rounded-full text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+<span>Safety</span>
+<span class="material-symbols-outlined text-base">expand_more</span>
+</button>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+<div class="group bg-surface-light dark:bg-surface-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="relative">
+<img alt="Candolim Beach" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBP54X78ppHbfzCIX9IycYxJ_l7cZkLOojzZi_HS1E-LfLlQLLKNpf0V9NH1xJn6-cUsAVbr4qXPb5ai48LnzAm_9pA-L_xjAQddvT99e3d3SPKA6uxiB1Pq3XjkQVWIg-VAt3or4Oy8GxD-gEs0yw2SxfYU-KMS-psuSipV5qrqTzMYjchTHtIeORzwuu9Vy8USLA61-18tWo_XSW3Si1thwl0NXfx_rYrggVC0SAKcWigcb5sdK-4h38O02jgnz6uYesT6L_BG7e-"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<h3 class="text-white text-lg font-bold">Candolim Beach</h3>
+<p class="text-gray-300 text-sm">Goa</p>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-around text-center text-text-muted-light dark:text-text-muted-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="text-xs font-medium">Swim</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">surfing</span>
+<span class="text-xs font-medium">Surf</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">scuba_diving</span>
+<span class="text-xs font-medium">Dive</span>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark my-2"></div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Temp</p>
+<p class="font-semibold text-sm">29°C</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Waves</p>
+<p class="font-semibold text-sm">1.2m</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Wind</p>
+<p class="font-semibold text-sm">15km/h</p>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="relative">
+<img alt="Baga Beach" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADnNWh-QSCeQPAxXduu9fEbdbydpxIiyUXjPy4bM7vW76MAja8X4J_znutS2bR9wBFDwRd0dp1P3F3odn0LExUu_NbCEdPRg6JKCWYTcMfRF74ZZWlktZzDM94Z1IzsajZF8yncufW_9pMK0FjgC-tRqv18H2ph7-gRRiQYw9w4jRRw6k1vDMzS1yl6eS1GicFuVjmbJ6zanAdl4r1fXS--G0TPI4UJXmN5m0mflhpf1kigrwLuk58C9Nd852cahp0h6DSNNObjwDS"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<h3 class="text-white text-lg font-bold">Baga Beach</h3>
+<p class="text-gray-300 text-sm">Goa</p>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-around text-center text-text-muted-light dark:text-text-muted-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="text-xs font-medium">Swim</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">surfing</span>
+<span class="text-xs font-medium">Surf</span>
+</div>
+<div class="flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined">scuba_diving</span>
+<span class="text-xs font-medium">Dive</span>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark my-2"></div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Temp</p>
+<p class="font-semibold text-sm">30°C</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Waves</p>
+<p class="font-semibold text-sm">1.5m</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Wind</p>
+<p class="font-semibold text-sm">12km/h</p>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="relative">
+<img alt="Palolem Beach" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKWEgsMaEUbRYYVvc7ZxdMqLHI2byOubO5BJxEQhvIYECgRPCV_jaS3HsF3MFz-ZsiOWYzroZGgWDI-uTzdaxiCF0Pt82rRe5GJ9JzgbuRGIzF9SRGqCylSkWA3NO_47aGd5Drpz20YBNtUugNVRGeMa9B-RPsxaHa2ZkIVhlMK0cqq6ZpVbtpZo6CLcy5mI-2iw7XaSk3zWI2jLOWV7hf2R8F8085nqYeTIw-nvs8Jw4fIJkTmY0drAei_nQas7mKU0CE-jw7H7xI"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<h3 class="text-white text-lg font-bold">Palolem Beach</h3>
+<p class="text-gray-300 text-sm">Goa</p>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-around text-center text-text-muted-light dark:text-text-muted-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="text-xs font-medium">Swim</span>
+</div>
+<div class="flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined">surfing</span>
+<span class="text-xs font-medium">Surf</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">scuba_diving</span>
+<span class="text-xs font-medium">Dive</span>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark my-2"></div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Temp</p>
+<p class="font-semibold text-sm">28°C</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Waves</p>
+<p class="font-semibold text-sm">0.8m</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Wind</p>
+<p class="font-semibold text-sm">10km/h</p>
+</div>
+</div>
+</div>
+</div>
+<div class="group bg-surface-light dark:bg-surface-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1">
+<div class="relative">
+<img alt="Radhanagar Beach" class="w-full h-48 object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7QmuKRRr74RJmtGJhGFSwcMRcQKmRXdxx14LQ_3LHDKdYRQi5KRbDylI2c6I8R5O2bPGoYSdvzwIt6iGoOR5gH_b-e9LBYzoXfZRjHOXzqNFaPbJhoTOEiVvZwl5-M4g4IcwUSCTSkffj0sTaeTGZlpdSjI_yyybWeICX6K9luopSQtZcZhIF78kMSgZF2q-AjWhMQBxlMbb0LyIlrGH_rGNspOrGzExV4uqiPJRswsJUnJM7koHWYZCpWEWqRi_2C-BEgcjJHHGA"/>
+<div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
+<h3 class="text-white text-lg font-bold">Radhanagar Beach</h3>
+<p class="text-gray-300 text-sm">Andaman &amp; Nicobar</p>
+</div>
+</div>
+<div class="p-4 space-y-4">
+<div class="flex justify-around text-center text-text-muted-light dark:text-text-muted-dark">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">pool</span>
+<span class="text-xs font-medium">Swim</span>
+</div>
+<div class="flex items-center gap-2 text-gray-400">
+<span class="material-symbols-outlined">surfing</span>
+<span class="text-xs font-medium">Surf</span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">scuba_diving</span>
+<span class="text-xs font-medium">Dive</span>
+</div>
+</div>
+<div class="border-t border-border-light dark:border-border-dark my-2"></div>
+<div class="grid grid-cols-3 gap-2 text-center">
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Temp</p>
+<p class="font-semibold text-sm">31°C</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Waves</p>
+<p class="font-semibold text-sm">0.5m</p>
+</div>
+<div>
+<p class="text-xs text-text-muted-light dark:text-text-muted-dark">Wind</p>
+<p class="font-semibold text-sm">8km/h</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark">
+<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div class="space-y-4">
+<a class="flex items-center space-x-2" href="#">
+<span class="material-symbols-outlined text-primary text-3xl">surfing</span>
+<span class="text-xl font-bold">Coastal Guide</span>
+</a>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">Your guide to the best beaches in India, with real-time safety and activity information.</p>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-lg">Quick Links</h4>
+<ul class="space-y-2 text-sm text-text-muted-light dark:text-text-muted-dark">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Contact Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Privacy Policy</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Terms of Service</a></li>
+</ul>
+</div>
+<div class="space-y-4">
+<h4 class="font-bold text-lg">Follow Us</h4>
+<div class="flex space-x-4">
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M22.46,6C21.69,6.35 20.86,6.58 20,6.69C20.88,6.16 21.56,5.32 21.88,4.31C21.05,4.81 20.13,5.16 19.16,5.36C18.37,4.5 17.26,4 16,4C13.65,4 11.73,5.92 11.73,8.29C11.73,8.63 11.77,8.96 11.84,9.27C8.28,9.09 5.11,7.38 2.9,4.79C2.53,5.42 2.33,6.15 2.33,6.94C2.33,8.43 3.11,9.73 4.27,10.5C3.57,10.48 2.92,10.28 2.34,9.96C2.34,9.98 2.34,10 2.34,10.02C2.34,12.08 3.77,13.81 5.67,14.2C5.32,14.29 4.96,14.34 4.59,14.34C4.32,14.34 4.06,14.32 3.81,14.28C4.35,15.98 5.92,17.21 7.78,17.25C6.36,18.39 4.58,19.1 2.65,19.1C2.31,19.1 1.98,19.08 1.65,19.04C3.55,20.29 5.86,21 8.31,21C16,21 20.33,14.46 20.33,8.84C20.33,8.66 20.33,8.49 20.32,8.31C21.14,7.72 21.86,7.01 22.46,6Z"></path></svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12,2.163c3.204,0,3.584,0.012,4.85,0.07c1.269,0.058,2.164,0.248,2.922,0.533c0.788,0.293,1.48,0.672,2.162,1.354c0.682,0.682,1.062,1.373,1.354,2.162c0.285,0.758,0.475,1.653,0.533,2.922c0.058,1.266,0.07,1.646,0.07,4.85s-0.012,3.584-0.07,4.85c-0.058,1.269-0.248,2.164-0.533,2.922c-0.293,0.788-0.672,1.48-1.354,2.162c-0.682,0.682-1.373,1.062-2.162,1.354c-0.758,0.285-1.653,0.475-2.922,0.533c-1.266,0.058-1.646,0.07-4.85,0.07s-3.584-0.012-4.85-0.07c-1.269-0.058-2.164-0.248-2.922-0.533c-0.788-0.293-1.48-0.672-2.162-1.354c-0.682-0.682-1.062-1.373-1.354-2.162c-0.285-0.758-0.475-1.653-0.533-2.922c-0.058-1.266-0.07-1.646-0.07-4.85s0.012-3.584,0.07-4.85c0.058-1.269,0.248-2.164,0.533-2.922c0.293-0.788,0.672-1.48,1.354-2.162c0.682-0.682,1.373-1.062,2.162-1.354c0.758-0.285,1.653-0.475,2.922-0.533C8.416,2.175,8.796,2.163,12,2.163 M12,0C8.741,0,8.333,0.014,7.053,0.072C5.776,0.129,4.905,0.333,4.14,0.63C3.36,0.926,2.673,1.303,1.998,1.978C1.322,2.654,0.945,3.34,0.649,4.12C0.343,4.885,0.139,5.756,0.082,7.033C0.024,8.313,0.01,8.721,0.01,12s0.014,3.687,0.072,4.967c0.057,1.277,0.247,2.148,0.548,2.912c0.296,0.78,0.673,1.467,1.348,2.142c0.676,0.676,1.362,1.053,2.142,1.348c0.764,0.297,1.635,0.502,2.912,0.559C8.333,23.986,8.741,24,12,24s3.667-0.014,4.947-0.072c1.277-0.057,2.148-0.262,2.912-0.559c0.78-0.295,1.467-0.672,2.142-1.348c0.676-0.676,1.053-1.362,1.348-2.142c0.297-0.764,0.502-1.635,0.559-2.912c0.058-1.28,0.072-1.687,0.072-4.967s-0.014-3.687-0.072-4.967c-0.057-1.277-0.262-2.148-0.559-2.912c-0.295-0.78-0.672-1.467-1.348-2.142C21.327,1.303,20.64,0.926,19.86,0.63C19.115,0.333,18.244,0.129,16.967,0.072C15.687,0.014,15.259,0,12,0L12,0z M12,5.838c-3.403,0-6.162,2.759-6.162,6.162s2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162S15.403,5.838,12,5.838z M12,16.2c-2.31,0-4.188-1.878-4.188-4.188s1.878-4.188,4.188-4.188s4.188,1.878,4.188,4.188S14.31,16.2,12,16.2z M16.965,5.595c-0.84,0-1.52-0.68-1.52-1.52s0.68-1.52,1.52-1.52s1.52,0.68,1.52,1.52S17.805,5.595,16.965,5.595z"></path></svg>
+</a>
+<a class="text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M24,12c0-6.627-5.373-12-12-12S0,5.373,0,12c0,5.99,4.388,10.954,10.125,11.854V14.75H7.125v-2.75h3V9.742c0-2.969,1.76-4.606,4.478-4.606,1.281,0,2.625,0.225,2.625,0.225v2.338h-1.218c-1.488,0-1.956,0.925-1.956,1.874v2.181h2.625l-0.412,2.75h-2.213v7.104C19.612,22.954,24,17.99,24,12Z"></path></svg>
+</a>
+</div>
+</div>
+<div class="lg:col-span-1 space-y-4">
+<h4 class="font-bold text-lg">Newsletter</h4>
+<p class="text-sm text-text-muted-light dark:text-text-muted-dark">Stay updated with our latest news and offers.</p>
+<form class="flex flex-col sm:flex-row gap-2">
+<input class="flex-grow bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email" type="email"/>
+<button class="px-4 py-2 bg-primary text-white rounded-md text-sm font-semibold hover:bg-primary/90 transition-colors">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="mt-8 border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark">
+<p>© 2024 Coastal Guide. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>

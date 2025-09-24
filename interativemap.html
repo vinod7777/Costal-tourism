@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans"],
+            },
+            borderRadius: { DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+</head>
+<body>
+<div class="relative flex h-auto min-h-screen w-full flex-col bg-background-light font-display text-gray-800 group/design-root overflow-x-hidden dark:bg-background-dark dark:text-gray-200">
+<div class="layout-container flex h-full grow flex-col">
+<header class="flex shrink-0 items-center justify-between whitespace-nowrap border-b border-gray-200/80 px-10 py-3 dark:border-gray-800/80">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-gray-900 dark:text-white">
+<div class="h-8 w-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold">Coastal Guide</h2>
+</div>
+<nav class="hidden items-center gap-8 md:flex">
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Explore</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Safety</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Activities</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">About</a>
+</nav>
+</div>
+<div class="flex flex-1 items-center justify-end gap-4">
+<label class="hidden lg:flex flex-col min-w-40 !h-10 max-w-64">
+<div class="group flex w-full flex-1 items-stretch rounded-lg h-full bg-gray-100 dark:bg-background-dark/50">
+<div class="flex items-center justify-center pl-3 text-gray-400 transition-colors group-focus-within:text-primary dark:text-gray-500 dark:group-focus-within:text-primary">
+<span class="material-symbols-outlined text-xl">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-gray-800 focus:outline-0 focus:ring-0 border-none h-full placeholder:text-gray-400 px-2 text-sm font-normal dark:text-gray-200 dark:placeholder:text-gray-500" placeholder="Search" value=""/>
+</div>
+</label>
+<button class="flex h-10 w-10 shrink-0 cursor-pointer items-center justify-center overflow-hidden rounded-full bg-gray-100 text-gray-600 transition-colors hover:bg-primary/10 hover:text-primary dark:bg-background-dark/50 dark:text-gray-400 dark:hover:bg-primary/20 dark:hover:text-primary">
+<span class="material-symbols-outlined text-xl">language</span>
+</button>
+<div class="relative h-10 w-10 shrink-0">
+<div class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBKG_NKan0YSIzyuji3rWg479QQzJSBLX8ffvA4VJOK4PePehBKDvH9tXt2sWI8WCRFfOLwvMwoCE-q91qG9iC5DcxOL2frRE2O4XDOYfdWBgGxeT2Yy2pv2Bma8lexdog_r7nvUm8--GBJUb5rwJxJbQtDrnNPMd56E1T1WCa1mdW17LFv83Z6BTPbynV-qFHpryZHK5QH_uczUgMKTyZFAOBboXoIVUiCJxWzVo0ob3R5s_2-fBoL7iBYr0bu_fSmcukMY-FRDXpV");'></div>
+<div class="absolute bottom-0 right-0 h-3 w-3 rounded-full border-2 border-background-light bg-green-500 dark:border-background-dark"></div>
+</div>
+</div>
+</header>
+<main class="flex-1">
+<div class="relative h-full w-full">
+<div class="absolute inset-0 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDpAQ-IlsY0sZLOXMMQpkiTchsk-CBrHApY5QsixdOlMrTybtuX_uEZD7rrDwqzXdNi5geZGW7Y7b9fDyklRXv4vtCeaD6Et4DwOvP_iFxQh0PwzBhQyKrfdzOCgSwgEBAy4nvpmJRWuVqxX8KTLKpGkGeitNZbNBVTNJQwfU05T5hFG1pGdUvVTTQbPS6ekjxp5-QQqjLpsaJ9VRPm-umVN9WWmv1HzoIGPgXW8cu9xd98-BCCEYQeDDb9qzDczzutn2vocUpSOvpv");'></div>
+<div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+<div class="relative flex h-full flex-col p-4 md:p-8">
+<div class="flex-1">
+<div class="mx-auto max-w-2xl">
+<label class="group flex flex-col">
+<div class="flex w-full items-stretch rounded-lg h-12 bg-background-light/90 shadow-lg backdrop-blur-sm dark:bg-background-dark/80">
+<div class="flex items-center justify-center pl-4 text-gray-500 transition-colors group-focus-within:text-primary dark:text-gray-400 dark:group-focus-within:text-primary">
+<span class="material-symbols-outlined">search</span>
+</div>
+<input class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg bg-transparent text-gray-900 focus:outline-0 focus:ring-0 border-none h-full placeholder:text-gray-500 px-4 pl-2 text-base font-medium dark:text-white dark:placeholder:text-gray-400" placeholder="Search for a beach..." value=""/>
+</div>
+</label>
+</div>
+</div>
+<div class="flex items-end justify-between">
+<div class="flex items-start gap-4">
+<div class="w-72 rounded-lg bg-background-light p-4 shadow-2xl dark:bg-background-dark">
+<h3 class="font-bold text-gray-900 dark:text-white">Marina Beach</h3>
+<p class="mt-1 text-sm text-gray-600 dark:text-gray-300">Chennai, Tamil Nadu</p>
+<div class="mt-4 space-y-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-primary">thermostat</span>
+<p class="text-sm font-medium">Weather: <span class="text-gray-800 dark:text-gray-100">32°C, Sunny</span></p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-primary">tsunami</span>
+<p class="text-sm font-medium">Waves: <span class="text-gray-800 dark:text-gray-100">Low</span></p>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-lg text-primary">pool</span>
+<p class="text-sm font-medium">Swimming: <span class="text-green-600 dark:text-green-400">Safe</span></p>
+</div>
+</div>
+<a class="mt-4 block text-center text-sm font-bold text-primary transition-all hover:underline" href="#">More Details</a>
+</div>
+</div>
+<div class="flex flex-col items-end gap-3">
+<div class="flex flex-col overflow-hidden rounded-lg shadow-lg">
+<button class="flex h-10 w-10 items-center justify-center bg-background-light text-gray-800 transition-colors hover:bg-gray-200 dark:bg-background-dark/80 dark:text-gray-200 dark:hover:bg-background-dark">
+<span class="material-symbols-outlined text-xl">add</span>
+</button>
+<button class="flex h-10 w-10 items-center justify-center border-t border-gray-200/50 bg-background-light text-gray-800 transition-colors hover:bg-gray-200 dark:border-gray-700/50 dark:bg-background-dark/80 dark:text-gray-200 dark:hover:bg-background-dark">
+<span class="material-symbols-outlined text-xl">remove</span>
+</button>
+</div>
+<button class="flex h-10 w-10 items-center justify-center rounded-lg bg-background-light shadow-lg text-gray-800 transition-colors hover:bg-gray-200 dark:bg-background-dark/80 dark:text-gray-200 dark:hover:bg-background-dark">
+<span class="material-symbols-outlined text-xl">my_location</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-gray-200/80 bg-background-light px-4 py-8 dark:border-gray-800/80 dark:bg-background-dark md:px-10">
+<div class="mx-auto max-w-7xl">
+<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+<div class="flex flex-col items-start gap-4">
+<div class="flex items-center gap-3 text-gray-900 dark:text-white">
+<div class="h-8 w-8 text-primary">
+<svg fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+</div>
+<h2 class="text-lg font-bold">Coastal Guide</h2>
+</div>
+<p class="text-sm text-gray-600 dark:text-gray-300">Your real-time guide to India's beautiful and safe beaches.</p>
+</div>
+<div class="grid grid-cols-2 gap-8 md:col-span-2 md:grid-cols-3">
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white">Quick Links</h3>
+<nav class="mt-4 flex flex-col gap-2">
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Explore</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Safety</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">Activities</a>
+<a class="text-sm font-medium text-gray-600 transition-colors hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">About</a>
+</nav>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white">Follow Us</h3>
+<div class="mt-4 flex items-center gap-4">
+<a class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.46,6C21.78,6.32 21.06,6.54 20.31,6.62C21.11,6.13 21.73,5.34 22,4.42C21.25,4.88 20.42,5.22 19.54,5.42C18.84,4.68 17.83,4.18 16.7,4.18C14.54,4.18 12.78,5.94 12.78,8.1C12.78,8.41 12.81,8.72 12.88,9C9.23,8.83 6,7.09 3.77,4.6C3.41,5.22 3.22,5.94 3.22,6.72C3.22,8.11 3.93,9.33 5.06,10.04C4.39,10.02 3.77,9.85 3.22,9.58V9.64C3.22,11.61 4.66,13.25 6.6,13.64C6.25,13.73 5.88,13.78 5.5,13.78C5.23,13.78 4.97,13.75 4.72,13.7C5.25,15.3 6.78,16.48 8.6,16.5C7.16,17.64 5.38,18.3 3.44,18.3C3.13,18.3 2.82,18.28 2.53,18.23C4.42,19.45 6.66,20.18 9.07,20.18C16.69,20.18 20.53,13.88 20.53,8.5C20.53,8.31 20.52,8.13 20.51,7.94C21.3,7.36 21.96,6.62 22.46,6Z"></path>
+</svg>
+</a>
+<a class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12,2.04C6.5,2.04 2,6.53 2,12.06C2,17.06 5.66,21.21 10.44,21.96V14.96H7.9V12.06H10.44V9.85C10.44,7.32 11.93,5.96 14.22,5.96C15.31,5.96 16.45,6.15 16.45,6.15V8.62H15.19C13.95,8.62 13.56,9.39 13.56,10.18V12.06H16.34L15.89,14.96H13.56V21.96C18.34,21.21 22,17.06 22,12.06C22,6.53 17.5,2.04 12,2.04Z"></path>
+</svg>
+</a>
+<a class="text-gray-600 hover:text-primary dark:text-gray-300 dark:hover:text-primary" href="#">
+<svg class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+<path d="M12,2.163c3.204,0,3.584,0.012,4.85,0.07c1.253,0.057,2.123,0.24,2.88,0.516c0.83,0.306,1.463,0.72,2.124,1.38c0.66,0.66,1.072,1.293,1.38,2.123c0.275,0.757,0.457,1.626,0.515,2.88c0.058,1.266,0.07,1.646,0.07,4.85s-0.012,3.584-0.07,4.85c-0.058,1.253-0.24,2.123-0.515,2.88c-0.306,0.83-0.72,1.463-1.38,2.124c-0.66,0.66-1.293,1.072-2.123,1.38c-0.757,0.275-1.626,0.457-2.88,0.515c-1.266,0.058-1.646,0.07-4.85,0.07s-3.584-0.012-4.85-0.07c-1.253-0.058-2.123-0.24-2.88-0.515c-0.83-0.306-1.463-0.72-2.124-1.38c-0.66-0.66-1.072-1.293-1.38-2.123c-0.275-0.757-0.457-1.626-0.515-2.88c-0.058-1.266-0.07-1.646-0.07-4.85s0.012-3.584,0.07-4.85c0.058-1.253,0.24-2.123,0.515-2.88c0.306-0.83,0.72-1.463,1.38-2.124c0.66-0.66,1.293-1.072,2.123-1.38c0.757-0.275,1.626-0.457,2.88-0.515C8.416,2.175,8.796,2.163,12,2.163 M12,0c-3.26,0-3.662,0.012-4.94,0.07c-1.355,0.06-2.29,0.248-3.088,0.55c-0.83,0.313-1.554,0.73-2.22,1.396C1.088,2.682,0.67,3.405,0.358,4.234C0.05,5.032,0,5.977,0,7.332C0,8.608-0.012,9.01,0.07,10.28C0.012,11.54,0,11.942,0,12.2s0.012,0.66,0.07,1.926c0.06,1.355,0.248,2.29,0.55,3.088c0.313,0.83,0.73,1.554,1.396,2.22c0.666,0.666,1.39,1.088,2.22,1.396c0.798,0.302,1.733,0.49,3.088,0.55C8.338,23.988,8.74,24,12,24s3.662-0.012,4.94-0.07c1.355-0.06,2.29-0.248,3.088-0.55c0.83-0.313,1.554-0.73,2.22-1.396c0.666-0.666,1.088-1.39,1.396-2.22c0.302-0.798,0.49-1.733,0.55-3.088c0.058-1.266,0.07-1.668,0.07-4.94s-0.012-3.672-0.07-4.94c-0.06-1.355-0.248-2.29-0.55-3.088c-0.313-0.83-0.73-1.554-1.396-2.22c-0.666-0.666-1.39-1.088-2.22-1.396c-0.798-0.302-1.733-0.49-3.088-0.55C15.662,0.012,15.26,0,12,0L12,0z M12,5.838c-3.403,0-6.162,2.759-6.162,6.162s2.759,6.162,6.162,6.162s6.162-2.759,6.162-6.162S15.403,5.838,12,5.838z M12,16.2c-2.31,0-4.188-1.878-4.188-4.188s1.878-4.188,4.188-4.188s4.188,1.878,4.188,4.188S14.31,16.2,12,16.2z M18.405,4.86c-0.777,0-1.405,0.628-1.405,1.405s0.628,1.405,1.405,1.405s1.405-0.628,1.405-1.405S19.182,4.86,18.405,4.86z"></path>
+</svg>
+</a>
+</div>
+</div>
+<div>
+<h3 class="font-bold text-gray-900 dark:text-white">Newsletter</h3>
+<p class="mt-4 text-sm text-gray-600 dark:text-gray-300">Stay updated with the latest beach conditions and travel tips.</p>
+<form class="mt-4 flex flex-col items-start gap-2 sm:flex-row">
+<div class="flex-1 w-full">
+<label class="sr-only" for="email-address">Email address</label>
+<input autocomplete="email" class="form-input w-full rounded-md border-gray-300 bg-gray-100 px-4 py-2 text-sm text-gray-900 placeholder-gray-500 shadow-sm focus:border-primary focus:ring-primary dark:border-gray-700 dark:bg-background-dark/50 dark:text-white dark:placeholder-gray-400" id="email-address" name="email" placeholder="Enter your email" required="" type="email"/>
+</div>
+<button class="w-full sm:w-auto rounded-md bg-primary px-4 py-2 text-sm font-bold text-white shadow-sm transition-colors hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-2 dark:focus:ring-offset-background-dark" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+</div>
+<div class="mt-8 border-t border-gray-200/80 pt-8 text-center text-sm text-gray-600 dark:border-gray-800/80 dark:text-gray-300">
+<p>© 2024 Coastal Guide. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>

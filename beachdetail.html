@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
+<link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
+<title>Stitch Design</title>
+<link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+            },
+            fontFamily: {
+              display: ["Plus Jakarta Sans"],
+            },
+            borderRadius: { DEFAULT: "0.5rem", lg: "1rem", xl: "1.5rem", full: "9999px" },
+          },
+        },
+      };
+    </script>
+</head>
+<body class="font-display bg-background-light dark:bg-background-dark">
+<div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
+<div class="flex h-full grow flex-col">
+<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-10 py-3">
+<div class="flex items-center gap-8">
+<div class="flex items-center gap-3 text-background-dark dark:text-background-light">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+<h2 class="text-xl font-bold">Coastal Guide</h2>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Explore</a>
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Safety</a>
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Activities</a>
+<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Plan</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<label class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-background-dark/50 dark:text-background-light/50"> search </span>
+<input class="w-full rounded-full border-none bg-primary/10 py-2 pl-10 pr-4 text-background-dark dark:text-background-light placeholder:text-background-dark/50 dark:placeholder:text-background-light/50 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Search" value=""/>
+</label>
+<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary/10 text-background-dark dark:text-background-light">
+<span class="material-symbols-outlined"> notifications </span>
+</button>
+<div class="h-10 w-10 rounded-full bg-cover bg-center bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbEokTcWivnsoPy_w5cgehnTFCk1sxoHlMclTc5Qu-lIFW_aW3Ki5vjCB4_bCquELiigewipGOb7dOV0oRgOwPDkaoayIEV1t-NPV8fZByAn5YoxMn3wUWq6Ll_pW00asupPi42TbTs3FSzXbAp-0bSpKpUbwBZszwalhbgGRNzuzCltSMFXwt6wMWyof_Zd248O67f4rdTyEvTyxGwkoFCCpVJuqLX7E5vF0_Cjv3q41U22r2MChvJn7wVZllJSNBMOyH22Ysfwj5");'></div>
+</div>
+</header>
+<main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
+<div class="mx-auto max-w-5xl">
+<div class="overflow-hidden rounded-xl">
+<div class="relative flex min-h-[300px] flex-col justify-end bg-cover bg-center p-6 md:min-h-[400px] md:p-8" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvOj49iRpRgd78nc_XrJo3Xo81o5d2ihPxTp42F9E6uijeAnX2fZqbt_i9mbUCggk6cpz-boeW3-qbJIz4bL_qVgx0vNPvJVN1IIchkzyQ1MkHF2jyLYnqVZxrYniKv3iiI2pBIZHKHh_Pj9oCFrw2Av4zXiu6OSQXRwkJJ6D8-poGyUwAjrL9z9a3LH5ds37WXv3gCfgUCnfjEEbtip2TQVpvkFGObGmt9FoXGcIkreMo419vOllMIM5PzTUGQ4bM0SpDw2cnleSY");'>
+<h1 class="text-3xl font-bold text-white md:text-4xl">Serenity Beach</h1>
+</div>
+</div>
+<div class="mt-6 border-b border-primary/20">
+<nav class="-mb-px flex space-x-8">
+<a class="whitespace-nowrap border-b-2 border-primary px-1 py-4 text-sm font-medium text-primary" href="#">Overview</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Safety</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Activities</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Reviews</a>
+</nav>
+</div>
+<div class="py-8">
+<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Photo Gallery</h2>
+<div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<div class="group flex flex-col gap-3">
+<div class="w-full overflow-hidden rounded-lg">
+<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjKxKwEVhrZ-hxFGHnK8G2RSJnYgxwfZZRLLWwOPB9Kn8kWiOCxoV7aHP8BX_2_BvzN_NnZ0NnA2wR9IBGhe2T5GwrFAZNWB7igG_IfYkfumZG2L4hEj3NoqiglooIWy809ot5MFvYvOAoTbKe-dWgnamDNQVuVnw7nJN3xTiStJ5kGSNKcXFcl-W3FKOPJrxSOfDkrHpXDV7GPqLfgfmQxt5LgwNo0k0mzR4_8jrMs8cR6h6GVMMr_8aq5MZpgciTWdtorxyXfcfN");'></div>
+</div>
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">Golden Sands</p>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">A tranquil paradise</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3">
+<div class="w-full overflow-hidden rounded-lg">
+<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7xLtSgbnDOrub_sQWrhIc-mos7BR45u5Q4B5uTKbFE8XiNcS7f85P5a8MoL446ycNd3pdMSEEUfaQpahXSShStCcr3K61VeXmGVRRkGrL9Ziz35x3S5HQE5WozV0t-K4F5AJC8L85XX2UmMD9wbc23LpPEKOcrMXd5VAVGWQ7CCCmoncRfGBi9VlmmYKzeBTF63vYMBCMZ8vc1Pg6yQgiz_iZWa_LdFwZrnPzcayVhmSo7xA7YWJfyr43w4eCce1ih1CYGNGWZSAk");'></div>
+</div>
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">Azure Waves</p>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">Crystal clear waters</p>
+</div>
+</div>
+<div class="group flex flex-col gap-3">
+<div class="w-full overflow-hidden rounded-lg">
+<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXYhWisyXQTzydl7Fbm9aC__UkuUfl2KPjQaLkVbugLAeOYp_K7fi62e9hzACWszOtV-6atWcnbjC6Qk3xNYUK1xfaJiok9FrXDxATM9wQivmrQ4NVLlcXbtOEzJz7_SBe-shftzH_erR5t-HIWM7dKhuZWbJtQHiXp1HRY27KdFVkg3EkL0JUnpBbF_AYb2-KhDkzxLxcEYh1GaedtOgDIj0oyXaipRJPBAJpRoUVOnD7vHsdfg_8vxnN3HnNJLzzMv4Hhgq-nFeW");'></div>
+</div>
+<div>
+<p class="font-medium text-background-dark dark:text-background-light">Sunset Point</p>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">Breathtaking views</p>
+</div>
+</div>
+</div>
+</div>
+<div class="py-8">
+<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Activities</h2>
+<div class="mt-6 flex flex-wrap gap-3">
+<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Swimming</div>
+<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Surfing</div>
+<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Diving</div>
+<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Snorkeling</div>
+<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Kayaking</div>
+</div>
+</div>
+<div class="py-8">
+<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Weather &amp; Tides</h2>
+<div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+<div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
+<p class="font-medium text-background-dark dark:text-background-light">Tide Chart</p>
+<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light">2.5m</p>
+<div class="mt-1 flex items-baseline gap-1">
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
+<p class="text-sm font-medium text-green-500">+0.2m</p>
+</div>
+<div class="mt-6 h-40">
+<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#1193d4" stroke-linecap="round" stroke-width="3"></path>
+<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V150H0V109Z" fill="url(#tide-gradient)"></path>
+<defs>
+<linearGradient gradientUnits="userSpaceOnUse" id="tide-gradient" x1="236" x2="236" y1="1" y2="150">
+<stop stop-color="#1193d4" stop-opacity="0.2"></stop>
+<stop offset="1" stop-color="#1193d4" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+</svg>
+</div>
+</div>
+<div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
+<p class="font-medium text-background-dark dark:text-background-light">Weather Chart</p>
+<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light">28°C</p>
+<div class="mt-1 flex items-baseline gap-1">
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
+<p class="text-sm font-medium text-green-500">+2°C</p>
+</div>
+<div class="mt-6 grid h-40 grid-cols-3 items-end gap-4">
+<div class="flex flex-col items-center gap-2">
+<div class="w-full rounded-full bg-primary/20" style="height: 70%;"></div>
+<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">6AM</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-full rounded-full bg-primary/20" style="height: 50%;"></div>
+<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">12PM</p>
+</div>
+<div class="flex flex-col items-center gap-2">
+<div class="w-full rounded-full bg-primary/20" style="height: 80%;"></div>
+<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">6PM</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="py-8">
+<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Nearby Hotels &amp; Restaurants</h2>
+<div class="mt-6 space-y-6">
+<div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
+<div class="h-40 w-full flex-shrink-0 rounded-lg bg-cover bg-center sm:h-32 sm:w-48" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCugk5CWTbUbQkTOKubebFVZ2qVpuM0W84RCK97UKq1NmIlnytucWQeogDuqjwC9uBbb--GupvYAiHllC0OHpBhW-htPr8KeDSi4CYKCVBhhroJFQ8iHEXg4UxIOie69C48ntel_0MPjXG5KnCqbwuJ5da3UhsoMkAOjBVKw3p3K9uFexQzU2lXNN35AphGQwpG68sIZb8ZGv9Di9PHL4rq3FWo7OpxkZzkPN5hwof6RW-KhzS4KB8prnSndd7GyfUR9yQof19Y5pTY");'></div>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Ocean View Resort</h3>
+<p class="mt-1 text-sm text-background-dark/70 dark:text-background-light/70">Luxury resort with stunning ocean views.</p>
+<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90">Book Now</button>
+</div>
+</div>
+<div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
+<div class="h-40 w-full flex-shrink-0 rounded-lg bg-cover bg-center sm:h-32 sm:w-48" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_ZQsozyEz0i9AS14484VnHSrWU3Lx9b9fG8sJD62XzCp-ClUE9sRQIlfIvVtszOdaebpsISiIWVa7BYaxmhunomduaVwBqXQfJ7aKnkkC6YviWiPt6GyrACCeXpi7Hp2_vINwOqamlUnkjtxFYtWZpLZeDD5WMBvKoKNuMSfr7DrBWhOXfF7EqYqXDUnrcHS7Mkl5E2SLnMV1hLWA4jsEfm1yrmCAzQAbtkX308eLsXoGdmsHyJ3yrR94KnQ-OWr_fqTk2xJn9D5K");'></div>
+<div class="flex-1">
+<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Seaside Bistro</h3>
+<p class="mt-1 text-sm text-background-dark/70 dark:text-background-light/70">Delicious seafood and local cuisine.</p>
+<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90">View Menu</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+<footer class="mt-auto border-t border-primary/20 bg-background-light dark:bg-background-dark">
+<div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 gap-8 md:grid-cols-3">
+<div class="md:col-span-1">
+<div class="flex items-center gap-3 text-background-dark dark:text-background-light">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+<h2 class="text-xl font-bold">Coastal Guide</h2>
+</div>
+<p class="mt-4 text-sm text-background-dark/70 dark:text-background-light/70">Your real-time guide to coastal safety and tourism.</p>
+</div>
+<div class="md:col-span-2">
+<h3 class="text-lg font-semibold text-background-dark dark:text-background-light">Stay Updated</h3>
+<p class="mt-2 text-sm text-background-dark/70 dark:text-background-light/70">Subscribe to our newsletter for the latest updates and safety alerts.</p>
+<form class="mt-4 flex flex-col gap-4 sm:flex-row">
+<label class="sr-only" for="email">Email</label>
+<input class="w-full rounded-full border-primary/30 bg-primary/10 px-4 py-2 text-background-dark placeholder:text-background-dark/50 focus:border-primary focus:ring-primary dark:border-primary/50 dark:bg-primary/20 dark:text-background-light dark:placeholder:text-background-light/50" id="email" placeholder="Enter your email" type="email"/>
+<button class="flex-shrink-0 rounded-full bg-primary px-6 py-2 font-semibold text-white shadow-sm hover:bg-primary/90" type="submit">Subscribe</button>
+</form>
+</div>
+</div>
+<div class="mt-8 border-t border-primary/20 pt-8 text-center text-sm text-background-dark/70 dark:text-background-light/70">
+<p>© 2024 Coastal Guide. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+</div>
+
+</body></html>

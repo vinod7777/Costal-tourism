@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Real-Time Coastal Safety &amp; Tourism Guide</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#1193d4",
+                        "background-light": "#f6f7f8",
+                        "background-dark": "#101c22",
+                    },
+                    fontFamily: {
+                        "display": ["Plus Jakarta Sans"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-background-light dark:bg-background-dark font-display text-slate-800 dark:text-slate-200">
+<div class="relative w-full overflow-x-hidden">
+<header class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-3 flex items-center justify-between">
+<div class="flex items-center gap-8">
+<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="#">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+<span class="text-xl font-bold">Coastal Guide</span>
+</a>
+<div class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Beaches</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Activities</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Safety</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">About</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<div class="hidden md:block relative">
+<input class="bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-full h-10 pl-10 pr-4 w-64 text-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="Search" type="search"/>
+<div class="absolute inset-y-0 left-0 flex items-center pl-3">
+<svg class="text-slate-400 dark:text-slate-500" fill="currentColor" height="20" viewBox="0 0 256 256" width="20" xmlns="http://www.w3.org/2000/svg">
+<path d="M229.66,218.34l-50.07-50.06a88.11,88.11,0,1,0-11.31,11.31l50.06,50.07a8,8,0,0,0,11.32-11.32ZM40,112a72,72,0,1,1,72,72A72.08,72.08,0,0,1,40,112Z"></path>
+</svg>
+</div>
+</div>
+<button class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">
+                        Login
+                    </button>
+</div>
+</nav>
+</header>
+<main class="container mx-auto px-6 py-8">
+<div class="relative h-[600px] rounded-xl overflow-hidden flex items-center justify-center text-center text-white bg-cover bg-center" style='background-image: linear-gradient(rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.6) 100%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuCPyCtHxoPwUoHcdS1tkl1CEddcPqPlzfbppSysMwlz4SqfLanP0RBIkQa9svVp39MQQaspqS5Dq2BsSbqFgCrKIjnBB4JkjpoSxF8U6USqJjVOagGMvyt3ttJZY86Dfh3FBX5yN9f2fa5GaPc8cfmJMhofXXvZnyu20-WXhR1dDU75fbP4Kn-XI8-rzpbgZULwrufDpBYt0IUS7H2t0Gyv1bxeKPTE-9b-BGPl30829Pgpphnah_rmWsYrDVEzdgkHCDYUu2DX38sE");'>
+<div class="max-w-3xl px-4">
+<h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">Explore India's Coastal Wonders</h1>
+<p class="mt-4 text-lg md:text-xl max-w-2xl mx-auto">Discover pristine beaches, thrilling activities, and real-time safety updates for an unforgettable coastal experience.</p>
+<button class="mt-8 bg-primary text-white font-bold text-base px-8 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 shadow-xl">
+                        Explore Beaches
+                    </button>
+</div>
+</div>
+<section class="py-12">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">Live Safety Alerts</h2>
+<div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-lg p-6 flex flex-col md:flex-row items-center gap-8">
+<div class="flex-1">
+<div class="bg-red-100 dark:bg-red-900/30 text-red-800 dark:text-red-200 text-sm font-bold uppercase tracking-wider px-3 py-1 rounded-full inline-block mb-3">High Surf Advisory</div>
+<p class="text-xl font-bold text-slate-900 dark:text-white">Strong currents and high waves expected at Goa beaches.</p>
+<p class="mt-2 text-slate-600 dark:text-slate-400">Exercise extreme caution while swimming and avoid entering the water in undesignated areas. Stay informed with local authorities.</p>
+<button class="mt-4 text-primary font-bold text-sm hover:underline">
+                            View Details
+                        </button>
+</div>
+<div class="w-full md:w-1/3 h-48 md:h-auto md:self-stretch rounded-lg overflow-hidden">
+<div class="w-full h-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD-nnat42kzZhQ7g7e9edywTvh-makgeAfU-Yxv68vA2HPDTqVC5lLES2e7-Pwpqw5pBDmnb35QibVNsgeb3Kaaq8D-YZ-op6kEcmYg1ow7KpmDaCGFiJ1gdrYzCCNs_Utv4kWeqxxXQdgvT-debgGn_N0OLVCG6EAc9cku8hd5n0Q2TXKRhGeg6tNDhGEUZnqzKcYxqRRq-gQgqEnJy3JJWCahmP7h3cXBnhVc1wCzA48pgvjgwsd5RGKCVnZTJzGrpbX6W-Jt6tZs");'></div>
+</div>
+</div>
+</section>
+<section class="py-12">
+<h2 class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6">Featured Beaches</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+<div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-lg overflow-hidden group">
+<div class="h-48 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDzrabhpD5vKMMEVDsXkOJQlILtXWsDEyF_YP3Ao0eUFCppx--6EaalAyuozmF6UeJpeZKgFlel5ygeGJuqVVTJKD78Pka00O4KOT0QDrhgM0sCNgdrReD0NMZVXtb9MSFpee9umP0nNU4fUqSxDCx5Cko_7hUNeUedIw3xyjuqADEQX0IO1rqo0UL-aOzgYTNCBFq_LTS2m2YLKjXivV9tJpvI09_QYDXhgLCCXGft2w0Cus-9PrOrCIQFWpSB2gIHy9gtbQoc93o5");'></div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Goa</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Known for its vibrant nightlife and beautiful beaches.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-lg overflow-hidden group">
+<div class="h-48 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC5BIbTyniNHdlfoj_gJ_hLxMQm7rnAGYzk9LFlZO-5HD9tVperUNsoZEf6sXZT8K7xmbny16JVc26vYr2X4D8_F3AoqTn9MQBd8CGfCIGELQJwXIlPEkecStCmhNnUSGs7IP7o-XzSUIJqk-slfrT7bNYtVdfZWYh1abXUonlKEfJuXCAb_p7Af9AST57eD874Hq7znEPPxkaD1fAyqaIiVbEEVRJWZywmTuS2NUc4w4BUAD-HI0s2A_QJhdVp2QUFz8cFcgquBzBz");'></div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Kerala</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Famous for its serene backwaters and lush greenery.</p>
+</div>
+</div>
+<div class="bg-white dark:bg-slate-900/50 rounded-xl shadow-lg overflow-hidden group">
+<div class="h-48 bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCwVTYlCInd3upHocTtk5yRHeXTEIthz6A6zZhmfyE8mZIS6KO9Y2l_XDpm5msPtujltZChjQabMMROhZiGCUEED-nIDAK-1NPyHGqO61j6UMQ-P0ugEDgjukCQKCWBEy5A-1hYG4_tqZTG50NO5_7DrnMPPgzJwqVXeGGCj1IhHLgaU9JLqF57spwuS_3RiV8EiazIvuuqwAEWNonXS1t7vUZrmBAx1jCjSGkwMbMthVLwYDRbd-d_vAqrIu5WFXksNuSBb13cbcoc");'></div>
+<div class="p-5">
+<h3 class="text-lg font-bold text-slate-900 dark:text-white">Andaman</h3>
+<p class="mt-1 text-sm text-slate-600 dark:text-slate-400">Renowned for its pristine beaches and rich marine life.</p>
+</div>
+</div>
+</div>
+</section>
+</main>
+<footer class="bg-white dark:bg-slate-900/50 mt-12">
+<div class="container mx-auto px-6 py-12">
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+<div>
+<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="#">
+<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
+</svg>
+<span class="text-xl font-bold">Coastal Guide</span>
+</a>
+<p class="mt-4 text-sm text-slate-600 dark:text-slate-400">Your real-time guide to India's coast.</p>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Quick Links</h3>
+<ul class="space-y-2">
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Beaches</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Activities</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">Safety Alerts</a></li>
+<li><a class="text-sm text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">About Us</a></li>
+</ul>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Newsletter</h3>
+<p class="text-sm text-slate-600 dark:text-slate-400 mb-4">Stay updated with our latest news and offers.</p>
+<form class="flex flex-col sm:flex-row gap-2">
+<input class="w-full bg-background-light dark:bg-background-dark border border-slate-200 dark:border-slate-700 rounded-lg px-4 py-2 text-sm focus:ring-2 focus:ring-primary focus:outline-none transition-all" placeholder="Enter your email" type="email"/>
+<button class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-lg hover:bg-primary/90 transition-colors shadow-md" type="submit">
+                                Subscribe
+                            </button>
+</form>
+</div>
+<div>
+<h3 class="text-lg font-bold text-slate-900 dark:text-white mb-4">Follow Us</h3>
+<div class="flex space-x-4">
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="feather feather-facebook" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+</svg>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="feather feather-twitter" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+</svg>
+</a>
+<a class="text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" href="#">
+<svg class="feather feather-instagram" fill="none" height="24" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+<rect height="20" rx="5" ry="5" width="20" x="2" y="2"></rect>
+<path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+<line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+</svg>
+</a>
+</div>
+</div>
+</div>
+<div class="border-t border-slate-200 dark:border-slate-800 mt-8 pt-6 text-center text-sm text-slate-500 dark:text-slate-400">
+<p>© 2024 Coastal Guide. All rights reserved.</p>
+</div>
+</div>
+</footer>
+</div>
+
+</body></html>
