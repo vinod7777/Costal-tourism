@@ -71,7 +71,19 @@
               notifications
             </span>
 </button>
-<div class="h-10 w-10 rounded-full bg-cover bg-center" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBxjg-Y5HIIrUaKzbTq6yluZYiJt2_H1wftTb5ux3JFFEJ0FOtGoIYFzN5UeeQacL-EVf_e2MmJb3WunPOWEGZaFhQpAatDE9ssOjhuTSAxShuXqN1-zJw6meG4OTWUBB8LeOcu1YpZN0_MmPJphwpqQIjgoNjXPjC0uQRoh4C44Mw8MS7Ovwn-FkLz_dhc1745d5C15gCpREMxLodVEr6mf5ngtLNxwo7CclhaOu1kzW1bg8-9oy5CT-VcYhLsRPKTDdSY_fABeflF");'></div>
+<div id="guest-menu" class="items-center gap-4">
+<a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
+<a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
+</div>
+<div id="user-profile" class="items-center gap-4">
+<div class="group flex items-center gap-2 cursor-pointer">
+<div id="user-avatar"></div>
+<span id="user-name" class="text-sm font-semibold text-text-light dark:text-text-dark max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 overflow-hidden whitespace-nowrap">User Name</span>
+</div>
+<button class="sign-out-button p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" title="Sign Out">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
 </div>
 </div>
 </header>
@@ -220,5 +232,6 @@
 </div>
 </footer>
 </div>
+<script src="assets/js/auth.js" type="module"></script>
 
 </body></html>

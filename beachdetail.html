@@ -58,8 +58,8 @@
 <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
 <div class="mx-auto max-w-5xl">
 <div class="overflow-hidden rounded-xl">
-<div class="relative flex min-h-[300px] flex-col justify-end bg-cover bg-center p-6 md:min-h-[400px] md:p-8" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvOj49iRpRgd78nc_XrJo3Xo81o5d2ihPxTp42F9E6uijeAnX2fZqbt_i9mbUCggk6cpz-boeW3-qbJIz4bL_qVgx0vNPvJVN1IIchkzyQ1MkHF2jyLYnqVZxrYniKv3iiI2pBIZHKHh_Pj9oCFrw2Av4zXiu6OSQXRwkJJ6D8-poGyUwAjrL9z9a3LH5ds37WXv3gCfgUCnfjEEbtip2TQVpvkFGObGmt9FoXGcIkreMo419vOllMIM5PzTUGQ4bM0SpDw2cnleSY");'>
-<h1 class="text-3xl font-bold text-white md:text-4xl">Serenity Beach</h1>
+<div class="relative flex min-h-[300px] flex-col justify-end bg-cover bg-center p-6 md:min-h-[400px] md:p-8" id="beach-image" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvOj49iRpRgd78nc_XrJo3Xo81o5d2ihPxTp42F9E6uijeAnX2fZqbt_i9mbUCggk6cpz-boeW3-qbJIz4bL_qVgx0vNPvJVN1IIchkzyQ1MkHF2jyLYnqVZxrYniKv3iiI2pBIZHKHh_Pj9oCFrw2Av4zXiu6OSQXRwkJJ6D8-poGyUwAjrL9z9a3LH5ds37WXv3gCfgUCnfjEEbtip2TQVpvkFGObGmt9FoXGcIkreMo419vOllMIM5PzTUGQ4bM0SpDw2cnleSY");'>
+<h1 class="text-3xl font-bold text-white md:text-4xl" id="beach-name">Serenity Beach</h1>
 </div>
 </div>
 <div class="mt-6 border-b border-primary/20">
@@ -70,7 +70,7 @@
 <a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Reviews</a>
 </nav>
 </div>
-<div class="py-8">
+<div id="photo-gallery-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Photo Gallery</h2>
 <div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
 <div class="group flex flex-col gap-3">
@@ -102,7 +102,7 @@
 </div>
 </div>
 </div>
-<div class="py-8">
+<div id="activities-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Activities</h2>
 <div class="mt-6 flex flex-wrap gap-3">
 <div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Swimming</div>
@@ -112,12 +112,12 @@
 <div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Kayaking</div>
 </div>
 </div>
-<div class="py-8">
+<div id="weather-tides-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Weather &amp; Tides</h2>
 <div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
 <p class="font-medium text-background-dark dark:text-background-light">Tide Chart</p>
-<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light">2.5m</p>
+<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-waves">--m</p>
 <div class="mt-1 flex items-baseline gap-1">
 <p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
 <p class="text-sm font-medium text-green-500">+0.2m</p>
@@ -137,7 +137,7 @@
 </div>
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
 <p class="font-medium text-background-dark dark:text-background-light">Weather Chart</p>
-<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light">28°C</p>
+<p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-temp">--°C</p>
 <div class="mt-1 flex items-baseline gap-1">
 <p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
 <p class="text-sm font-medium text-green-500">+2°C</p>
@@ -159,7 +159,7 @@
 </div>
 </div>
 </div>
-<div class="py-8">
+<div id="nearby-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Nearby Hotels &amp; Restaurants</h2>
 <div class="mt-6 space-y-6">
 <div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
@@ -211,5 +211,5 @@
 </footer>
 </div>
 </div>
-
+<script src="beachdetail.js" type="module"></script>
 </body></html>
