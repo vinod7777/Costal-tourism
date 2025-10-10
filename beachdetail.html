@@ -3,7 +3,7 @@
 <meta charset="utf-8"/>
 <link crossorigin="" href="https://fonts.gstatic.com/" rel="preconnect"/>
 <link as="style" href="https://fonts.googleapis.com/css2?display=swap&amp;family=Noto+Sans%3Awght%40400%3B500%3B700%3B900&amp;family=Plus+Jakarta+Sans%3Awght%40400%3B500%3B700%3B800" onload="this.rel='stylesheet'" rel="stylesheet"/>
-<title>Stitch Design</title>
+<title>Beach Details - Coastal Guide</title>
 <link href="data:image/x-icon;base64," rel="icon" type="image/x-icon"/>
 <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
 <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
@@ -25,41 +25,82 @@
         },
       };
     </script>
+    <style>
+        /* Dark mode icon styles */
+        .dark .dark-mode-icon-light { display: none; }
+        .dark-mode-icon-dark { display: none; }
+        .dark .dark-mode-icon-dark { display: inline; }
+        
+        /* Material symbols font settings */
+        .material-symbols-outlined {
+            font-variation-settings:
+                'FILL' 0,
+                'wght' 400,
+                'GRAD' 0,
+                'opsz' 24
+        }
+    </style>
 </head>
-<body class="font-display bg-background-light dark:bg-background-dark">
+<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
 <div class="relative flex min-h-screen w-full flex-col overflow-x-hidden">
 <div class="flex h-full grow flex-col">
-<header class="flex items-center justify-between whitespace-nowrap border-b border-primary/20 px-10 py-3">
+<header class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50">
+<nav class="container mx-auto px-6 py-3 flex items-center justify-between">
 <div class="flex items-center gap-8">
-<div class="flex items-center gap-3 text-background-dark dark:text-background-light">
+<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="index.html">
 <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
 </svg>
-<h2 class="text-xl font-bold">Coastal Guide</h2>
+<span class="text-xl font-bold">Coastal Guide</span>
+</a>
+<div id="nav-menu" class="hidden md:flex items-center gap-8">
+<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
+<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="interativemap.html">Map</a>
+<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety</a>
+<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="beachdetail.html">About</a>
 </div>
-<nav class="hidden md:flex items-center gap-6">
-<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Explore</a>
-<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Safety</a>
-<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Activities</a>
-<a class="text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:text-primary" href="#">Plan</a>
-</nav>
 </div>
 <div class="flex items-center gap-4">
-<label class="relative hidden sm:block">
-<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-background-dark/50 dark:text-background-light/50"> search </span>
-<input class="w-full rounded-full border-none bg-primary/10 py-2 pl-10 pr-4 text-background-dark dark:text-background-light placeholder:text-background-dark/50 dark:placeholder:text-background-light/50 focus:outline-none focus:ring-2 focus:ring-primary/50" placeholder="Search" value=""/>
-</label>
-<button class="flex h-10 w-10 cursor-pointer items-center justify-center rounded-full bg-primary/10 text-background-dark dark:text-background-light">
-<span class="material-symbols-outlined"> notifications </span>
+<button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined dark-mode-icon-light">light_mode</span>
+<span class="material-symbols-outlined dark-mode-icon-dark">dark_mode</span>
 </button>
-<div class="h-10 w-10 rounded-full bg-cover bg-center bg-no-repeat" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAbEokTcWivnsoPy_w5cgehnTFCk1sxoHlMclTc5Qu-lIFW_aW3Ki5vjCB4_bCquELiigewipGOb7dOV0oRgOwPDkaoayIEV1t-NPV8fZByAn5YoxMn3wUWq6Ll_pW00asupPi42TbTs3FSzXbAp-0bSpKpUbwBZszwalhbgGRNzuzCltSMFXwt6wMWyof_Zd248O67f4rdTyEvTyxGwkoFCCpVJuqLX7E5vF0_Cjv3q41U22r2MChvJn7wVZllJSNBMOyH22Ysfwj5");'></div>
+<div id="guest-menu" class="items-center gap-4">
+<a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
+<a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
 </div>
+<div id="user-profile" class="items-center gap-4">
+<div class="group flex items-center gap-2 cursor-pointer">
+<div id="user-avatar"></div>
+<span id="user-name" class="text-sm font-semibold text-text-light dark:text-text-dark max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 overflow-hidden whitespace-nowrap">User Name</span>
+</div>
+<button class="sign-out-button p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" title="Sign Out">
+<span class="material-symbols-outlined">logout</span>
+</button>
+</div>
+<button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</nav>
 </header>
 <main class="flex-1 px-4 py-8 sm:px-6 lg:px-8">
 <div class="mx-auto max-w-5xl">
+<div class="mb-6">
+<a href="searchbeach.html" class="inline-flex items-center gap-2 text-primary hover:text-primary/80 transition-colors">
+<span class="material-symbols-outlined">arrow_back</span>
+<span class="font-medium">Back to Beach Search</span>
+</a>
+</div>
 <div class="overflow-hidden rounded-xl">
 <div class="relative flex min-h-[300px] flex-col justify-end bg-cover bg-center p-6 md:min-h-[400px] md:p-8" id="beach-image" style='background-image: linear-gradient(0deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0) 40%), url("https://lh3.googleusercontent.com/aida-public/AB6AXuAvOj49iRpRgd78nc_XrJo3Xo81o5d2ihPxTp42F9E6uijeAnX2fZqbt_i9mbUCggk6cpz-boeW3-qbJIz4bL_qVgx0vNPvJVN1IIchkzyQ1MkHF2jyLYnqVZxrYniKv3iiI2pBIZHKHh_Pj9oCFrw2Av4zXiu6OSQXRwkJJ6D8-poGyUwAjrL9z9a3LH5ds37WXv3gCfgUCnfjEEbtip2TQVpvkFGObGmt9FoXGcIkreMo419vOllMIM5PzTUGQ4bM0SpDw2cnleSY");'>
 <h1 class="text-3xl font-bold text-white md:text-4xl" id="beach-name">Serenity Beach</h1>
+</div>
+</div>
+<div class="mt-6">
+<div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
+<h2 class="text-xl font-bold text-background-dark dark:text-background-light mb-3">About This Beach</h2>
+<p id="beach-description" class="text-background-dark/70 dark:text-background-light/70">Loading beach information...</p>
 </div>
 </div>
 <div class="mt-6 border-b border-primary/20">
@@ -72,110 +113,72 @@
 </div>
 <div id="photo-gallery-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Photo Gallery</h2>
-<div class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
-<div class="group flex flex-col gap-3">
-<div class="w-full overflow-hidden rounded-lg">
-<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuBjKxKwEVhrZ-hxFGHnK8G2RSJnYgxwfZZRLLWwOPB9Kn8kWiOCxoV7aHP8BX_2_BvzN_NnZ0NnA2wR9IBGhe2T5GwrFAZNWB7igG_IfYkfumZG2L4hEj3NoqiglooIWy809ot5MFvYvOAoTbKe-dWgnamDNQVuVnw7nJN3xTiStJ5kGSNKcXFcl-W3FKOPJrxSOfDkrHpXDV7GPqLfgfmQxt5LgwNo0k0mzR4_8jrMs8cR6h6GVMMr_8aq5MZpgciTWdtorxyXfcfN");'></div>
-</div>
-<div>
-<p class="font-medium text-background-dark dark:text-background-light">Golden Sands</p>
-<p class="text-sm text-background-dark/70 dark:text-background-light/70">A tranquil paradise</p>
-</div>
-</div>
-<div class="group flex flex-col gap-3">
-<div class="w-full overflow-hidden rounded-lg">
-<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD7xLtSgbnDOrub_sQWrhIc-mos7BR45u5Q4B5uTKbFE8XiNcS7f85P5a8MoL446ycNd3pdMSEEUfaQpahXSShStCcr3K61VeXmGVRRkGrL9Ziz35x3S5HQE5WozV0t-K4F5AJC8L85XX2UmMD9wbc23LpPEKOcrMXd5VAVGWQ7CCCmoncRfGBi9VlmmYKzeBTF63vYMBCMZ8vc1Pg6yQgiz_iZWa_LdFwZrnPzcayVhmSo7xA7YWJfyr43w4eCce1ih1CYGNGWZSAk");'></div>
-</div>
-<div>
-<p class="font-medium text-background-dark dark:text-background-light">Azure Waves</p>
-<p class="text-sm text-background-dark/70 dark:text-background-light/70">Crystal clear waters</p>
-</div>
-</div>
-<div class="group flex flex-col gap-3">
-<div class="w-full overflow-hidden rounded-lg">
-<div class="aspect-video w-full bg-cover bg-center bg-no-repeat transition-transform duration-300 group-hover:scale-105" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDXYhWisyXQTzydl7Fbm9aC__UkuUfl2KPjQaLkVbugLAeOYp_K7fi62e9hzACWszOtV-6atWcnbjC6Qk3xNYUK1xfaJiok9FrXDxATM9wQivmrQ4NVLlcXbtOEzJz7_SBe-shftzH_erR5t-HIWM7dKhuZWbJtQHiXp1HRY27KdFVkg3EkL0JUnpBbF_AYb2-KhDkzxLxcEYh1GaedtOgDIj0oyXaipRJPBAJpRoUVOnD7vHsdfg_8vxnN3HnNJLzzMv4Hhgq-nFeW");'></div>
-</div>
-<div>
-<p class="font-medium text-background-dark dark:text-background-light">Sunset Point</p>
-<p class="text-sm text-background-dark/70 dark:text-background-light/70">Breathtaking views</p>
+<div id="beach-gallery" class="mt-6 grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+<!-- Dynamic gallery will be loaded here -->
+<div class="text-center py-8 col-span-full">
+<div class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60">
+<span class="material-symbols-outlined animate-spin text-2xl">refresh</span>
+<span class="text-lg">Loading gallery...</span>
 </div>
 </div>
 </div>
 </div>
 <div id="activities-section" class="py-8">
-<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Activities</h2>
-<div class="mt-6 flex flex-wrap gap-3">
-<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Swimming</div>
-<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Surfing</div>
-<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Diving</div>
-<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Snorkeling</div>
-<div class="rounded-full bg-primary/10 px-4 py-2 text-sm font-medium text-primary">Kayaking</div>
+<h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Activities & Safety</h2>
+<div class="mt-6">
+<ul id="beach-activities" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<!-- Activities will be loaded dynamically -->
+</ul>
+</div>
+<div class="mt-6">
+<h3 class="text-lg font-semibold text-background-dark dark:text-background-light mb-3">Facilities</h3>
+<ul id="beach-facilities" class="text-background-dark/70 dark:text-background-light/70">
+<!-- Facilities will be loaded dynamically -->
+</ul>
 </div>
 </div>
 <div id="weather-tides-section" class="py-8">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Weather &amp; Tides</h2>
-<div class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
+<div id="weather-info" class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
-<p class="font-medium text-background-dark dark:text-background-light">Tide Chart</p>
+<p class="font-medium text-background-dark dark:text-background-light">Current Tide</p>
 <p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-waves">--m</p>
 <div class="mt-1 flex items-baseline gap-1">
 <p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
-<p class="text-sm font-medium text-green-500">+0.2m</p>
+<p class="tide-delta text-sm font-medium text-green-500">--</p>
 </div>
-<div class="mt-6 h-40">
-<svg fill="none" height="100%" preserveAspectRatio="none" viewBox="0 0 472 150" width="100%" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25" stroke="#1193d4" stroke-linecap="round" stroke-width="3"></path>
-<path d="M0 109C18.1538 109 18.1538 21 36.3077 21C54.4615 21 54.4615 41 72.6154 41C90.7692 41 90.7692 93 108.923 93C127.077 93 127.077 33 145.231 33C163.385 33 163.385 101 181.538 101C199.692 101 199.692 61 217.846 61C236 61 236 45 254.154 45C272.308 45 272.308 121 290.462 121C308.615 121 308.615 149 326.769 149C344.923 149 344.923 1 363.077 1C381.231 1 381.231 81 399.385 81C417.538 81 417.538 129 435.692 129C453.846 129 453.846 25 472 25V150H0V109Z" fill="url(#tide-gradient)"></path>
-<defs>
-<linearGradient gradientUnits="userSpaceOnUse" id="tide-gradient" x1="236" x2="236" y1="1" y2="150">
-<stop stop-color="#1193d4" stop-opacity="0.2"></stop>
-<stop offset="1" stop-color="#1193d4" stop-opacity="0"></stop>
-</linearGradient>
-</defs>
-</svg>
+<div class="mt-4 text-xs text-background-dark/50 dark:text-background-light/50">
+Live tide estimate based on location and time
 </div>
 </div>
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
-<p class="font-medium text-background-dark dark:text-background-light">Weather Chart</p>
+<p class="font-medium text-background-dark dark:text-background-light">Current Weather</p>
 <p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-temp">--°C</p>
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">Wind <span class="weather-wind">--km/h</span></p>
 <div class="mt-1 flex items-baseline gap-1">
 <p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
-<p class="text-sm font-medium text-green-500">+2°C</p>
+<p class="temp-delta text-sm font-medium text-green-500">--</p>
 </div>
-<div class="mt-6 grid h-40 grid-cols-3 items-end gap-4">
-<div class="flex flex-col items-center gap-2">
-<div class="w-full rounded-full bg-primary/20" style="height: 70%;"></div>
-<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">6AM</p>
-</div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-full rounded-full bg-primary/20" style="height: 50%;"></div>
-<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">12PM</p>
-</div>
-<div class="flex flex-col items-center gap-2">
-<div class="w-full rounded-full bg-primary/20" style="height: 80%;"></div>
-<p class="text-xs font-medium text-background-dark/70 dark:text-background-light/70">6PM</p>
-</div>
+<div class="mt-4 text-xs text-background-dark/50 dark:text-background-light/50">
+Real-time weather data from OpenWeatherMap
 </div>
 </div>
 </div>
 </div>
 <div id="nearby-section" class="py-8">
+<div class="flex items-center justify-between mb-6">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Nearby Hotels &amp; Restaurants</h2>
+<button id="refresh-nearby" class="flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-medium hover:bg-primary/20 transition-colors">
+<span class="material-symbols-outlined text-sm">refresh</span>
+<span>Refresh</span>
+</button>
+</div>
 <div class="mt-6 space-y-6">
-<div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
-<div class="h-40 w-full flex-shrink-0 rounded-lg bg-cover bg-center sm:h-32 sm:w-48" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCugk5CWTbUbQkTOKubebFVZ2qVpuM0W84RCK97UKq1NmIlnytucWQeogDuqjwC9uBbb--GupvYAiHllC0OHpBhW-htPr8KeDSi4CYKCVBhhroJFQ8iHEXg4UxIOie69C48ntel_0MPjXG5KnCqbwuJ5da3UhsoMkAOjBVKw3p3K9uFexQzU2lXNN35AphGQwpG68sIZb8ZGv9Di9PHL4rq3FWo7OpxkZzkPN5hwof6RW-KhzS4KB8prnSndd7GyfUR9yQof19Y5pTY");'></div>
-<div class="flex-1">
-<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Ocean View Resort</h3>
-<p class="mt-1 text-sm text-background-dark/70 dark:text-background-light/70">Luxury resort with stunning ocean views.</p>
-<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90">Book Now</button>
-</div>
-</div>
-<div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
-<div class="h-40 w-full flex-shrink-0 rounded-lg bg-cover bg-center sm:h-32 sm:w-48" style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB_ZQsozyEz0i9AS14484VnHSrWU3Lx9b9fG8sJD62XzCp-ClUE9sRQIlfIvVtszOdaebpsISiIWVa7BYaxmhunomduaVwBqXQfJ7aKnkkC6YviWiPt6GyrACCeXpi7Hp2_vINwOqamlUnkjtxFYtWZpLZeDD5WMBvKoKNuMSfr7DrBWhOXfF7EqYqXDUnrcHS7Mkl5E2SLnMV1hLWA4jsEfm1yrmCAzQAbtkX308eLsXoGdmsHyJ3yrR94KnQ-OWr_fqTk2xJn9D5K");'></div>
-<div class="flex-1">
-<h3 class="text-lg font-bold text-background-dark dark:text-background-light">Seaside Bistro</h3>
-<p class="mt-1 text-sm text-background-dark/70 dark:text-background-light/70">Delicious seafood and local cuisine.</p>
-<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90">View Menu</button>
+<!-- Dynamic content will be loaded here -->
+<div class="text-center py-12">
+<div class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60">
+<span class="material-symbols-outlined animate-spin text-2xl">refresh</span>
+<span class="text-lg">Loading nearby places...</span>
 </div>
 </div>
 </div>
@@ -211,5 +214,68 @@
 </footer>
 </div>
 </div>
+<script type="module">
+  import { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY } from './assets/js/config.js';
+  window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
+  import './weather.js';
+  import './assets/js/auth.js';
+  import './assets/js/nearby-places.js';
+</script>
 <script src="beachdetail.js" type="module"></script>
+<script>
+    // Dark mode toggle functionality
+    (function() {
+        const toggle = document.getElementById('dark-mode-toggle');
+        if (!toggle) return;
+
+        // Check for saved preference, or use system preference
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+
+        toggle.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+    })();
+
+    // Mobile menu toggle (if needed in future)
+    (function() {
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const navMenu = document.getElementById('nav-menu');
+        
+        if (mobileMenuButton && navMenu) {
+            mobileMenuButton.addEventListener('click', () => {
+                navMenu.classList.toggle('hidden');
+            });
+        }
+    })();
+
+    // User profile management is handled by auth.js
+    
+    // Nearby places refresh functionality
+    document.addEventListener('DOMContentLoaded', () => {
+        const refreshBtn = document.getElementById('refresh-nearby');
+        if (refreshBtn) {
+            refreshBtn.addEventListener('click', async () => {
+                if (window.nearbyPlacesManager) {
+                    refreshBtn.disabled = true;
+                    refreshBtn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">refresh</span> <span>Refreshing...</span>';
+                    
+                    await window.nearbyPlacesManager.refresh();
+                    
+                    refreshBtn.disabled = false;
+                    refreshBtn.innerHTML = '<span class="material-symbols-outlined text-sm">refresh</span> <span>Refresh</span>';
+                }
+            });
+        }
+    });
+</script>
 </body></html>

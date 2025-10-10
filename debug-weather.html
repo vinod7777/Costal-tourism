@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather API Debug</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="p-8 bg-gray-100">
+    <h1 class="text-2xl font-bold mb-4">Weather API Debug</h1>
+    
+    <div class="bg-white p-4 rounded-lg shadow mb-4">
+        <h2 class="text-lg font-semibold mb-2">Test Weather Widget</h2>
+        <div id="test-widget" data-weather-widget data-lat="19.817" data-lon="85.828" class="border p-4 rounded">
+            <h3 class="font-bold">Puri Beach</h3>
+            <div class="grid grid-cols-3 gap-4 mt-2">
+                <div>
+                    <p class="text-sm text-gray-600">Temperature</p>
+                    <p class="weather-temp font-semibold">Loading...</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Tide</p>
+                    <p class="weather-waves font-semibold">Loading...</p>
+                </div>
+                <div>
+                    <p class="text-sm text-gray-600">Wind</p>
+                    <p class="weather-wind font-semibold">Loading...</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="bg-white p-4 rounded-lg shadow mb-4">
+        <h2 class="text-lg font-semibold mb-2">Debug Log</h2>
+        <div id="debug-log" class="bg-gray-100 p-2 rounded text-sm font-mono h-40 overflow-y-auto"></div>
+    </div>
+
+    <button id="test-api" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+        Test API Directly
+    </button>
+
+    <script type="module">
+        // Debug logging
+        function log(message) {
+            const debugLog = document.getElementById('debug-log');
+            const timestamp = new Date().toLocaleTimeString();
+            debugLog.innerHTML += `[${timestamp}] ${message}\n`;
+            debugLog.scrollTop = debugLog.scrollHeight;
+            console.log(message);
+        }
+
+        // Import config
+        import { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY } from './assets/js/config.js';
+        window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
+
+        log('Config loaded: ' + JSON.stringify(window.__COASTAL_CONFIG__));
+
+        // Test API directly
+        document.getElementById('test-api').addEventListener('click', async () => {
+            log('=== Starting API Tests ===');
+            log('Testing OpenWeatherMap API...');
+            
+            try {
+                const response = await fetch(`https://api.openweathermap.org/data/2.5/weather?lat=19.817&lon=85.828&appid=${OPENWEATHER_API_KEY}&units=metric`);
+                if (!response.ok) {
+                    throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+                }
+                const data = await response.json();
+                log('OpenWeatherMap success: ' + JSON.stringify(data, null, 2));
+                
+                // Update display
+                document.querySelector('.weather-temp').textContent = `${Math.round(data.main.temp)}°C`;
+                document.querySelector('.weather-wind').textContent = `${(data.wind.speed * 3.6).toFixed(1)}km/h`;
+                
+            } catch (error) {
+                log('OpenWeatherMap error: ' + error.message);
+            }
+
+            log('Testing WorldTides API for accurate tide heights...');
+            
+            // Try multiple API formats
+            const apiFormats = [
+                `https://www.worldtides.info/api?heights&lat=19.817&lon=85.828&key=${WORLDTIDES_API_KEY}`,
+                `https://www.worldtides.info/api?heights&lat=19.817&lon=85.828&date=today&key=${WORLDTIDES_API_KEY}`,
+                `https://www.worldtides.info/api?heights&lat=19.817&lon=85.828&duration=1440&key=${WORLDTIDES_API_KEY}`,
+                `https://www.worldtides.info/api?extremes&lat=19.817&lon=85.828&key=${WORLDTIDES_API_KEY}`
+            ];
+            
+            let tideSuccess = false;
+            
+            for (let i = 0; i < apiFormats.length && !tideSuccess; i++) {
+                try {
+                    const url = apiFormats[i];
+                    log(`Trying WorldTides format ${i + 1}: ${url}`);
+                    
+                    const response = await fetch(url);
+                    
+                    if (!response.ok) {
+                        log(`Format ${i + 1} failed: HTTP ${response.status}: ${response.statusText}`);
+                        continue;
+                    }
+                    
+                    const data = await response.json();
+                    log(`Format ${i + 1} response: ${JSON.stringify(data, null, 2)}`);
+                    
+                    if (data.error) {
+                        log(`Format ${i + 1} API error: ${data.error}`);
+                        continue;
+                    }
+                    
+                    // Check for heights data
+                    if (data.heights && data.heights.length > 0) {
+                        const nowTimestamp = Date.now() / 1000;
+                        let closest = data.heights[0];
+                        let minDiff = Math.abs(closest.dt - nowTimestamp);
+                        
+                        for (const height of data.heights) {
+                            const diff = Math.abs(height.dt - nowTimestamp);
+                            if (diff < minDiff) {
+                                minDiff = diff;
+                                closest = height;
+                            }
+                        }
+                        
+                        const currentTideHeight = closest.height;
+                        document.querySelector('.weather-waves').textContent = `${currentTideHeight.toFixed(2)}m`;
+                        log(`SUCCESS! Current tide height: ${currentTideHeight.toFixed(2)}m`);
+                        tideSuccess = true;
+                        break;
+                    }
+                    
+                    // Check for extremes data
+                    if (data.extremes && data.extremes.length > 0) {
+                        const latestExtreme = data.extremes[0];
+                        document.querySelector('.weather-waves').textContent = `${latestExtreme.height.toFixed(2)}m`;
+                        log(`SUCCESS! Latest tide extreme: ${latestExtreme.height.toFixed(2)}m at ${latestExtreme.date}`);
+                        tideSuccess = true;
+                        break;
+                    }
+                    
+                    log(`Format ${i + 1} has no usable tide data`);
+                    
+                } catch (error) {
+                    log(`Format ${i + 1} error: ${error.message}`);
+                }
+            }
+            
+            if (!tideSuccess) {
+                log('All WorldTides formats failed, using fallback...');
+                log('Falling back to Open-Meteo for wave data...');
+                
+                try {
+                    const response = await fetch(`https://api.open-meteo.com/v1/forecast?latitude=19.817&longitude=85.828&hourly=wave_height&forecast_days=1&timezone=auto`);
+                    const data = await response.json();
+                    if (data.hourly && data.hourly.wave_height && data.hourly.wave_height[0]) {
+                        document.querySelector('.weather-waves').textContent = `${data.hourly.wave_height[0]}m`;
+                        log('Open-Meteo wave data: ' + data.hourly.wave_height[0] + 'm');
+                    } else {
+                        document.querySelector('.weather-waves').textContent = '1.0m';
+                        log('Using fallback wave height: 1.0m');
+                    }
+                } catch (meteoError) {
+                    log('Open-Meteo error: ' + meteoError.message);
+                    document.querySelector('.weather-waves').textContent = '1.0m';
+                }
+            }
+        });
+
+        // Import and test weather.js
+        log('Loading weather.js...');
+        import('./weather.js').then(() => {
+            log('weather.js loaded successfully');
+        }).catch(error => {
+            log('weather.js error: ' + error.message);
+        });
+    </script>
+</body>
+</html>

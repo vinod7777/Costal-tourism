@@ -1,4 +1,6 @@
-import { beaches } from './beaches.js';
+import { beaches } from './assets/js/beaches.js';
+
+document.addEventListener('DOMContentLoaded', () => {
 
 /* app.js
    Leaflet map + Nominatim search + reverse geocode + sample beach markers
@@ -23,6 +25,10 @@ function debounce(fn, wait = 400) {
 function el(id) { return document.getElementById(id); }
 
 /* ---------- Initialize Map ---------- */
+const mapContainer = document.getElementById('map');
+if (!mapContainer || typeof L === 'undefined') {
+  console.error('Leaflet map container not found or Leaflet not loaded.');
+}
 const map = L.map('map').setView(DEFAULT_CENTER, DEFAULT_ZOOM);
 
 // OSM tiles (public). Keep usage polite.
@@ -31,6 +37,11 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
   maxZoom: 19
 }).addTo(map);
+
+// Fix: ensure map sizes correctly after layout/ fonts load
+setTimeout(() => {
+  try { map.invalidateSize(); } catch (e) {}
+}, 250);
 
 /* ---------- Load beaches from beaches.js ---------- */
 const allBeachesData = beaches.beaches_in_india;
@@ -51,36 +62,39 @@ function addBeachMarker(b) {
 }
 
 /* populate sample list and map */
-function populateSampleBeaches() {
-  const list = el('beach-list');
-  list.innerHTML = '';
-  allBeachesData.forEach(b => {
-    addBeachMarker(b);
-    const card = document.createElement('div');
-    card.className = 'bg-white p-3 rounded shadow';
-    card.innerHTML = `
-      <h3 class="font-semibold">${b.name}</h3>
-      <p class="text-sm text-slate-600">${b.state_ut}</p>
-      <p class="text-sm mt-2">Activities: ${b.activities.join(', ')}</p>
-      ${b.distance ? `<p class="text-sm text-slate-500">Distance: ${b.distance.toFixed(2)} km</p>` : ''}
-      <a href="beachdetail.html?beach=${encodeURIComponent(b.name)}" class="mt-2 inline-block px-3 py-1 bg-blue-600 text-white rounded">View Details</a>
-      <button data-lat="${b.lat}" data-lon="${b.lon}" class="mt-2 px-3 py-1 bg-blue-600 text-white rounded btn-center">Show on map</button>
-    `;
-    list.appendChild(card);
-  });
-
-  // wire "Show on map" buttons
-  document.querySelectorAll('.btn-center').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      const lat = +e.target.dataset.lat, lon = +e.target.dataset.lon;
-      map.setView([lat, lon], 13);
+function populateBeachesOnMap() {
+    allBeachesData.forEach(b => {
+        addBeachMarker(b);
     });
-  });
 }
-populateSampleBeaches();
+
+populateBeachesOnMap();
+
+
+// This function will be called from search.js after rendering cards
+window.wireMapButtons = function() {
+    document.querySelectorAll('.btn-show-on-map').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            e.preventDefault(); // Prevent navigation
+            const card = e.target.closest('[data-lat]');
+            if (card) {
+                const lat = +card.dataset.lat;
+                const lon = +card.dataset.lon;
+                map.setView([lat, lon], 14);
+                // Find and open the corresponding marker
+                beachLayerGroup.eachLayer(marker => {
+                    if (marker.getLatLng().lat === lat && marker.getLatLng().lng === lon) {
+                        marker.openPopup();
+                    }
+                });
+                window.scrollTo({ top: el('map-section').offsetTop - 80, behavior: 'smooth' });
+            }
+        });
+    });
+}
 
 /* ---------- Nominatim forward geocoding (search) ---------- */
-const searchInput = el('search');
+const searchInput = el('map-search');
 const suggestionsBox = el('suggestions');
 
 async function nominatimSearch(q) {
@@ -137,7 +151,7 @@ searchInput.addEventListener('input', (e) => {
 
 /* click suggestion -> center map + add marker */
 suggestionsBox.addEventListener('click', (ev) => {
-  const target = ev.target.closest('.suggestion');
+  const target = ev.target.closest('.suggestion'); // Use the existing suggestion class
   if (!target) return;
   const lat = parseFloat(target.dataset.lat);
   const lon = parseFloat(target.dataset.lon);
@@ -150,7 +164,7 @@ suggestionsBox.addEventListener('click', (ev) => {
 
 /* hide suggestions if click outside */
 document.addEventListener('click', (ev) => {
-  if (!el('search').contains(ev.target) && !suggestionsBox.contains(ev.target)) {
+  if (!el('map-search').contains(ev.target) && !suggestionsBox.contains(ev.target)) {
     suggestionsBox.classList.add('hidden');
   }
 });
@@ -222,12 +236,12 @@ el('btn-locate').addEventListener('click', () => {
     L.marker([latitude, longitude]).addTo(map).bindPopup('Your approximate location').openPopup();
 
     allBeachesData.forEach(beach => {
-      beach.distance = haversineDistance({ lat: latitude, lon: longitude }, beach);
+        beach.distance = haversineDistance({ lat: latitude, lon: longitude }, beach);
     });
 
     allBeachesData.sort((a, b) => a.distance - b.distance);
-
-    populateSampleBeaches();
+    
+    document.dispatchEvent(new CustomEvent('beaches-sorted-by-distance', { detail: allBeachesData }));
 
   }, err => alert('Location error: ' + err.message));
 });
@@ -238,4 +252,6 @@ searchInput.addEventListener('keydown', (e) => {
     const first = suggestionsBox.querySelector('.suggestion');
     if (first) first.click();
   }
+});
+
 });
