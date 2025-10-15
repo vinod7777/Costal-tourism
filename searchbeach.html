@@ -73,9 +73,9 @@
 </a>
 <div id="nav-menu" class="hidden md:flex items-center gap-8">
 <a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="interativemap.html">Map</a>
+<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="plantrip.html">Plan a Trip</a>
 <a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="beachdetail.html">About</a>
+<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">About</a>
 </div>
 </div>
 <div class="flex items-center gap-4">
@@ -87,14 +87,8 @@
 <a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
 <a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
 </div>
-<div id="user-profile" class="items-center gap-4">
-<div class="group flex items-center gap-2 cursor-pointer">
-<div id="user-avatar"></div>
-<span id="user-name" class="text-sm font-semibold text-text-light dark:text-text-dark max-w-0 group-hover:max-w-xs opacity-0 group-hover:opacity-100 transition-all duration-300 overflow-hidden whitespace-nowrap">User Name</span>
-</div>
-<button class="sign-out-button p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors" title="Sign Out">
-<span class="material-symbols-outlined">logout</span>
-</button>
+<div id="user-profile" class="relative items-center gap-4">
+<!-- User menu will be populated by auth.js -->
 </div>
 <button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
 <span class="material-symbols-outlined">menu</span>
@@ -102,9 +96,8 @@
 </div>
 </nav>
 </header>
-
-    <main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-        <section class="mb-8">
+<main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+    <section class="mb-8">
             <h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-4xl">Find Your Perfect Beach</h2>
             <p class="mt-2 text-lg text-text-muted-light dark:text-text-muted-dark">Search and filter through India's beautiful coastline.</p>
         </section>

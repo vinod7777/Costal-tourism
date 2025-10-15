@@ -1,178 +1,155 @@
 import { beaches } from './assets/js/beaches.js';
 
 document.addEventListener('DOMContentLoaded', () => {
+    const allBeaches = beaches.beaches_in_india;
+    const beachListContainer = document.getElementById('beach-list');
+    const noResultsDiv = document.getElementById('no-results');
     const searchInput = document.getElementById('search-input');
-    const beachList = document.getElementById('beach-list');
-    const noResults = document.getElementById('no-results');
-    const stateFilterContainer = document.getElementById('state-filter-container');
     const stateFilterButton = document.getElementById('state-filter-button');
     const stateFilterLabel = document.getElementById('state-filter-label');
     const stateFilterOptions = document.getElementById('state-filter-options');
-    const activityFilterContainer = document.getElementById('activity-filter-container');
     const activityFilterButton = document.getElementById('activity-filter-button');
     const activityFilterLabel = document.getElementById('activity-filter-label');
     const activityFilterOptions = document.getElementById('activity-filter-options');
 
-    let allBeaches = beaches.beaches_in_india;
-    let filteredBeaches = [...allBeaches];
+    let currentFilters = {
+        searchTerm: '',
+        state: 'All States',
+        activity: 'All Activities'
+    };
 
-    let selectedState = 'All';
-    let selectedActivity = 'All';
+    // --- Filter Setup ---
+    function setupFilters() {
+        // States
+        const states = ['All States', ...new Set(allBeaches.map(b => b.state_ut))].sort();
+        stateFilterOptions.innerHTML = states.map(state => `<button class="block w-full px-4 py-2 text-left text-sm hover:bg-primary/10">${state}</button>`).join('');
 
-    const activities = ['Swim', 'Surf', 'Dive'];
+        // Activities
+        const activities = ['All Activities', ...new Set(allBeaches.flatMap(b => b.activities))].sort();
+        activityFilterOptions.innerHTML = activities.map(act => `<button class="block w-full px-4 py-2 text-left text-sm hover:bg-primary/10">${act}</button>`).join('');
 
-    function renderBeaches() {
-        beachList.innerHTML = '';
-        if (filteredBeaches.length === 0) {
-            noResults.classList.remove('hidden');
-        } else {
-            noResults.classList.add('hidden');
+        // Generic filter dropdown logic
+        function setupDropdown(button, options, filterKey, label) {
+            button.addEventListener('click', () => options.classList.toggle('hidden'));
+            options.addEventListener('click', (e) => {
+                if (e.target.tagName === 'BUTTON') {
+                    currentFilters[filterKey] = e.target.textContent;
+                    label.textContent = e.target.textContent;
+                    options.classList.add('hidden');
+                    filterAndRenderBeaches();
+                }
+            });
         }
-        filteredBeaches.forEach(beach => {
-            const beachCard = `
-                <div class="group bg-surface-light dark:bg-surface-dark rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1" data-weather-widget data-lat="${beach.lat}" data-lon="${beach.lon}">
-                    <div class="relative">
-                        <img alt="${beach.name}" class="w-full h-48 object-cover" src="${beach.image || `https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop&auto=format`}" 
-                             onerror="this.src='https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop&auto=format'"
-                             onload="this.style.opacity='1'" 
-                             style="opacity: 0; transition: opacity 0.3s ease;">
-                        <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/60 to-transparent">
-                            <h3 class="text-white text-lg font-bold">${beach.name}</h3>
-                            <p class="text-gray-300 text-sm">${beach.state_ut}</p>
-                        </div>
-                    </div>
-                    <div class="p-4 space-y-4">
-                        <div class="flex flex-wrap gap-2">
-                            ${beach.activities.slice(0, 3).map(act => `<span class="text-xs font-medium bg-primary/10 text-primary px-2 py-1 rounded-full">${act}</span>`).join('')}
-                        </div>
-                        <div class="border-t border-border-light dark:border-border-dark my-2"></div>
-                        <div class="grid grid-cols-4 gap-2 text-center">
-                            <div>
-                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Temp</p>
-                                <p class="font-semibold text-sm weather-temp">--°C</p>
-                                <p class="text-[11px] text-text-muted-light dark:text-text-muted-dark">Today <span class="temp-delta text-green-500">--</span></p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Tide</p>
-                                <p class="font-semibold text-sm weather-waves">--m</p>
-                                <p class="text-[11px] text-text-muted-light dark:text-text-muted-dark">Today <span class="tide-delta text-green-500">--</span></p>
-                            </div>
-                            <div>
-                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Wind</p>
-                                <p class="font-semibold text-sm weather-wind">--km/h</p>
-                            </div>
-                             <div>
-                                <p class="text-xs text-text-muted-light dark:text-text-muted-dark">Dist.</p>
-                                <p class="font-semibold text-sm beach-distance">${beach.distance ? `${beach.distance.toFixed(0)}km` : '--'}</p>
-                            </div>
-                        </div>
-                        <div class="pt-2 flex gap-2">
-                            <a href="beachdetail.html?beach=${encodeURIComponent(beach.name)}" class="text-center block w-full bg-primary text-white rounded-lg py-2 text-sm font-semibold hover:bg-primary/90 transition-colors">View Details</a>
-                            <a href="#" class="btn-show-on-map text-center block w-full bg-primary/10 text-primary rounded-lg py-2 text-sm font-semibold hover:bg-primary/20 transition-colors">
-                                On Map
-                            </a>
-                        </div>
+
+        setupDropdown(stateFilterButton, stateFilterOptions, 'state', stateFilterLabel);
+        setupDropdown(activityFilterButton, activityFilterOptions, 'activity', activityFilterLabel);
+
+        document.addEventListener('click', (e) => {
+            if (!stateFilterButton.parentElement.contains(e.target)) stateFilterOptions.classList.add('hidden');
+            if (!activityFilterButton.parentElement.contains(e.target)) activityFilterOptions.classList.add('hidden');
+        });
+    }
+
+    // --- Beach Rendering ---
+    function renderBeaches(beachesToRender) {
+        if (beachesToRender.length === 0) {
+            noResultsDiv.classList.remove('hidden');
+            beachListContainer.classList.add('hidden');
+        } else {
+            noResultsDiv.classList.add('hidden');
+            beachListContainer.classList.remove('hidden');
+            beachListContainer.innerHTML = beachesToRender.map(createBeachCard).join('');
+            // Notify weather.js that new widgets have been added
+            document.dispatchEvent(new CustomEvent('beach-cards-rendered'));
+            // Wire up map buttons
+            if (window.wireMapButtons) {
+                window.wireMapButtons();
+            }
+        }
+    }
+
+    function createBeachCard(beach) {
+        return `
+            <div class="group relative overflow-hidden rounded-xl bg-surface-light shadow-lg transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl dark:bg-surface-dark" data-lat="${beach.lat}" data-lon="${beach.lon}">
+                <a href="beachdetail.html?id=${beach.id}" class="block">
+                    <img class="h-56 w-full object-cover transition-transform duration-300 group-hover:scale-105" src="${beach.image}" alt="${beach.name}" />
+                </a>
+                <div class="p-4">
+                    <h3 class="text-lg font-bold">
+                        <a href="beachdetail.html?id=${beach.id}" class="hover:text-primary">${beach.name}</a>
+                    </h3>
+                    <p class="text-sm text-text-muted-light dark:text-text-muted-dark">${beach.state_ut}</p>
+                    <div class="mt-2 flex flex-wrap gap-2">
+                        ${beach.activities.map(activity => `<span class="rounded-full bg-primary/10 px-2 py-1 text-xs font-semibold text-primary dark:bg-primary/20">${activity}</span>`).join('')}
                     </div>
                 </div>
-            `;
-            beachList.innerHTML += beachCard;
-        });
-        
-        // Dispatch event for weather system to update widgets
-        document.dispatchEvent(new CustomEvent('beach-cards-rendered'));
-        
-        // Also trigger weather widget updates directly if weather system is loaded
-        setTimeout(() => {
-            if (window.initWeather) {
-                console.log('Manually triggering weather updates for new beach cards');
-                const widgets = document.querySelectorAll('[data-weather-widget]');
-                widgets.forEach(widget => {
-                    document.dispatchEvent(new CustomEvent('weather-widget-added', { detail: widget }));
-                });
-            }
-        }, 100);
+                <div class="absolute right-4 top-4 z-10 rounded-lg bg-black/50 p-2 text-white backdrop-blur-sm" data-weather-widget data-lat="${beach.lat}" data-lon="${beach.lon}">
+                    <p class="weather-temp text-lg font-bold">--°C</p>
+                </div>
+                <div class="absolute bottom-4 right-4 z-10">
+                    <button class="btn-show-on-map rounded-full bg-white/80 p-2 text-text-light shadow-md backdrop-blur-sm transition-colors hover:bg-white" title="Show on map">
+                        <span class="material-symbols-outlined">location_on</span>
+                    </button>
+                </div>
+            </div>
+        `;
     }
 
-    function applyFilters() {
-        const searchTerm = searchInput.value.toLowerCase().trim();
-        filteredBeaches = allBeaches.filter(beach => {
-            const nameMatch = beach.name.toLowerCase().includes(searchTerm);
-            const stateMatch = beach.state_ut.toLowerCase().includes(searchTerm);
-            const stateFilterMatch = selectedState === 'All' || beach.state_ut === selectedState;
-            const activityFilterMatch = selectedActivity === 'All' || beach.activities.map(a => a.toLowerCase()).includes(selectedActivity.toLowerCase());
+    // --- Filtering Logic ---
+    function filterAndRenderBeaches() {
+        let filtered = [...allBeaches];
 
+        // Search term filter
+        if (currentFilters.searchTerm) {
+            const term = currentFilters.searchTerm.toLowerCase();
+            filtered = filtered.filter(b =>
+                b.name.toLowerCase().includes(term) ||
+                b.state_ut.toLowerCase().includes(term)
+            );
+        }
 
-            return (nameMatch || stateMatch) && stateFilterMatch && activityFilterMatch;
-        });
-        renderBeaches();
+        // State filter
+        if (currentFilters.state !== 'All States') {
+            filtered = filtered.filter(b => b.state_ut === currentFilters.state);
+        }
+
+        // Activity filter
+        if (currentFilters.activity !== 'All Activities') {
+            filtered = filtered.filter(b => b.activities.includes(currentFilters.activity));
+        }
+
+        renderBeaches(filtered);
     }
 
-    // Populate State Filter
-    const states = ['All', ...new Set(allBeaches.map(beach => beach.state_ut))];
-    stateFilterOptions.innerHTML = states.map(state =>
-        `<a href="#" class="block px-4 py-2 text-sm hover:bg-primary/10" data-value="${state}">${state}</a>`
-    ).join('');
-
-    // Populate Activity Filter
-    const allActivities = [...new Set(allBeaches.flatMap(b => b.activities))].sort();
-    activityFilterOptions.innerHTML = ['All', ...allActivities].map(activity =>
-        `<a href="#" class="block px-4 py-2 text-sm hover:bg-primary/10" data-value="${activity}">${activity}</a>`
-    ).join('');
-
-
-    // Event Listeners
-    searchInput.addEventListener('input', applyFilters);
-
-    stateFilterButton.addEventListener('click', () => {
-        stateFilterOptions.classList.toggle('hidden');
+    // --- Event Listeners ---
+    searchInput.addEventListener('input', (e) => {
+        currentFilters.searchTerm = e.target.value;
+        filterAndRenderBeaches();
     });
 
-    activityFilterButton.addEventListener('click', () => {
-        activityFilterOptions.classList.toggle('hidden');
+    document.getElementById('btn-locate').addEventListener('click', () => {
+        // This relies on app.js to fire the 'beaches-sorted-by-distance' event
     });
 
-    stateFilterOptions.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            selectedState = e.target.dataset.value;
-            stateFilterLabel.textContent = selectedState;
-            stateFilterOptions.classList.add('hidden');
-            applyFilters();
-        }
-    });
-
-    activityFilterOptions.addEventListener('click', (e) => {
-        if (e.target.tagName === 'A') {
-            selectedActivity = e.target.dataset.value;
-            activityFilterLabel.textContent = selectedActivity;
-            activityFilterOptions.classList.add('hidden');
-            applyFilters();
-        }
-    });
-
-    
-    document.addEventListener('click', (e) => {
-        if (!stateFilterContainer.contains(e.target)) {
-            stateFilterOptions.classList.add('hidden');
-        }
-        if (!activityFilterContainer.contains(e.target)) {
-            activityFilterOptions.classList.add('hidden');
-        }
-    });
-
-    
     document.addEventListener('beaches-sorted-by-distance', (e) => {
-        allBeaches = e.detail; 
-        applyFilters(); 
+        const sortedBeaches = e.detail;
+        renderBeaches(sortedBeaches);
     });
 
-    
-    document.addEventListener('beach-cards-rendered', () => {
-        if (window.wireMapButtons) {
-            window.wireMapButtons();
+    // --- Initialization ---
+    function initialize() {
+        setupFilters();
+
+        // Check for URL params to pre-filter
+        const urlParams = new URLSearchParams(window.location.search);
+        const stateFromUrl = urlParams.get('state');
+        if (stateFromUrl) {
+            currentFilters.state = stateFromUrl;
+            stateFilterLabel.textContent = stateFromUrl;
         }
-        document.querySelectorAll('[data-weather-widget]').forEach(widget => document.dispatchEvent(new CustomEvent('weather-widget-added', { detail: widget })));
-    });
 
-    // Initial render
-    applyFilters();
+        filterAndRenderBeaches();
+    }
+
+    initialize();
 });

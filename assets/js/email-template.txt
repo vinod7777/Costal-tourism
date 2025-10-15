@@ -1,0 +1,16 @@
+Email Subject:
+Your Trip to {{beach_name}} is Today!
+
+---
+
+Email Body (HTML):
+
+Hi {{to_name}},
+
+This is a friendly reminder that your trip to <b>{{beach_name}}</b> is planned for today, {{trip_date}}.
+
+We hope you have a fantastic and safe time at the beach!
+<br><br>
+Best,
+<br>
+The Coastal Guide Team

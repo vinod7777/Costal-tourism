@@ -366,9 +366,9 @@ class NearbyPlacesManager {
     }
 
     // Render nearby places
-    renderNearbyPlaces() {
-        const container = document.querySelector('#nearby-section .mt-6');
-        if (!container) return;
+    renderNearbyPlaces(containerSelector = '#nearby-section .mt-6', onSelectCallback = null) {
+        const container = document.querySelector(containerSelector);
+        if (!container) { console.error(`Nearby places container '${containerSelector}' not found.`); return; }
         
         if (this.places.length === 0) {
             container.innerHTML = `
@@ -383,15 +383,25 @@ class NearbyPlacesManager {
             return;
         }
         
-        container.innerHTML = this.places.map(place => this.createPlaceCard(place)).join('');
+        container.innerHTML = this.places.map(place => this.createPlaceCard(place, onSelectCallback)).join('');
+
+        if (onSelectCallback) {
+            container.querySelectorAll('.select-place-btn').forEach(button => {
+                button.addEventListener('click', () => {
+                    const placeId = button.dataset.placeId;
+                    const place = this.places.find(p => p.id === placeId);
+                    if (place) {
+                        onSelectCallback(place);
+                    }
+                });
+            });
+        }
     }
 
     // Create individual place card
-    createPlaceCard(place) {
+    createPlaceCard(place, isSelectable) {
         const isHotel = place.type === 'hotel';
-        const actionButton = isHotel 
-            ? `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Book Now</button>`
-            : `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">View Menu</button>`;
+        const actionButton = isSelectable ? `<button data-place-id="${place.id}" class="select-place-btn mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Select</button>` : (isHotel ? `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Book Now</button>` : `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">View Menu</button>`);
         
         const ratingStars = '★'.repeat(Math.floor(place.rating)) + '☆'.repeat(5 - Math.floor(place.rating));
         
@@ -399,7 +409,7 @@ class NearbyPlacesManager {
         const cardId = `place-card-${place.id}`;
         
         return `
-            <div class="flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-shadow hover:shadow-lg dark:bg-background-dark sm:flex-row sm:items-center">
+            <div id="${cardId}" class="place-card flex flex-col gap-4 overflow-hidden rounded-xl border border-primary/20 bg-background-light p-4 shadow-sm transition-all dark:bg-background-dark sm:flex-row sm:items-center">
                 <div class="h-40 w-full flex-shrink-0 rounded-lg bg-gray-200 dark:bg-gray-700 sm:h-32 sm:w-48 relative overflow-hidden">
                     <img 
                         src="${place.image}" 
