@@ -2,7 +2,7 @@
 <html lang="en"><head>
 <meta charset="utf-8"/>
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My Trips - Coastal Guide</title>
+<title>My Trips - Coastal Tourism</title>
 <link href="https://fonts.googleapis.com" rel="preconnect"/>
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
@@ -60,7 +60,7 @@
 <svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
 <path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
 </svg>
-<span class="text-xl font-bold">Coastal Guide</span>
+<span class="text-xl font-bold">Coastal Tourism</span>
 </a>
 <div id="nav-menu" class="hidden md:flex items-center gap-8">
 <a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
@@ -143,12 +143,41 @@
     </div>
 </div>
 </div>
+<!-- Review Modal -->
+<div id="review-trip-modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4">
+    <div id="review-modal-content" class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-95 opacity-0">
+        <h3 class="text-2xl font-bold mb-2">How was your trip?</h3>
+        <p class="text-text-muted-light dark:text-text-muted-dark mb-4">Leave a review for <span id="review-beach-name" class="font-semibold"></span></p>
+        <form id="trip-review-form" class="space-y-4">
+            <input type="hidden" id="review-beach-id">
+            <div>
+                <label class="block text-sm font-medium mb-1">Your Rating</label>
+                <div id="review-rating-stars" class="flex items-center gap-1 text-3xl text-gray-300 dark:text-gray-600">
+                    <span data-value="1" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="2" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="3" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="4" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="5" class="cursor-pointer transition-colors">★</span>
+                </div>
+                <input type="hidden" id="review-rating-value" required>
+            </div>
+            <div>
+                <label for="review-comment-text" class="block text-sm font-medium mb-1">Your Review</label>
+                <textarea id="review-comment-text" class="w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" rows="4" placeholder="Tell us about your experience..." required></textarea>
+            </div>
+            <div class="flex justify-end gap-4 pt-4">
+                <button type="button" id="close-review-modal-btn" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Skip</button>
+                <button type="submit" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
 </main>
 
 <footer class="bg-white dark:bg-slate-900/50 mt-12">
 <div class="container mx-auto px-6 py-12">
 <div class="border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark">
-<p>© 2024 Coastal Guide. All rights reserved.</p>
+<p>© 2024 Coastal Tourism. All rights reserved.</p>
 </div>
 </div>
 </footer>
@@ -158,7 +187,7 @@
 <script type="module">
     import { app } from './assets/js/firebase-init.js';
     import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, query, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+    import { getFirestore, collection, getDocs, query, orderBy, doc, deleteDoc, updateDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
     import { beaches } from './assets/js/beaches.js';
 
     const auth = getAuth(app);
@@ -168,6 +197,7 @@
         if (user) {
             populateProfileForm(user);
             loadSavedTrips(user.uid);
+            setupReviewModal(user);
         } else {
             // Not logged in, redirect or show message
             window.location.href = 'login.html';
@@ -291,7 +321,8 @@
                 if (user) {
                     const tripRef = doc(db, "users", user.uid, "trips", tripId);
                     await updateDoc(tripRef, { status: 'completed' });
-                    loadSavedTrips(user.uid); // Reload trips to reflect change
+                    loadSavedTrips(user.uid); // Immediately refresh the trips list
+                    promptForReview(trip.beachId, trip.beachName); // Then show the review modal
                 }
             });
         }
@@ -313,6 +344,100 @@
         });
 
         return card;
+    }
+
+    function setupReviewModal(user) {
+        const modal = document.getElementById('review-trip-modal');
+        const modalContent = document.getElementById('review-modal-content');
+        const closeBtn = document.getElementById('close-review-modal-btn');
+        const form = document.getElementById('trip-review-form');
+        const beachNameEl = document.getElementById('review-beach-name');
+        const beachIdInput = document.getElementById('review-beach-id');
+        const ratingStarsContainer = document.getElementById('review-rating-stars');
+        const ratingValueInput = document.getElementById('review-rating-value');
+        const stars = ratingStarsContainer.querySelectorAll('span');
+
+        let currentRating = 0;
+
+        const openModal = () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        };
+
+        const closeModal = () => {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => {
+                modal.classList.add('hidden');
+                modal.classList.remove('flex');
+                // Trips are now reloaded before the modal opens, so no need to do it again here.
+            }, 300);
+        };
+
+        window.promptForReview = (beachId, beachName) => {
+            beachNameEl.textContent = beachName;
+            beachIdInput.value = beachId;
+            openModal();
+        };
+
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => {
+            if (e.target === modal) closeModal();
+        });
+
+        // Star rating interaction
+        stars.forEach(star => {
+            star.addEventListener('click', () => {
+                currentRating = parseInt(star.dataset.value, 10);
+                ratingValueInput.value = currentRating;
+                updateStarDisplay();
+            });
+            star.addEventListener('mouseover', () => {
+                const hoverValue = parseInt(star.dataset.value, 10);
+                stars.forEach(s => {
+                    s.classList.toggle('text-yellow-400', s.dataset.value <= hoverValue);
+                });
+            });
+        });
+        ratingStarsContainer.addEventListener('mouseleave', updateStarDisplay);
+
+        function updateStarDisplay() {
+            stars.forEach(star => {
+                star.classList.toggle('text-yellow-400', star.dataset.value <= currentRating);
+            });
+        }
+
+        // Form submission
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const beachId = beachIdInput.value;
+            const comment = document.getElementById('review-comment-text').value;
+            const rating = parseInt(ratingValueInput.value, 10);
+
+            if (!rating) {
+                alert('Please select a rating.');
+                return;
+            }
+
+            try {
+                await addDoc(collection(db, "beaches", beachId, "reviews"), {
+                    userId: user.uid,
+                    userName: user.displayName || 'Anonymous',
+                    comment: comment,
+                    rating: rating,
+                    createdAt: serverTimestamp()
+                });
+                closeModal();
+                loadSavedTrips(user.uid); // Refresh trips list after submitting review
+            } catch (error) {
+                console.error("Error submitting review:", error);
+                alert("There was an error submitting your review. Please try again.");
+            }
+        });
     }
 </script>
 <script>

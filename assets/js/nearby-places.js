@@ -401,7 +401,7 @@ class NearbyPlacesManager {
     // Create individual place card
     createPlaceCard(place, isSelectable) {
         const isHotel = place.type === 'hotel';
-        const actionButton = isSelectable ? `<button data-place-id="${place.id}" class="select-place-btn mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Select</button>` : (isHotel ? `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Book Now</button>` : `<button class="mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">View Menu</button>`);
+        const actionButton = isSelectable ? `<button data-place-id="${place.id}" class="select-place-btn mt-4 rounded-full bg-primary px-5 py-2 text-sm font-semibold text-white shadow-sm hover:bg-primary/90 transition-colors">Select</button>` : '';
         
         const ratingStars = '★'.repeat(Math.floor(place.rating)) + '☆'.repeat(5 - Math.floor(place.rating));
         
@@ -450,10 +450,11 @@ class NearbyPlacesManager {
                             <span>${place.price}</span>
                         </div>
                     </div>
-                    <div class="flex gap-2 mt-3">
-                        ${actionButton}
-                        ${place.phone ? `<button class="mt-4 rounded-full border border-primary text-primary px-5 py-2 text-sm font-semibold hover:bg-primary/10 transition-colors">Call</button>` : ''}
-                    </div>
+                    ${actionButton ? `
+                        <div class="flex gap-2 mt-3">
+                            ${actionButton}
+                        </div>
+                    ` : ''}
                 </div>
             </div>
         `;

@@ -1,5 +1,2 @@
 export const OPENWEATHER_API_KEY = '796310b5a9dac2505c66ad5284d05a49';
 export const WORLDTIDES_API_KEY = '04137cbf-234d-4971-b1be-de990ce9fc3b';
-
-
-3

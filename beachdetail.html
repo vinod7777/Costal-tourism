@@ -105,18 +105,18 @@
 <h1 class="text-3xl font-bold text-white md:text-4xl" id="beach-name">Serenity Beach</h1>
 </div>
 </div>
-<div class="mt-6">
+<div id="overview-section" class="mt-6 scroll-mt-24">
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
 <h2 class="text-xl font-bold text-background-dark dark:text-background-light mb-3">About This Beach</h2>
 <p id="beach-description" class="text-background-dark/70 dark:text-background-light/70">Loading beach information...</p>
 </div>
 </div>
 <div class="mt-6 border-b border-primary/20">
-<nav class="-mb-px flex space-x-8">
-<a class="whitespace-nowrap border-b-2 border-primary px-1 py-4 text-sm font-medium text-primary" href="#">Overview</a>
-<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Safety</a>
-<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Activities</a>
-<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#">Reviews</a>
+<nav id="detail-nav" class="-mb-px flex space-x-8">
+<a class="whitespace-nowrap border-b-2 border-primary px-1 py-4 text-sm font-medium text-primary" href="#overview-section">Overview</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#activities-section">Safety</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#activities-section">Activities</a>
+<a class="whitespace-nowrap border-b-2 border-transparent px-1 py-4 text-sm font-medium text-background-dark/70 dark:text-background-light/70 hover:border-primary/50 hover:text-primary" href="#reviews-section">Reviews</a>
 </nav>
 </div>
 <div id="photo-gallery-section" class="py-8">
@@ -131,7 +131,7 @@
 </div>
 </div>
 </div>
-<div id="activities-section" class="py-8">
+<div id="activities-section" class="py-8 scroll-mt-24">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Activities & Safety</h2>
 <div class="mt-6">
 <ul id="beach-activities" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -141,19 +141,19 @@
 <div class="mt-6">
 <h3 class="text-lg font-semibold text-background-dark dark:text-background-light mb-3">Facilities</h3>
 <ul id="beach-facilities" class="text-background-dark/70 dark:text-background-light/70">
-<!-- Facilities will be loaded dynamically -->
+<li class="text-text-muted-light dark:text-text-muted-dark">Loading facilities...</li>
 </ul>
 </div>
 </div>
-<div id="weather-tides-section" class="py-8">
+<div id="weather-tides-section" class="py-8 scroll-mt-24">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Weather &amp; Tides</h2>
 <div id="weather-info" class="mt-6 grid grid-cols-1 gap-6 md:grid-cols-2">
 <div class="rounded-xl border border-primary/20 bg-background-light p-6 dark:bg-background-dark">
 <p class="font-medium text-background-dark dark:text-background-light">Current Tide</p>
 <p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-waves">--m</p>
-<div class="mt-1 flex items-baseline gap-1">
-<p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
-<p class="tide-delta text-sm font-medium text-green-500">--</p>
+<div class="mt-1 flex items-center gap-2">
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">vs. Yesterday</p>
+<p class="tide-delta text-sm font-medium text-gray-500" aria-live="polite">--</p>
 </div>
 <div class="mt-4 text-xs text-background-dark/50 dark:text-background-light/50">
 Live tide estimate based on location and time
@@ -163,9 +163,9 @@ Live tide estimate based on location and time
 <p class="font-medium text-background-dark dark:text-background-light">Current Weather</p>
 <p class="mt-1 text-4xl font-bold text-background-dark dark:text-background-light weather-temp">--°C</p>
 <p class="text-sm text-background-dark/70 dark:text-background-light/70">Wind <span class="weather-wind">--km/h</span></p>
-<div class="mt-1 flex items-baseline gap-1">
-<p class="text-sm text-background-dark/70 dark:text-background-light/70">Today</p>
-<p class="temp-delta text-sm font-medium text-green-500">--</p>
+<div class="mt-1 flex items-center gap-2">
+<p class="text-sm text-background-dark/70 dark:text-background-light/70">vs. Yesterday</p>
+<p class="temp-delta text-sm font-medium text-gray-500" aria-live="polite">--</p>
 </div>
 <div class="mt-4 text-xs text-background-dark/50 dark:text-background-light/50">
 Real-time weather data from OpenWeatherMap
@@ -173,7 +173,7 @@ Real-time weather data from OpenWeatherMap
 </div>
 </div>
 </div>
-<div id="nearby-section" class="py-8">
+<div id="nearby-section" class="py-8 scroll-mt-24">
 <div class="flex items-center justify-between mb-6">
 <h2 class="text-2xl font-bold text-background-dark dark:text-background-light">Nearby Hotels &amp; Restaurants</h2>
 <button id="refresh-nearby" class="flex items-center gap-2 rounded-full bg-primary/10 text-primary px-4 py-2 text-sm font-medium hover:bg-primary/20 transition-colors">
@@ -193,6 +193,78 @@ Real-time weather data from OpenWeatherMap
 </div>
 </div>
 </main>
+<!-- Review Modal -->
+<div id="review-trip-modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4">
+    <div class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-95 opacity-0">
+        <h3 class="text-2xl font-bold mb-2">How was your trip?</h3>
+        <p class="text-text-muted-light dark:text-text-muted-dark mb-4">Leave a review for <span id="review-beach-name" class="font-semibold"></span></p>
+        <form id="trip-review-form" class="space-y-4">
+            <input type="hidden" id="review-beach-id">
+            <div>
+                <label class="block text-sm font-medium mb-1">Your Rating</label>
+                <div id="review-rating-stars" class="flex items-center gap-1 text-3xl text-gray-300 dark:text-gray-600">
+                    <span data-value="1" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="2" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="3" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="4" class="cursor-pointer transition-colors">★</span>
+                    <span data-value="5" class="cursor-pointer transition-colors">★</span>
+                </div>
+                <input type="hidden" id="review-rating-value" required>
+            </div>
+            <div>
+                <label for="review-comment-text" class="block text-sm font-medium mb-1">Your Review</label>
+                <textarea id="review-comment-text" class="w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" rows="4" placeholder="Tell us about your experience..." required></textarea>
+            </div>
+            <div class="flex justify-end gap-4 pt-4">
+                <button type="button" id="close-review-modal-btn" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Skip</button>
+                <button type="submit" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Submit Review</button>
+            </div>
+        </form>
+    </div>
+</div>
+<!-- Reviews Sliding Panel -->
+<div id="reviews-panel" class="fixed top-0 right-0 h-full w-full max-w-md bg-surface-light dark:bg-surface-dark shadow-2xl z-[100] transform translate-x-full transition-transform duration-300 ease-in-out">
+    <div class="flex flex-col h-full">
+        <div class="flex items-center justify-between p-4 border-b border-border-light dark:border-border-dark">
+            <h2 class="text-2xl font-bold">Reviews</h2>
+            <button id="close-reviews-panel" class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
+                <span class="material-symbols-outlined">close</span>
+            </button>
+        </div>
+
+        <!-- Reviews List -->
+        <div id="reviews-list" class="flex-1 overflow-y-auto p-6 space-y-6">
+            <!-- Loading State -->
+            <div id="reviews-loading" class="text-center py-12">
+                <div class="inline-flex items-center gap-3 text-text-muted-light dark:text-text-muted-dark">
+                    <span class="material-symbols-outlined animate-spin text-2xl">refresh</span>
+                    <span class="text-lg">Loading reviews...</span>
+                </div>
+            </div>
+            <!-- Reviews will be dynamically inserted here -->
+        </div>
+
+        <!-- Add Review Form -->
+        <div class="p-6 border-t border-border-light dark:border-border-dark">
+            <div id="review-form-container">
+                <!-- This will be replaced by the form or a login prompt -->
+            </div>
+        </div>
+    </div>
+</div>
+<div id="reviews-overlay" class="fixed inset-0 bg-black/50 z-[99] hidden opacity-0 transition-opacity duration-300"></div>
+
+<!-- Review Form Template (for logged-in users) -->
+<template id="review-form-template">
+    <form id="add-review-form" class="space-y-4">
+        <h3 class="text-lg font-semibold">Leave a Review</h3>
+        <textarea id="review-comment" class="w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" rows="3" placeholder="Share your experience..." required></textarea>
+        <div class="flex items-center justify-between">
+            <input type="number" id="review-rating" min="1" max="5" class="w-20 rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" placeholder="Rating (1-5)" required>
+            <button type="submit" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Submit Review</button>
+        </div>
+    </form>
+</template>
 <footer class="mt-auto border-t border-primary/20 bg-background-light dark:bg-background-dark">
 <div class="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
 <div class="grid grid-cols-1 gap-8 md:grid-cols-3">
