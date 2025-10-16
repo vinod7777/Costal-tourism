@@ -481,6 +481,20 @@ export const beaches = {
         "https://images.unsplash.com/photo-1568668392937-c352a9111f53?w=1200&h=800&fit=crop&auto=format"
       ],
       "description": "Located near Bapatla, this beach is known for its wide shore and calm waters, making it ideal for a relaxing family getaway."
+    },
+    {
+      "id": "bhavanapadu-ap",
+      "name": "Bhavanapadu Beach",
+      "state_ut": "Andhra Pradesh",
+      "lat": 18.545,
+      "lon": 84.335,
+      "activities": ["Swim", "Walk", "Photography", "Relax", "Fishing"],
+      "image": "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=800&h=600&fit=crop&auto=format",
+      "facilities": ["Parking", "Local Food Stalls"],
+      "gallery": [
+        "https://images.unsplash.com/photo-1506953823976-52e1fdc0149a?w=1200&h=800&fit=crop&auto=format"
+      ],
+      "description": "A serene and beautiful beach located near a major fishing harbor. Known for its golden sands and tranquil atmosphere, it's a perfect spot for relaxation and photography."
     }
   ]
 };
