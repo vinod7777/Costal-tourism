@@ -1,298 +1,517 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>My Trips - Coastal Tourism</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=container-queries,forms"></script>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1193d4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a2831",
-                        "text-light": "#101c22",
-                        "text-dark": "#f6f7f8",
-                        "text-muted-light": "#6b7280",
-                        "text-muted-dark": "#9ca3af",
-                        "border-light": "#e5e7eb",
-                        "border-dark": "#374151",
-                    },
-                    fontFamily: {
-                        display: ["Plus Jakarta Sans", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "1rem",
-                        xl: "1.5rem",
-                        full: "9999px",
-                    },
-                },
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>My Trips - Coastal Tourism</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=container-queries,forms"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1a2831",
+              "text-light": "#101c22",
+              "text-dark": "#f6f7f8",
+              "text-muted-light": "#6b7280",
+              "text-muted-dark": "#9ca3af",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
             },
-        }
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        .dark .dark-mode-icon-light { display: none; }
-        .dark-mode-icon-dark { display: none; }
-        .dark .dark-mode-icon-dark { display: inline-block; }
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
+      .dark .dark-mode-icon-light {
+        display: none;
+      }
+      .dark-mode-icon-dark {
+        display: none;
+      }
+      .dark .dark-mode-icon-dark {
+        display: inline-block;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<div class="relative w-full overflow-x-hidden">
-<header class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal" data-delay="0">
-<nav class="container mx-auto px-6 py-3 flex items-center justify-between">
-<div class="flex items-center gap-8">
-<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="index.html">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-<span class="text-xl font-bold">Coastal Tourism</span>
-</a>
-<div id="nav-menu" class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="plantrip.html">Plan a Trip</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">About</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span class="material-symbols-outlined dark-mode-icon-light">light_mode</span>
-<span class="material-symbols-outlined dark-mode-icon-dark">dark_mode</span>
-</button>
-<div id="guest-menu" class="items-center gap-4">
-<a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
-<a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
-</div>
-<div id="user-profile" class="relative items-center gap-4">
-<!-- User menu will be populated by auth.js -->
-</div>
-<button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</nav>
-</header>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark"
+  >
+    <div class="relative w-full overflow-x-hidden">
+      <header
+        class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal"
+        data-delay="0"
+      >
+        <nav
+          class="container mx-auto px-6 py-3 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-8">
+            <a
+              class="flex items-center gap-3 text-slate-900 dark:text-white"
+              href="index.html"
+            >
+              <svg
+                class="h-8 w-8 text-primary"
+                fill="none"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span class="text-xl font-bold">Coastal Tourism</span>
+            </a>
+            <div id="nav-menu" class="hidden md:flex items-center gap-8">
+              <a
+                class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors"
+                href="searchbeach.html"
+                >Beaches</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="plantrip.html"
+                >Plan a Trip</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="alert.html"
+                >Safety</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="#"
+                >About</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="dark-mode-toggle"
+              class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+            >
+              <span class="material-symbols-outlined dark-mode-icon-light"
+                >light_mode</span
+              >
+              <span class="material-symbols-outlined dark-mode-icon-dark"
+                >dark_mode</span
+              >
+            </button>
+            <div id="guest-menu" class="items-center gap-4">
+              <a
+                href="login.html"
+                class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+                >Login</a
+              >
+              <a
+                href="registration.html"
+                class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md"
+                >Sign Up</a
+              >
+            </div>
+            <div id="user-profile" class="relative items-center gap-4">
+              <!-- User menu will be populated by auth.js -->
+            </div>
+            <button
+              id="mobile-menu-button"
+              class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+          </div>
+        </nav>
+      </header>
 
-<main class="flex-grow">
-<div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
-<div class="mb-8">
-    <h2 id="welcome-header" class="text-3xl font-bold tracking-tight text-background-dark dark:text-background-light sm:text-4xl">Welcome, ...</h2>
-    <p class="mt-2 text-lg text-background-dark/70 dark:text-background-light/70">Manage your profile and planned trips.</p>
-</div>
+      <main class="flex-grow">
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12">
+          <div class="mb-8">
+            <h2
+              id="welcome-header"
+              class="text-3xl font-bold tracking-tight text-background-dark dark:text-background-light sm:text-4xl"
+            >
+              Welcome, ...
+            </h2>
+            <p
+              class="mt-2 text-lg text-background-dark/70 dark:text-background-light/70"
+            >
+              Manage your profile and planned trips.
+            </p>
+          </div>
 
-<div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-    <!-- Left Column: Profile Details -->
-    <div class="lg:col-span-1">
-        <div class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-md">
-            <h3 class="text-xl font-bold mb-4">Your Details</h3>
-            <form id="profile-form" class="space-y-4">
-                <div>
-                    <label for="profile-name" class="block text-sm font-medium text-text-light dark:text-text-dark">Full Name</label>
-                    <input type="text" name="profile-name" id="profile-name" class="mt-1 block w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" placeholder="Your Name">
-                </div>
-                <div>
-                    <label for="profile-email" class="block text-sm font-medium text-text-light dark:text-text-dark">Email</label>
-                    <input type="email" name="profile-email" id="profile-email" class="mt-1 block w-full rounded-md border-border-light dark:border-border-dark shadow-sm sm:text-sm dark:bg-background-dark bg-background-light dark:bg-surface-dark" disabled>
-                </div>
-                <div class="pt-2">
-                    <button type="submit" id="update-profile-btn" class="w-full bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Update Profile</button>
-                </div>
-            </form>
-        </div>
-    </div>
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Left Column: Profile Details -->
+            <div class="lg:col-span-1">
+              <div
+                class="bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-md"
+              >
+                <h3 class="text-xl font-bold mb-4">Your Details</h3>
+                <form id="profile-form" class="space-y-4">
+                  <div>
+                    <label
+                      for="profile-name"
+                      class="block text-sm font-medium text-text-light dark:text-text-dark"
+                      >Full Name</label
+                    >
+                    <input
+                      type="text"
+                      name="profile-name"
+                      id="profile-name"
+                      class="mt-1 block w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark"
+                      placeholder="Your Name"
+                    />
+                  </div>
+                  <div>
+                    <label
+                      for="profile-email"
+                      class="block text-sm font-medium text-text-light dark:text-text-dark"
+                      >Email</label
+                    >
+                    <input
+                      type="email"
+                      name="profile-email"
+                      id="profile-email"
+                      class="mt-1 block w-full rounded-md border-border-light dark:border-border-dark shadow-sm sm:text-sm dark:bg-background-dark bg-background-light dark:bg-surface-dark"
+                      disabled
+                    />
+                  </div>
+                  <div class="pt-2">
+                    <button
+                      type="submit"
+                      id="update-profile-btn"
+                      class="w-full bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md"
+                    >
+                      Update Profile
+                    </button>
+                  </div>
+                </form>
+              </div>
+            </div>
 
-    <!-- Right Column: Saved Trips -->
-    <div class="lg:col-span-2">
-        <h3 class="text-xl font-bold mb-4">My Saved Trips</h3>
-        <div id="saved-trips-container" class="space-y-6">
-            <!-- Loading state -->
-            <div id="trips-loading" class="text-center py-12">
-                <div class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60">
-                    <span class="material-symbols-outlined animate-spin text-2xl">refresh</span>
+            <!-- Right Column: Saved Trips -->
+            <div class="lg:col-span-2">
+              <h3 class="text-xl font-bold mb-4">My Saved Trips</h3>
+              <div id="saved-trips-container" class="space-y-6">
+                <!-- Loading state -->
+                <div id="trips-loading" class="text-center py-12">
+                  <div
+                    class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60"
+                  >
+                    <span
+                      class="material-symbols-outlined animate-spin text-2xl"
+                      >refresh</span
+                    >
                     <span class="text-lg">Loading your saved trips...</span>
+                  </div>
                 </div>
-            </div>
 
-            <!-- No trips state -->
-            <div id="no-trips" class="hidden text-center py-12 border-2 border-dashed border-border-light dark:border-border-dark rounded-xl">
-                <span class="material-symbols-outlined text-5xl text-text-muted-light dark:text-text-muted-dark">luggage</span>
-                <h3 class="mt-4 text-xl font-semibold">No Trips Saved Yet</h3>
-                <p class="mt-2 text-text-muted-light dark:text-text-muted-dark">You haven't saved any trips. Let's plan one!</p>
-                <a href="plantrip.html" class="mt-6 inline-block bg-primary text-white font-bold text-base px-8 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg">
+                <!-- No trips state -->
+                <div
+                  id="no-trips"
+                  class="hidden text-center py-12 border-2 border-dashed border-border-light dark:border-border-dark rounded-xl"
+                >
+                  <span
+                    class="material-symbols-outlined text-5xl text-text-muted-light dark:text-text-muted-dark"
+                    >luggage</span
+                  >
+                  <h3 class="mt-4 text-xl font-semibold">No Trips Saved Yet</h3>
+                  <p
+                    class="mt-2 text-text-muted-light dark:text-text-muted-dark"
+                  >
+                    You haven't saved any trips. Let's plan one!
+                  </p>
+                  <a
+                    href="plantrip.html"
+                    class="mt-6 inline-block bg-primary text-white font-bold text-base px-8 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 shadow-lg"
+                  >
                     Plan a New Trip
-                </a>
-            </div>
-
-            <!-- Trips will be rendered here -->
-        </div>
-    </div>
-</div>
-</div>
-<!-- Review Modal -->
-<div id="review-trip-modal" class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4">
-    <div id="review-modal-content" class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-95 opacity-0">
-        <h3 class="text-2xl font-bold mb-2">How was your trip?</h3>
-        <p class="text-text-muted-light dark:text-text-muted-dark mb-4">Leave a review for <span id="review-beach-name" class="font-semibold"></span></p>
-        <form id="trip-review-form" class="space-y-4">
-            <input type="hidden" id="review-beach-id">
-            <div>
-                <label class="block text-sm font-medium mb-1">Your Rating</label>
-                <div id="review-rating-stars" class="flex items-center gap-1 text-3xl text-gray-300 dark:text-gray-600">
-                    <span data-value="1" class="cursor-pointer transition-colors">★</span>
-                    <span data-value="2" class="cursor-pointer transition-colors">★</span>
-                    <span data-value="3" class="cursor-pointer transition-colors">★</span>
-                    <span data-value="4" class="cursor-pointer transition-colors">★</span>
-                    <span data-value="5" class="cursor-pointer transition-colors">★</span>
+                  </a>
                 </div>
-                <input type="hidden" id="review-rating-value" required>
+
+                <!-- Trips will be rendered here -->
+              </div>
             </div>
-            <div>
-                <label for="review-comment-text" class="block text-sm font-medium mb-1">Your Review</label>
-                <textarea id="review-comment-text" class="w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark" rows="4" placeholder="Tell us about your experience..." required></textarea>
-            </div>
-            <div class="flex justify-end gap-4 pt-4">
-                <button type="button" id="close-review-modal-btn" class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors">Skip</button>
-                <button type="submit" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Submit Review</button>
-            </div>
-        </form>
+          </div>
+        </div>
+        <!-- Review Modal -->
+        <div
+          id="review-trip-modal"
+          class="fixed inset-0 bg-black/60 z-[100] hidden items-center justify-center p-4"
+        >
+          <div
+            id="review-modal-content"
+            class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-2xl w-full max-w-md p-6 transform transition-all scale-95 opacity-0"
+          >
+            <h3 class="text-2xl font-bold mb-2">How was your trip?</h3>
+            <p class="text-text-muted-light dark:text-text-muted-dark mb-4">
+              Leave a review for
+              <span id="review-beach-name" class="font-semibold"></span>
+            </p>
+            <form id="trip-review-form" class="space-y-4">
+              <input type="hidden" id="review-beach-id" />
+              <div>
+                <label class="block text-sm font-medium mb-1"
+                  >Your Rating</label
+                >
+                <div
+                  id="review-rating-stars"
+                  class="flex items-center gap-1 text-3xl text-gray-300 dark:text-gray-600"
+                >
+                  <span data-value="1" class="cursor-pointer transition-colors"
+                    >★</span
+                  >
+                  <span data-value="2" class="cursor-pointer transition-colors"
+                    >★</span
+                  >
+                  <span data-value="3" class="cursor-pointer transition-colors"
+                    >★</span
+                  >
+                  <span data-value="4" class="cursor-pointer transition-colors"
+                    >★</span
+                  >
+                  <span data-value="5" class="cursor-pointer transition-colors"
+                    >★</span
+                  >
+                </div>
+                <input type="hidden" id="review-rating-value" required />
+              </div>
+              <div>
+                <label
+                  for="review-comment-text"
+                  class="block text-sm font-medium mb-1"
+                  >Your Review</label
+                >
+                <textarea
+                  id="review-comment-text"
+                  class="w-full rounded-md border-border-light dark:border-border-dark shadow-sm focus:border-primary focus:ring-primary sm:text-sm dark:bg-background-dark"
+                  rows="4"
+                  placeholder="Tell us about your experience..."
+                  required
+                ></textarea>
+              </div>
+              <div class="flex justify-end gap-4 pt-4">
+                <button
+                  type="button"
+                  id="close-review-modal-btn"
+                  class="px-5 py-2 text-sm font-semibold rounded-full hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
+                >
+                  Skip
+                </button>
+                <button
+                  type="submit"
+                  class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md"
+                >
+                  Submit Review
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </main>
+
+      <footer class="bg-white dark:bg-slate-900/50 mt-12">
+        <div class="container mx-auto px-6 py-12">
+          <div
+            class="border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark"
+          >
+            <p>© 2024 Coastal Tourism. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+      <script src="assets/js/firebase-init.js" type="module"></script>
     </div>
-</div>
-</main>
 
-<footer class="bg-white dark:bg-slate-900/50 mt-12">
-<div class="container mx-auto px-6 py-12">
-<div class="border-t border-border-light dark:border-border-dark pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark">
-<p>© 2024 Coastal Tourism. All rights reserved.</p>
-</div>
-</div>
-</footer>
-<script src="assets/js/firebase-init.js" type="module"></script>
-</div>
+    <script type="module">
+      import { app } from "./assets/js/firebase-init.js";
+      import {
+        getAuth,
+        onAuthStateChanged,
+        updateProfile,
+      } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
+      import {
+        getFirestore,
+        collection,
+        getDocs,
+        query,
+        orderBy,
+        doc,
+        deleteDoc,
+        updateDoc,
+        addDoc,
+        serverTimestamp,
+      } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
+      import { beaches } from "./assets/js/beaches.js";
 
-<script type="module">
-    import { app } from './assets/js/firebase-init.js';
-    import { getAuth, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-auth.js";
-    import { getFirestore, collection, getDocs, query, orderBy, doc, deleteDoc, updateDoc, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/12.3.0/firebase-firestore.js";
-    import { beaches } from './assets/js/beaches.js';
+      const auth = getAuth(app);
+      const db = getFirestore(app);
 
-    const auth = getAuth(app);
-    const db = getFirestore(app);
-
-    onAuthStateChanged(auth, user => {
+      onAuthStateChanged(auth, (user) => {
         if (user) {
-            populateProfileForm(user);
-            loadSavedTrips(user.uid);
-            setupReviewModal(user);
+          populateProfileForm(user);
+          loadSavedTrips(user.uid);
+          setupReviewModal(user);
         } else {
-            // Not logged in, redirect or show message
-            window.location.href = 'login.html';
+          // Not logged in, redirect or show message
+          window.location.href = "login.html";
         }
-    });
+      });
 
-    function populateProfileForm(user) {
-        document.getElementById('welcome-header').textContent = `Welcome, ${user.displayName || 'User'}!`;
-        document.getElementById('profile-name').value = user.displayName || '';
-        document.getElementById('profile-email').value = user.email || '';
-    }
+      function populateProfileForm(user) {
+        document.getElementById("welcome-header").textContent = `Welcome, ${
+          user.displayName || "User"
+        }!`;
+        document.getElementById("profile-name").value = user.displayName || "";
+        document.getElementById("profile-email").value = user.email || "";
+      }
 
-    document.getElementById('profile-form').addEventListener('submit', async (e) => {
-        e.preventDefault();
-        const updateBtn = document.getElementById('update-profile-btn');
-        const newName = document.getElementById('profile-name').value;
-        const user = auth.currentUser;
+      document
+        .getElementById("profile-form")
+        .addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const updateBtn = document.getElementById("update-profile-btn");
+          const newName = document.getElementById("profile-name").value;
+          const user = auth.currentUser;
 
-        if (!user || !newName) return;
+          if (!user || !newName) return;
 
-        updateBtn.disabled = true;
-        updateBtn.textContent = 'Updating...';
+          updateBtn.disabled = true;
+          updateBtn.textContent = "Updating...";
 
-        try {
+          try {
             await updateProfile(user, { displayName: newName });
-            updateBtn.textContent = 'Profile Updated!';
-            document.getElementById('welcome-header').textContent = `Welcome, ${newName}!`;
-        } catch (error) {
+            updateBtn.textContent = "Profile Updated!";
+            document.getElementById(
+              "welcome-header"
+            ).textContent = `Welcome, ${newName}!`;
+          } catch (error) {
             console.error("Error updating profile: ", error);
-            updateBtn.textContent = 'Update Failed';
-        } finally {
+            updateBtn.textContent = "Update Failed";
+          } finally {
             setTimeout(() => {
-                updateBtn.disabled = false;
-                updateBtn.textContent = 'Update Profile';
+              updateBtn.disabled = false;
+              updateBtn.textContent = "Update Profile";
             }, 2000);
-        }
-    });
+          }
+        });
 
-    async function loadSavedTrips(userId) {
-        const loadingEl = document.getElementById('trips-loading');
-        const noTripsEl = document.getElementById('no-trips');
-        const container = document.getElementById('saved-trips-container');
-        loadingEl.classList.remove('hidden');
-        noTripsEl.classList.add('hidden');
+      async function loadSavedTrips(userId) {
+        const loadingEl = document.getElementById("trips-loading");
+        const noTripsEl = document.getElementById("no-trips");
+        const container = document.getElementById("saved-trips-container");
+        loadingEl.classList.remove("hidden");
+        noTripsEl.classList.add("hidden");
 
-        const tripsRef = collection(db, 'users', userId, 'trips');
-        const q = query(tripsRef, orderBy('tripDate', 'desc'));
+        const tripsRef = collection(db, "users", userId, "trips");
+        const q = query(tripsRef, orderBy("tripDate", "desc"));
         const querySnapshot = await getDocs(q);
 
-        container.innerHTML = ''; // Clear loading/no-trips message
+        container.innerHTML = ""; // Clear loading/no-trips message
 
         if (querySnapshot.empty) {
-            noTripsEl.classList.remove('hidden');
-            container.appendChild(noTripsEl); // Re-append the 'no trips' message
+          noTripsEl.classList.remove("hidden");
+          container.appendChild(noTripsEl); // Re-append the 'no trips' message
         } else {
-            querySnapshot.forEach(doc => {
-                const trip = doc.data();
-                const tripCard = createTripCard(doc.id, trip);
-                container.appendChild(tripCard);
-            });
+          querySnapshot.forEach((doc) => {
+            const trip = doc.data();
+            const tripCard = createTripCard(doc.id, trip);
+            container.appendChild(tripCard);
+          });
         }
-    }
+      }
 
-    function createTripCard(docId, trip) {
-        const card = document.createElement('div');
+      function createTripCard(docId, trip) {
+        const card = document.createElement("div");
         card.id = `trip-${docId}`;
-        card.className = 'bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-md flex flex-col md:flex-row gap-6 relative';
-        
-        const beachData = beaches.beaches_in_india.find(b => b.id === trip.beachId);
+        card.className =
+          "bg-surface-light dark:bg-surface-dark p-6 rounded-xl shadow-md flex flex-col md:flex-row gap-6 relative";
+
+        const beachData = beaches.beaches_in_india.find(
+          (b) => b.id === trip.beachId
+        );
         const tripDate = trip.tripDate.toDate();
 
-        const status = trip.status || 'planned';
-        const isCompleted = status === 'completed';
+        const status = trip.status || "planned";
+        const isCompleted = status === "completed";
         const statusColors = {
-            planned: 'bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300',
-            completed: 'bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300',
+          planned:
+            "bg-blue-100 text-blue-800 dark:bg-blue-900/50 dark:text-blue-300",
+          completed:
+            "bg-green-100 text-green-800 dark:bg-green-900/50 dark:text-green-300",
         };
-        const statusBadge = `<span class="absolute top-4 left-4 text-xs font-semibold px-2.5 py-0.5 rounded-full ${statusColors[status]}">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
+        const statusBadge = `<span class="absolute top-4 left-4 text-xs font-semibold px-2.5 py-0.5 rounded-full ${
+          statusColors[status]
+        }">${status.charAt(0).toUpperCase() + status.slice(1)}</span>`;
 
         card.innerHTML = `
-            <img src="${trip.hotel?.image || beachData?.image || 'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop'}" alt="${trip.beachName}" class="w-full md:w-48 h-48 md:h-auto object-cover rounded-lg">
+            <img src="${
+              trip.hotel?.image ||
+              beachData?.image ||
+              "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=400&h=300&fit=crop"
+            }" alt="${
+          trip.beachName
+        }" class="w-full md:w-48 h-48 md:h-auto object-cover rounded-lg">
             <div class="flex-1">
-                <a href="beachdetail.html?id=${trip.beachId}" class="text-2xl font-bold hover:text-primary transition-colors">${trip.beachName}</a>
-                <p class="text-primary font-semibold text-lg">${tripDate.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })}</p>
-                <p class="text-text-muted-light dark:text-text-muted-dark">at ${tripDate.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</p>
+                <a href="beachdetail.html?id=${
+                  trip.beachId
+                }" class="text-2xl font-bold hover:text-primary transition-colors">${
+          trip.beachName
+        }</a>
+                <p class="text-primary font-semibold text-lg">${tripDate.toLocaleDateString(
+                  [],
+                  {
+                    weekday: "long",
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  }
+                )}</p>
+                <p class="text-text-muted-light dark:text-text-muted-dark">at ${tripDate.toLocaleTimeString(
+                  [],
+                  { hour: "2-digit", minute: "2-digit" }
+                )}</p>
                 
-                ${trip.hotel ? `
+                ${
+                  trip.hotel
+                    ? `
                 <div class="mt-4 pt-4 border-t border-border-light dark:border-border-dark">
                     <h4 class="font-semibold text-md">Selected Accommodation:</h4>
                     <p class="text-text-muted-light dark:text-text-muted-dark">${trip.hotel.name}</p>
                 </div>
-                ` : ''}
+                `
+                    : ""
+                }
 
                 <div class="mt-4 flex flex-wrap gap-2">
-                    ${!isCompleted ? `
+                    ${
+                      !isCompleted
+                        ? `
                     <button data-trip-id="${docId}" class="complete-trip-btn text-sm font-semibold bg-green-100 text-green-800 px-3 py-1.5 rounded-full hover:bg-green-200 transition-colors flex items-center gap-1">
                         <span class="material-symbols-outlined text-base">check_circle</span> Mark as Completed
                     </button>
@@ -302,163 +521,193 @@
                     <button data-trip-id="${docId}" class="cancel-trip-btn text-sm font-semibold bg-red-100 text-red-800 px-3 py-1.5 rounded-full hover:bg-red-200 transition-colors flex items-center gap-1">
                         <span class="material-symbols-outlined text-base">cancel</span> Cancel Trip
                     </button>
-                    ` : `
+                    `
+                        : `
                     <button data-trip-id="${docId}" class="cancel-trip-btn text-sm font-semibold bg-gray-100 text-gray-800 px-3 py-1.5 rounded-full hover:bg-gray-200 transition-colors flex items-center gap-1">
                         <span class="material-symbols-outlined text-base">delete</span> Remove from History
                     </button>
-                    `}
+                    `
+                    }
                 </div>
             </div>
             ${statusBadge}
         `;
 
         // Event Listeners
-        const completeBtn = card.querySelector('.complete-trip-btn');
+        const completeBtn = card.querySelector(".complete-trip-btn");
         if (completeBtn) {
-            completeBtn.addEventListener('click', async (e) => {
-                const tripId = e.currentTarget.dataset.tripId;
-                const user = auth.currentUser;
-                if (user) {
-                    const tripRef = doc(db, "users", user.uid, "trips", tripId);
-                    await updateDoc(tripRef, { status: 'completed' });
-                    loadSavedTrips(user.uid); // Immediately refresh the trips list
-                    promptForReview(trip.beachId, trip.beachName); // Then show the review modal
-                }
-            });
+          completeBtn.addEventListener("click", async (e) => {
+            const tripId = e.currentTarget.dataset.tripId;
+            const user = auth.currentUser;
+            if (user) {
+              const tripRef = doc(db, "users", user.uid, "trips", tripId);
+              await updateDoc(tripRef, { status: "completed" });
+              loadSavedTrips(user.uid); // Immediately refresh the trips list
+              promptForReview(trip.beachId, trip.beachName); // Then show the review modal
+            }
+          });
         }
 
-        card.querySelector('.reschedule-trip-btn')?.addEventListener('click', (e) => {
+        card
+          .querySelector(".reschedule-trip-btn")
+          ?.addEventListener("click", (e) => {
             const { beachId, beachName } = e.currentTarget.dataset;
-            window.location.href = `plantrip.html?beachId=${encodeURIComponent(beachId)}&beachName=${encodeURIComponent(beachName)}`;
-        });
+            window.location.href = `plantrip.html?beachId=${encodeURIComponent(
+              beachId
+            )}&beachName=${encodeURIComponent(beachName)}`;
+          });
 
-        card.querySelector('.cancel-trip-btn').addEventListener('click', async (e) => {
+        card
+          .querySelector(".cancel-trip-btn")
+          .addEventListener("click", async (e) => {
             const tripId = e.currentTarget.dataset.tripId;
-            if (confirm("Are you sure you want to remove this trip from your history?")) {
-                const user = auth.currentUser;
-                if (user) {
-                    await deleteDoc(doc(db, "users", user.uid, "trips", tripId));
-                    document.getElementById(`trip-${tripId}`).remove();
-                }
+            if (
+              confirm(
+                "Are you sure you want to remove this trip from your history?"
+              )
+            ) {
+              const user = auth.currentUser;
+              if (user) {
+                await deleteDoc(doc(db, "users", user.uid, "trips", tripId));
+                document.getElementById(`trip-${tripId}`).remove();
+              }
             }
-        });
+          });
 
         return card;
-    }
+      }
 
-    function setupReviewModal(user) {
-        const modal = document.getElementById('review-trip-modal');
-        const modalContent = document.getElementById('review-modal-content');
-        const closeBtn = document.getElementById('close-review-modal-btn');
-        const form = document.getElementById('trip-review-form');
-        const beachNameEl = document.getElementById('review-beach-name');
-        const beachIdInput = document.getElementById('review-beach-id');
-        const ratingStarsContainer = document.getElementById('review-rating-stars');
-        const ratingValueInput = document.getElementById('review-rating-value');
-        const stars = ratingStarsContainer.querySelectorAll('span');
+      function setupReviewModal(user) {
+        const modal = document.getElementById("review-trip-modal");
+        const modalContent = document.getElementById("review-modal-content");
+        const closeBtn = document.getElementById("close-review-modal-btn");
+        const form = document.getElementById("trip-review-form");
+        const beachNameEl = document.getElementById("review-beach-name");
+        const beachIdInput = document.getElementById("review-beach-id");
+        const ratingStarsContainer = document.getElementById(
+          "review-rating-stars"
+        );
+        const ratingValueInput = document.getElementById("review-rating-value");
+        const stars = ratingStarsContainer.querySelectorAll("span");
 
         let currentRating = 0;
 
         const openModal = () => {
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95', 'opacity-0');
-            }, 10);
+          modal.classList.remove("hidden");
+          modal.classList.add("flex");
+          setTimeout(() => {
+            modal.classList.remove("opacity-0");
+            modalContent.classList.remove("scale-95", "opacity-0");
+          }, 10);
         };
 
         const closeModal = () => {
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95', 'opacity-0');
-            setTimeout(() => {
-                modal.classList.add('hidden');
-                modal.classList.remove('flex');
-                // Trips are now reloaded before the modal opens, so no need to do it again here.
-            }, 300);
+          modal.classList.add("opacity-0");
+          modalContent.classList.add("scale-95", "opacity-0");
+          setTimeout(() => {
+            modal.classList.add("hidden");
+            modal.classList.remove("flex");
+            // Trips are now reloaded before the modal opens, so no need to do it again here.
+          }, 300);
         };
 
         window.promptForReview = (beachId, beachName) => {
-            beachNameEl.textContent = beachName;
-            beachIdInput.value = beachId;
-            openModal();
+          beachNameEl.textContent = beachName;
+          beachIdInput.value = beachId;
+          openModal();
         };
 
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => {
-            if (e.target === modal) closeModal();
+        closeBtn.addEventListener("click", closeModal);
+        modal.addEventListener("click", (e) => {
+          if (e.target === modal) closeModal();
         });
 
         // Star rating interaction
-        stars.forEach(star => {
-            star.addEventListener('click', () => {
-                currentRating = parseInt(star.dataset.value, 10);
-                ratingValueInput.value = currentRating;
-                updateStarDisplay();
+        stars.forEach((star) => {
+          star.addEventListener("click", () => {
+            currentRating = parseInt(star.dataset.value, 10);
+            ratingValueInput.value = currentRating;
+            updateStarDisplay();
+          });
+          star.addEventListener("mouseover", () => {
+            const hoverValue = parseInt(star.dataset.value, 10);
+            stars.forEach((s) => {
+              s.classList.toggle(
+                "text-yellow-400",
+                s.dataset.value <= hoverValue
+              );
             });
-            star.addEventListener('mouseover', () => {
-                const hoverValue = parseInt(star.dataset.value, 10);
-                stars.forEach(s => {
-                    s.classList.toggle('text-yellow-400', s.dataset.value <= hoverValue);
-                });
-            });
+          });
         });
-        ratingStarsContainer.addEventListener('mouseleave', updateStarDisplay);
+        ratingStarsContainer.addEventListener("mouseleave", updateStarDisplay);
 
         function updateStarDisplay() {
-            stars.forEach(star => {
-                star.classList.toggle('text-yellow-400', star.dataset.value <= currentRating);
-            });
+          stars.forEach((star) => {
+            star.classList.toggle(
+              "text-yellow-400",
+              star.dataset.value <= currentRating
+            );
+          });
         }
 
         // Form submission
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            const beachId = beachIdInput.value;
-            const comment = document.getElementById('review-comment-text').value;
-            const rating = parseInt(ratingValueInput.value, 10);
+        form.addEventListener("submit", async (e) => {
+          e.preventDefault();
+          const beachId = beachIdInput.value;
+          const comment = document.getElementById("review-comment-text").value;
+          const rating = parseInt(ratingValueInput.value, 10);
 
-            if (!rating) {
-                alert('Please select a rating.');
-                return;
-            }
+          if (!rating) {
+            alert("Please select a rating.");
+            return;
+          }
 
-            try {
-                await addDoc(collection(db, "beaches", beachId, "reviews"), {
-                    userId: user.uid,
-                    userName: user.displayName || 'Anonymous',
-                    comment: comment,
-                    rating: rating,
-                    createdAt: serverTimestamp()
-                });
-                closeModal();
-                loadSavedTrips(user.uid); // Refresh trips list after submitting review
-            } catch (error) {
-                console.error("Error submitting review:", error);
-                alert("There was an error submitting your review. Please try again.");
-            }
+          try {
+            await addDoc(collection(db, "beaches", beachId, "reviews"), {
+              userId: user.uid,
+              userName: user.displayName || "Anonymous",
+              comment: comment,
+              rating: rating,
+              createdAt: serverTimestamp(),
+            });
+            closeModal();
+            loadSavedTrips(user.uid); // Refresh trips list after submitting review
+          } catch (error) {
+            console.error("Error submitting review:", error);
+            alert(
+              "There was an error submitting your review. Please try again."
+            );
+          }
         });
-    }
-</script>
-<script>
-    // Dark mode toggle
-    (function() {
-        const toggle = document.getElementById('dark-mode-toggle');
+      }
+    </script>
+    <script>
+      // Dark mode toggle
+      (function () {
+        const toggle = document.getElementById("dark-mode-toggle");
         if (!toggle) return;
 
         // Check for saved preference, or use system preference
-        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+        if (
+          localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
         } else {
-            document.documentElement.classList.remove('dark');
+          document.documentElement.classList.remove("dark");
         }
 
-        toggle.addEventListener('click', () => {
-            document.documentElement.classList.toggle('dark');
-            localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
+        toggle.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          localStorage.theme = document.documentElement.classList.contains(
+            "dark"
+          )
+            ? "dark"
+            : "light";
         });
-    })();
-</script>
-<script src="assets/js/auth.js" type="module"></script>
-
-</body></html>
+      })();
+    </script>
+    <script src="assets/js/auth.js" type="module"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8" />
     <!-- Leaflet CSS -->
     <link rel="stylesheet" href="leaflet/dist/leaflet.css" />
@@ -11,146 +11,277 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap" rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
     <script id="tailwind-config">
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1193d4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a2831",
-                        "text-light": "#101c22",
-                        "text-dark": "#f6f7f8",
-                        "text-muted-light": "#6b7280",
-                        "text-muted-dark": "#9ca3af",
-                        "border-light": "#e5e7eb",
-                        "border-dark": "#374151",
-                    },
-                    fontFamily: {
-                        display: ["Plus Jakarta Sans", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "1rem",
-                        xl: "1.5rem",
-                        full: "9999px",
-                    },
-                },
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1a2831",
+              "text-light": "#101c22",
+              "text-dark": "#f6f7f8",
+              "text-muted-light": "#6b7280",
+              "text-muted-dark": "#9ca3af",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
             },
-        };
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        #map { height: 60vh; min-height: 400px; }
-        .suggestion { cursor: pointer; }
-        .leaflet-container { z-index: 0; }
-        /* Add this to your CSS */
-        .dark .dark-mode-icon-light { display: none; }
-        .dark-mode-icon-dark { display: none; }
-        .dark .dark-mode-icon-dark { display: inline-block; }
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
+      #map {
+        height: 60vh;
+        min-height: 400px;
+      }
+      .suggestion {
+        cursor: pointer;
+      }
+      .leaflet-container {
+        z-index: 0;
+      }
+      /* Add this to your CSS */
+      .dark .dark-mode-icon-light {
+        display: none;
+      }
+      .dark-mode-icon-dark {
+        display: none;
+      }
+      .dark .dark-mode-icon-dark {
+        display: inline-block;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<header class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal" data-delay="0">
-<nav class="container mx-auto px-6 py-3 flex items-center justify-between">
-<div class="flex items-center gap-8">
-<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="index.html">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-<span class="text-xl font-bold">Coastal Guide</span>
-</a>
-<div id="nav-menu" class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="plantrip.html">Plan a Trip</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">About</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span class="material-symbols-outlined dark-mode-icon-light">light_mode</span>
-<span class="material-symbols-outlined dark-mode-icon-dark">dark_mode</span>
-</button>
-<div id="guest-menu" class="items-center gap-4">
-<a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
-<a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
-</div>
-<div id="user-profile" class="relative items-center gap-4">
-<!-- User menu will be populated by auth.js -->
-</div>
-<button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</nav>
-</header>
-<main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
-    <section class="mb-8">
-            <h2 class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-4xl">Find Your Perfect Beach</h2>
-            <p class="mt-2 text-lg text-text-muted-light dark:text-text-muted-dark">Search and filter through India's beautiful coastline.</p>
-        </section>
-
-        <div class="sticky top-20 z-20 mb-8 rounded-lg bg-background-light/80 p-4 shadow-md backdrop-blur-sm dark:bg-background-dark/80">
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="relative lg:col-span-2">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark"> search </span>
-                    <input id="search-input" type="search" placeholder="Filter beaches by name or state..." class="w-full rounded-lg border-2 border-border-light bg-surface-light py-2.5 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark" />
-                </div>
-                <div class="relative">
-                    <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark"> travel_explore </span>
-                    <input id="map-search" type="search" placeholder="Search any location on map..." class="w-full rounded-lg border-2 border-border-light bg-surface-light py-2.5 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark" />
-                    <div id="suggestions" class="absolute z-30 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"></div>
-                </div>
-                <div class="relative">
-                    <button id="btn-locate" class="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary/50 bg-primary/10 px-4 py-2.5 text-left text-sm font-semibold text-primary transition-colors hover:bg-primary/20">
-                        <span class="material-symbols-outlined">my_location</span>
-                        <span>Find Beaches Near Me</span>
-                    </button>
-                </div>
-            </div>
-            <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-4">
-                <div id="state-filter-container" class="relative">
-                    <button id="state-filter-button" class="flex w-full items-center justify-between rounded-lg border-2 border-border-light bg-surface-light px-4 py-2.5 text-left text-sm dark:border-border-dark dark:bg-surface-dark">
-                        <span id="state-filter-label">All States</span>
-                        <span class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark"> expand_more </span>
-                    </button>
-                    <div id="state-filter-options" class="absolute z-10 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"></div>
-                </div>
-                <div id="activity-filter-container" class="relative">
-                    <button id="activity-filter-button" class="flex w-full items-center justify-between rounded-lg border-2 border-border-light bg-surface-light px-4 py-2.5 text-left text-sm dark:border-border-dark dark:bg-surface-dark">
-                        <span id="activity-filter-label">All Activities</span>
-                        <span class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark"> expand_more </span>
-                    </button>
-                    <div id="activity-filter-options" class="absolute z-10 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"></div>
-                </div>
-            </div>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark"
+  >
+    <header
+      class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal"
+      data-delay="0"
+    >
+      <nav
+        class="container mx-auto px-6 py-3 flex items-center justify-between"
+      >
+        <div class="flex items-center gap-8">
+          <a
+            class="flex items-center gap-3 text-slate-900 dark:text-white"
+            href="index.html"
+          >
+            <svg
+              class="h-8 w-8 text-primary"
+              fill="none"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                fill="currentColor"
+              ></path>
+            </svg>
+            <span class="text-xl font-bold">Coastal Guide</span>
+          </a>
+          <div id="nav-menu" class="hidden md:flex items-center gap-8">
+            <a
+              class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors"
+              href="searchbeach.html"
+              >Beaches</a
+            >
+            <a
+              class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+              href="plantrip.html"
+              >Plan a Trip</a
+            >
+            <a
+              class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+              href="alert.html"
+              >Safety</a
+            >
+            <a
+              class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+              href="#"
+              >About</a
+            >
+          </div>
         </div>
-
-        <section id="map-section" class="mb-8">
-            <h2 class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-3xl">Interactive Map</h2>
-            <div id="map" class="mt-4 rounded-xl shadow-lg z-0"></div>
-        </section>
-
-        <div id="no-results" class="hidden rounded-lg border-2 border-dashed border-border-light p-12 text-center dark:border-border-dark">
-            <h3 class="text-lg font-semibold">No beaches found</h3>
-            <p class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark">Try adjusting your search or filters.</p>
+        <div class="flex items-center gap-4">
+          <button
+            id="dark-mode-toggle"
+            class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+          >
+            <span class="material-symbols-outlined dark-mode-icon-light"
+              >light_mode</span
+            >
+            <span class="material-symbols-outlined dark-mode-icon-dark"
+              >dark_mode</span
+            >
+          </button>
+          <div id="guest-menu" class="items-center gap-4">
+            <a
+              href="login.html"
+              class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+              >Login</a
+            >
+            <a
+              href="registration.html"
+              class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md"
+              >Sign Up</a
+            >
+          </div>
+          <div id="user-profile" class="relative items-center gap-4">
+            <!-- User menu will be populated by auth.js -->
+          </div>
+          <button
+            id="mobile-menu-button"
+            class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+          >
+            <span class="material-symbols-outlined">menu</span>
+          </button>
         </div>
+      </nav>
+    </header>
+    <main class="container mx-auto px-4 py-8 sm:px-6 lg:px-8">
+      <section class="mb-8">
+        <h2
+          class="text-3xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-4xl"
+        >
+          Find Your Perfect Beach
+        </h2>
+        <p class="mt-2 text-lg text-text-muted-light dark:text-text-muted-dark">
+          Search and filter through India's beautiful coastline.
+        </p>
+      </section>
 
-        <div id="beach-list" class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-            <!-- Beach cards will be injected here by search.js -->
+      <div
+        class="sticky top-20 z-20 mb-8 rounded-lg bg-background-light/80 p-4 shadow-md backdrop-blur-sm dark:bg-background-dark/80"
+      >
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          <div class="relative lg:col-span-2">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark"
+            >
+              search
+            </span>
+            <input
+              id="search-input"
+              type="search"
+              placeholder="Filter beaches by name or state..."
+              class="w-full rounded-lg border-2 border-border-light bg-surface-light py-2.5 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark"
+            />
+          </div>
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-muted-light dark:text-text-muted-dark"
+            >
+              travel_explore
+            </span>
+            <input
+              id="map-search"
+              type="search"
+              placeholder="Search any location on map..."
+              class="w-full rounded-lg border-2 border-border-light bg-surface-light py-2.5 pl-10 pr-4 text-sm focus:border-primary focus:ring-primary dark:border-border-dark dark:bg-surface-dark"
+            />
+            <div
+              id="suggestions"
+              class="absolute z-30 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"
+            ></div>
+          </div>
+          <div class="relative">
+            <button
+              id="btn-locate"
+              class="flex w-full items-center justify-center gap-2 rounded-lg border-2 border-primary/50 bg-primary/10 px-4 py-2.5 text-left text-sm font-semibold text-primary transition-colors hover:bg-primary/20"
+            >
+              <span class="material-symbols-outlined">my_location</span>
+              <span>Find Beaches Near Me</span>
+            </button>
+          </div>
         </div>
+        <div class="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4 mt-4">
+          <div id="state-filter-container" class="relative">
+            <button
+              id="state-filter-button"
+              class="flex w-full items-center justify-between rounded-lg border-2 border-border-light bg-surface-light px-4 py-2.5 text-left text-sm dark:border-border-dark dark:bg-surface-dark"
+            >
+              <span id="state-filter-label">All States</span>
+              <span
+                class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark"
+              >
+                expand_more
+              </span>
+            </button>
+            <div
+              id="state-filter-options"
+              class="absolute z-10 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"
+            ></div>
+          </div>
+          <div id="activity-filter-container" class="relative">
+            <button
+              id="activity-filter-button"
+              class="flex w-full items-center justify-between rounded-lg border-2 border-border-light bg-surface-light px-4 py-2.5 text-left text-sm dark:border-border-dark dark:bg-surface-dark"
+            >
+              <span id="activity-filter-label">All Activities</span>
+              <span
+                class="material-symbols-outlined text-text-muted-light dark:text-text-muted-dark"
+              >
+                expand_more
+              </span>
+            </button>
+            <div
+              id="activity-filter-options"
+              class="absolute z-10 mt-1 hidden w-full rounded-lg border border-border-light bg-surface-light py-1 shadow-lg dark:border-border-dark dark:bg-surface-dark"
+            ></div>
+          </div>
+        </div>
+      </div>
+
+      <section id="map-section" class="mb-8">
+        <h2
+          class="text-2xl font-bold tracking-tight text-text-light dark:text-text-dark sm:text-3xl"
+        >
+          Interactive Map
+        </h2>
+        <div id="map" class="mt-4 rounded-xl shadow-lg z-0"></div>
+      </section>
+
+      <div
+        id="no-results"
+        class="hidden rounded-lg border-2 border-dashed border-border-light p-12 text-center dark:border-border-dark"
+      >
+        <h3 class="text-lg font-semibold">No beaches found</h3>
+        <p class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark">
+          Try adjusting your search or filters.
+        </p>
+      </div>
+
+      <div
+        id="beach-list"
+        class="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+      >
+        <!-- Beach cards will be injected here by search.js -->
+      </div>
     </main>
 
     <!-- Leaflet JS -->
@@ -160,30 +291,40 @@
     <!-- App scripts -->
     <script src="search.js" type="module"></script>
     <script type="module">
-        import { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY } from './assets/js/config.js';
-        window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
-        import './weather.js';
+      import {
+        OPENWEATHER_API_KEY,
+        WORLDTIDES_API_KEY,
+      } from "./assets/js/config.js";
+      window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
+      import "./weather.js";
     </script>
     <script>
-        // Dark mode toggle
-        (function() {
-            const toggle = document.getElementById('dark-mode-toggle');
-            if (!toggle) return;
+      // Dark mode toggle
+      (function () {
+        const toggle = document.getElementById("dark-mode-toggle");
+        if (!toggle) return;
 
-            // Check for saved preference, or use system preference
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
+        // Check for saved preference, or use system preference
+        if (
+          localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
 
-            toggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            });
-        })();
+        toggle.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          localStorage.theme = document.documentElement.classList.contains(
+            "dark"
+          )
+            ? "dark"
+            : "light";
+        });
+      })();
     </script>
     <script src="assets/js/auth.js" type="module"></script>
-
-</body>
+  </body>
 </html>

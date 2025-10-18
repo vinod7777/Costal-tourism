@@ -1,313 +1,491 @@
 <!DOCTYPE html>
-<html lang="en"><head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Real-Time Coastal Safety &amp; Tourism Guide</title>
-<link href="https://fonts.googleapis.com" rel="preconnect"/>
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet"/>
-<script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
-<script>
-        tailwind.config = {
-            darkMode: "class",
-            theme: {
-                extend: {
-                    colors: {
-                        primary: "#1193d4",
-                        "background-light": "#f6f7f8",
-                        "background-dark": "#101c22",
-                        "surface-light": "#ffffff",
-                        "surface-dark": "#1a2831",
-                        "text-light": "#101c22",
-                        "text-dark": "#f6f7f8",
-                        "text-muted-light": "#6b7280",
-                        "text-muted-dark": "#9ca3af",
-                        "border-light": "#e5e7eb",
-                        "border-dark": "#374151",
-                    },
-                    fontFamily: {
-                        display: ["Plus Jakarta Sans", "sans-serif"],
-                    },
-                    borderRadius: {
-                        DEFAULT: "0.5rem",
-                        lg: "1rem",
-                        xl: "1.5rem",
-                        full: "9999px",
-                    },
-                },
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Real-Time Coastal Safety &amp; Tourism Guide</title>
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+      rel="stylesheet"
+    />
+    <script src="https://cdn.tailwindcss.com?plugins=container-queries"></script>
+    <script>
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#1193d4",
+              "background-light": "#f6f7f8",
+              "background-dark": "#101c22",
+              "surface-light": "#ffffff",
+              "surface-dark": "#1a2831",
+              "text-light": "#101c22",
+              "text-dark": "#f6f7f8",
+              "text-muted-light": "#6b7280",
+              "text-muted-dark": "#9ca3af",
+              "border-light": "#e5e7eb",
+              "border-dark": "#374151",
             },
-        }
+            fontFamily: {
+              display: ["Plus Jakarta Sans", "sans-serif"],
+            },
+            borderRadius: {
+              DEFAULT: "0.5rem",
+              lg: "1rem",
+              xl: "1.5rem",
+              full: "9999px",
+            },
+          },
+        },
+      };
     </script>
     <style>
-        /* Reveal-on-scroll utility styles */
+      /* Reveal-on-scroll utility styles */
+      .reveal {
+        opacity: 0;
+        transform: translateY(24px) scale(0.98);
+        transition: opacity 600ms cubic-bezier(0.2, 0.9, 0.2, 1),
+          transform 600ms cubic-bezier(0.2, 0.9, 0.2, 1);
+        will-change: opacity, transform;
+      }
+      .reveal.revealed {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+      /* Use CSS variable for delay (set from JS via --delay) */
+      .reveal[data-delay] {
+        transition-delay: var(--delay, 0ms);
+      }
+      @media (prefers-reduced-motion: reduce) {
         .reveal {
-            opacity: 0;
-            transform: translateY(24px) scale(0.98);
-            transition: opacity 600ms cubic-bezier(.2,.9,.2,1), transform 600ms cubic-bezier(.2,.9,.2,1);
-            will-change: opacity, transform;
+          transition: none !important;
+          transform: none !important;
         }
-        .reveal.revealed {
-            opacity: 1;
-            transform: translateY(0) scale(1);
+      }
+      /* Add this to your CSS */
+      .dark .dark-mode-icon-light {
+        display: none;
+      }
+      .dark-mode-icon-dark {
+        display: none;
+      }
+      .dark .dark-mode-icon-dark {
+        display: inline-block;
+      }
+      .material-symbols-outlined {
+        font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+      }
+
+      /* Filter dropdown animations */
+      .filter-dropdown {
+        opacity: 0;
+        transform: translateY(-10px);
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .filter-dropdown:not(.hidden) {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Alert card animations */
+      .alert-card {
+        animation: slideInUp 0.3s ease-out;
+      }
+
+      @keyframes slideInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
         }
-        /* Use CSS variable for delay (set from JS via --delay) */
-        .reveal[data-delay] { transition-delay: var(--delay, 0ms); }
-        @media (prefers-reduced-motion: reduce) {
-            .reveal { transition: none !important; transform: none !important; }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        /* Add this to your CSS */
-        .dark .dark-mode-icon-light { display: none; }
-        .dark-mode-icon-dark { display: none; }
-        .dark .dark-mode-icon-dark { display: inline-block; }
-        .material-symbols-outlined {
-            font-variation-settings:
-                'FILL' 0,
-                'wght' 400,
-                'GRAD' 0,
-                'opsz' 24
-        }
-        
-        /* Filter dropdown animations */
-        .filter-dropdown {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: opacity 0.2s ease, transform 0.2s ease;
-        }
-        
-        .filter-dropdown:not(.hidden) {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        
-        /* Alert card animations */
-        .alert-card {
-            animation: slideInUp 0.3s ease-out;
-        }
-        
-        @keyframes slideInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        /* Refresh button animation */
-        .refresh-btn:disabled {
-            opacity: 0.7;
-            cursor: not-allowed;
-        }
+      }
+
+      /* Refresh button animation */
+      .refresh-btn:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
     </style>
-</head>
-<body class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark">
-<div class="relative w-full overflow-x-hidden">
-<header class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal" data-delay="0">
-<nav class="container mx-auto px-6 py-3 flex items-center justify-between">
-<div class="flex items-center gap-8">
-<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="index.html">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-<span class="text-xl font-bold">Coastal Tourism</span>
-</a>
-<div id="nav-menu" class="hidden md:flex items-center gap-8">
-<a class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="plantrip.html">Plan a Trip</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety</a>
-<a class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">About</a>
-</div>
-</div>
-<div class="flex items-center gap-4">
-<button id="dark-mode-toggle" class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span class="material-symbols-outlined dark-mode-icon-light">light_mode</span>
-<span class="material-symbols-outlined dark-mode-icon-dark">dark_mode</span>
-</button>
-<div id="guest-menu" class="items-center gap-4">
-<a href="login.html" class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors">Login</a>
-<a href="registration.html" class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md">Sign Up</a>
-</div>
-<div id="user-profile" class="relative items-center gap-4">
-<!-- User menu will be populated by auth.js -->
-</div>
-<button id="mobile-menu-button" class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors">
-<span class="material-symbols-outlined">menu</span>
-</button>
-</div>
-</nav>
-</header>
-<main class="flex-grow">
-<div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
-<div class="mb-12 text-center">
-<h2 class="text-4xl font-extrabold tracking-tight text-background-dark dark:text-background-light sm:text-5xl">Safety Alerts</h2>
-<p class="mt-4 text-lg text-background-dark/70 dark:text-background-light/70">Stay informed about the latest coastal safety updates.</p>
-</div>
-<div class="mb-8 flex flex-wrap items-center justify-center gap-4">
-<div class="relative" data-filter="state">
-<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span>State: All</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-</div>
-<div class="relative" data-filter="severity">
-<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span>Severity: All</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-</div>
-<div class="relative" data-filter="type">
-<button class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors">
-<span>Type: All</span>
-<span class="material-symbols-outlined text-base">expand_more</span>
-</button>
-</div>
-<button id="refresh-alerts" class="flex items-center gap-2 rounded-full bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors">
-<span class="material-symbols-outlined text-base">refresh</span>
-<span>Refresh</span>
-</button>
-</div>
-<div id="alerts-container" class="relative pl-8">
-<div class="absolute left-0 top-0 h-full w-0.5 bg-primary/20 dark:bg-primary/30"></div>
-<!-- Loading state -->
-<div id="alerts-loading" class="text-center py-12">
-<div class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60">
-<span class="material-symbols-outlined animate-spin text-2xl">refresh</span>
-<span class="text-lg">Loading real-time alerts...</span>
-</div>
-<p class="mt-2 text-sm text-background-dark/50 dark:text-background-light/50">
-Fetching latest safety information from weather services
-</p>
-</div>
-</div>
-</div>
-</main>
-<footer class="bg-white dark:bg-slate-900/50 mt-12">
-<div class="container mx-auto px-6 py-12">
-<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-<div>
-<a class="flex items-center gap-3 text-slate-900 dark:text-white" href="index.html">
-<svg class="h-8 w-8 text-primary" fill="none" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z" fill="currentColor"></path>
-</svg>
-<span class="text-xl font-bold">Coastal Tourism</span>
-</a>
-<p class="mt-4 text-sm text-text-muted-light dark:text-text-muted-dark">Your guide to the best beaches in India, with real-time safety and activity information.</p>
-</div>
-<div>
-<h3 class="text-lg font-bold text-text-light dark:text-text-dark mb-4">Quick Links</h3>
-<ul class="space-y-2">
-<li><a class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="searchbeach.html">Beaches</a></li>
-<li><a class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="plantrip.html">Plan a Trip</a></li>
-<li><a class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="alert.html">Safety Alerts</a></li>
-<li><a class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors" href="#">About Us</a></li>
-</ul>
-</div>
-<div class="lg:col-span-2">
-<h3 class="text-lg font-bold text-text-light dark:text-text-dark mb-4">Newsletter</h3>
-<p class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4">Stay updated with our latest news and offers.</p>
-<form class="flex flex-col sm:flex-row gap-2">
-<input class="flex-grow bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary" placeholder="Enter your email" type="email"/>
-<button class="px-4 py-2 bg-primary text-white rounded-md text-sm font-semibold hover:bg-primary/90 transition-colors" type="submit">
-                                Subscribe
-                            </button>
-</form>
-</div>
+  </head>
+  <body
+    class="bg-background-light dark:bg-background-dark font-display text-text-light dark:text-text-dark"
+  >
+    <div class="relative w-full overflow-x-hidden">
+      <header
+        class="w-full bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-sm sticky top-0 z-50 reveal"
+        data-delay="0"
+      >
+        <nav
+          class="container mx-auto px-6 py-3 flex items-center justify-between"
+        >
+          <div class="flex items-center gap-8">
+            <a
+              class="flex items-center gap-3 text-slate-900 dark:text-white"
+              href="index.html"
+            >
+              <svg
+                class="h-8 w-8 text-primary"
+                fill="none"
+                viewBox="0 0 48 48"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                  fill="currentColor"
+                ></path>
+              </svg>
+              <span class="text-xl font-bold">Coastal Tourism</span>
+            </a>
+            <div id="nav-menu" class="hidden md:flex items-center gap-8">
+              <a
+                class="text-sm font-medium text-text-light dark:text-text-dark hover:text-primary transition-colors"
+                href="searchbeach.html"
+                >Beaches</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="plantrip.html"
+                >Plan a Trip</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="alert.html"
+                >Safety</a
+              >
+              <a
+                class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                href="#"
+                >About</a
+              >
+            </div>
+          </div>
+          <div class="flex items-center gap-4">
+            <button
+              id="dark-mode-toggle"
+              class="p-2 rounded-full hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+            >
+              <span class="material-symbols-outlined dark-mode-icon-light"
+                >light_mode</span
+              >
+              <span class="material-symbols-outlined dark-mode-icon-dark"
+                >dark_mode</span
+              >
+            </button>
+            <div id="guest-menu" class="items-center gap-4">
+              <a
+                href="login.html"
+                class="bg-primary/10 text-primary dark:bg-primary/20 dark:text-primary font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/20 dark:hover:bg-primary/30 transition-colors"
+                >Login</a
+              >
+              <a
+                href="registration.html"
+                class="bg-primary text-white font-bold text-sm px-5 py-2.5 rounded-full hover:bg-primary/90 transition-colors shadow-md"
+                >Sign Up</a
+              >
+            </div>
+            <div id="user-profile" class="relative items-center gap-4">
+              <!-- User menu will be populated by auth.js -->
+            </div>
+            <button
+              id="mobile-menu-button"
+              class="md:hidden p-2 rounded-full text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+            >
+              <span class="material-symbols-outlined">menu</span>
+            </button>
+          </div>
+        </nav>
+      </header>
+      <main class="flex-grow">
+        <div class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 py-12">
+          <div class="mb-12 text-center">
+            <h2
+              class="text-4xl font-extrabold tracking-tight text-background-dark dark:text-background-light sm:text-5xl"
+            >
+              Safety Alerts
+            </h2>
+            <p
+              class="mt-4 text-lg text-background-dark/70 dark:text-background-light/70"
+            >
+              Stay informed about the latest coastal safety updates.
+            </p>
+          </div>
+          <div class="mb-8 flex flex-wrap items-center justify-center gap-4">
+            <div class="relative" data-filter="state">
+              <button
+                class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+              >
+                <span>State: All</span>
+                <span class="material-symbols-outlined text-base"
+                  >expand_more</span
+                >
+              </button>
+            </div>
+            <div class="relative" data-filter="severity">
+              <button
+                class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+              >
+                <span>Severity: All</span>
+                <span class="material-symbols-outlined text-base"
+                  >expand_more</span
+                >
+              </button>
+            </div>
+            <div class="relative" data-filter="type">
+              <button
+                class="flex items-center gap-2 rounded-full bg-background-light dark:bg-background-dark border border-background-dark/10 dark:border-background-light/10 px-4 py-2 text-sm font-medium text-background-dark dark:text-background-light hover:bg-primary/10 dark:hover:bg-primary/20 transition-colors"
+              >
+                <span>Type: All</span>
+                <span class="material-symbols-outlined text-base"
+                  >expand_more</span
+                >
+              </button>
+            </div>
+            <button
+              id="refresh-alerts"
+              class="flex items-center gap-2 rounded-full bg-primary text-white px-4 py-2 text-sm font-medium hover:bg-primary/90 transition-colors"
+            >
+              <span class="material-symbols-outlined text-base">refresh</span>
+              <span>Refresh</span>
+            </button>
+          </div>
+          <div id="alerts-container" class="relative pl-8">
+            <div
+              class="absolute left-0 top-0 h-full w-0.5 bg-primary/20 dark:bg-primary/30"
+            ></div>
+            <!-- Loading state -->
+            <div id="alerts-loading" class="text-center py-12">
+              <div
+                class="inline-flex items-center gap-3 text-background-dark/60 dark:text-background-light/60"
+              >
+                <span class="material-symbols-outlined animate-spin text-2xl"
+                  >refresh</span
+                >
+                <span class="text-lg">Loading real-time alerts...</span>
+              </div>
+              <p
+                class="mt-2 text-sm text-background-dark/50 dark:text-background-light/50"
+              >
+                Fetching latest safety information from weather services
+              </p>
+            </div>
+          </div>
+        </div>
+      </main>
+      <footer class="bg-white dark:bg-slate-900/50 mt-12">
+        <div class="container mx-auto px-6 py-12">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div>
+              <a
+                class="flex items-center gap-3 text-slate-900 dark:text-white"
+                href="index.html"
+              >
+                <svg
+                  class="h-8 w-8 text-primary"
+                  fill="none"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+                <span class="text-xl font-bold">Coastal Tourism</span>
+              </a>
+              <p
+                class="mt-4 text-sm text-text-muted-light dark:text-text-muted-dark"
+              >
+                Your guide to the best beaches in India, with real-time safety
+                and activity information.
+              </p>
+            </div>
+            <div>
+              <h3
+                class="text-lg font-bold text-text-light dark:text-text-dark mb-4"
+              >
+                Quick Links
+              </h3>
+              <ul class="space-y-2">
+                <li>
+                  <a
+                    class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                    href="searchbeach.html"
+                    >Beaches</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                    href="plantrip.html"
+                    >Plan a Trip</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                    href="alert.html"
+                    >Safety Alerts</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
+                    href="#"
+                    >About Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="lg:col-span-2">
+              <h3
+                class="text-lg font-bold text-text-light dark:text-text-dark mb-4"
+              >
+                Newsletter
+              </h3>
+              <p
+                class="text-sm text-text-muted-light dark:text-text-muted-dark mb-4"
+              >
+                Stay updated with our latest news and offers.
+              </p>
+              <form class="flex flex-col sm:flex-row gap-2">
+                <input
+                  class="flex-grow bg-background-light dark:bg-background-dark border border-border-light dark:border-border-dark rounded-md px-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary"
+                  placeholder="Enter your email"
+                  type="email"
+                />
+                <button
+                  class="px-4 py-2 bg-primary text-white rounded-md text-sm font-semibold hover:bg-primary/90 transition-colors"
+                  type="submit"
+                >
+                  Subscribe
+                </button>
+              </form>
+            </div>
+          </div>
+          <div
+            class="border-t border-border-light dark:border-border-dark mt-8 pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark"
+          >
+            <p>© 2024 Coastal Tourism. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
+    </div>
 
-</div>
-<div class="border-t border-border-light dark:border-border-dark mt-8 pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark">
-<p>© 2024 Coastal Tourism. All rights reserved.</p>
-</div>
-</div>
-</footer>
-</div>
-  
     <script>
-        // Reveal-on-scroll using IntersectionObserver
-        (function () {
-            if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                // If user prefers reduced motion, reveal everything immediately
-                document.querySelectorAll('.reveal').forEach(el => el.classList.add('revealed'));
-                return;
-            }
-
-            const revealEls = document.querySelectorAll('.reveal');
-            // set CSS variable --delay from data-delay attribute (ms)
-            revealEls.forEach(el => {
-                const d = el.getAttribute('data-delay');
-                if (d) el.style.setProperty('--delay', d + 'ms');
-            });
-
-            const io = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('revealed');
-                        // optional: unobserve after reveal
-                        io.unobserve(entry.target);
-                    }
-                });
-            }, {
-                root: null,
-                rootMargin: '0px 0px -8% 0px',
-                threshold: 0.08
-            });
-
-            revealEls.forEach(el => io.observe(el));
-        })();
-    </script>
-    <script>
-        // Dark mode toggle
-        (function() {
-            const toggle = document.getElementById('dark-mode-toggle');
-            if (!toggle) return;
-
-            // Check for saved preference, or use system preference
-            if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-            } else {
-                document.documentElement.classList.remove('dark');
-            }
-
-            toggle.addEventListener('click', () => {
-                document.documentElement.classList.toggle('dark');
-                localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-            });
-        })();
-    </script>
-    <script>
-        // Mobile menu toggle
-        (function() {
-            const menuButton = document.getElementById('mobile-menu-button');
-            const navMenu = document.getElementById('nav-menu');
-            if (!menuButton || !navMenu) return;
-
-            menuButton.addEventListener('click', () => {
-                // A simple toggle. For a real app, you might want a more robust solution
-                // that handles focus trapping and ARIA attributes.
-                navMenu.classList.toggle('hidden');
-            });
-        })();
-    </script>
-<script type="module">
-    // Import configuration and alert system
-    import { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY } from './assets/js/config.js';
-    window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
-    import './assets/js/alerts.js';
-</script>
-<script src="assets/js/auth.js" type="module"></script>
-<script>
-    // Add refresh button functionality
-    document.addEventListener('DOMContentLoaded', () => {
-        const refreshBtn = document.getElementById('refresh-alerts');
-        if (refreshBtn) {
-            refreshBtn.addEventListener('click', () => {
-                if (window.alertManager) {
-                    window.alertManager.refresh();
-                }
-            });
+      // Reveal-on-scroll using IntersectionObserver
+      (function () {
+        if (
+          window.matchMedia &&
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches
+        ) {
+          // If user prefers reduced motion, reveal everything immediately
+          document
+            .querySelectorAll(".reveal")
+            .forEach((el) => el.classList.add("revealed"));
+          return;
         }
-    });
-</script>
 
-</body></html>
+        const revealEls = document.querySelectorAll(".reveal");
+        // set CSS variable --delay from data-delay attribute (ms)
+        revealEls.forEach((el) => {
+          const d = el.getAttribute("data-delay");
+          if (d) el.style.setProperty("--delay", d + "ms");
+        });
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("revealed");
+                // optional: unobserve after reveal
+                io.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            root: null,
+            rootMargin: "0px 0px -8% 0px",
+            threshold: 0.08,
+          }
+        );
+
+        revealEls.forEach((el) => io.observe(el));
+      })();
+    </script>
+    <script>
+      // Dark mode toggle
+      (function () {
+        const toggle = document.getElementById("dark-mode-toggle");
+        if (!toggle) return;
+
+        // Check for saved preference, or use system preference
+        if (
+          localStorage.theme === "dark" ||
+          (!("theme" in localStorage) &&
+            window.matchMedia("(prefers-color-scheme: dark)").matches)
+        ) {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+
+        toggle.addEventListener("click", () => {
+          document.documentElement.classList.toggle("dark");
+          localStorage.theme = document.documentElement.classList.contains(
+            "dark"
+          )
+            ? "dark"
+            : "light";
+        });
+      })();
+    </script>
+    <script>
+      // Mobile menu toggle
+      (function () {
+        const menuButton = document.getElementById("mobile-menu-button");
+        const navMenu = document.getElementById("nav-menu");
+        if (!menuButton || !navMenu) return;
+
+        menuButton.addEventListener("click", () => {
+          // A simple toggle. For a real app, you might want a more robust solution
+          // that handles focus trapping and ARIA attributes.
+          navMenu.classList.toggle("hidden");
+        });
+      })();
+    </script>
+    <script type="module">
+      // Import configuration and alert system
+      import {
+        OPENWEATHER_API_KEY,
+        WORLDTIDES_API_KEY,
+      } from "./assets/js/config.js";
+      window.__COASTAL_CONFIG__ = { OPENWEATHER_API_KEY, WORLDTIDES_API_KEY };
+      import "./assets/js/alerts.js";
+    </script>
+    <script src="assets/js/auth.js" type="module"></script>
+    <script>
+      // Add refresh button functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const refreshBtn = document.getElementById("refresh-alerts");
+        if (refreshBtn) {
+          refreshBtn.addEventListener("click", () => {
+            if (window.alertManager) {
+              window.alertManager.refresh();
+            }
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
