@@ -10,6 +10,10 @@
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&amp;display=swap"
       rel="stylesheet"
     />
+    <script
+      type="module"
+      src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.5.0/model-viewer.min.js"
+    ></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
@@ -47,6 +51,66 @@
       };
     </script>
     <style>
+      /* Globe overlay markers */
+      .globe-container {
+        position: relative;
+        width: 50%;
+        height: 320px;
+      }
+      @media (min-width: 640px) {
+        .globe-container {
+          height: 360px;
+        }
+      }
+      @media (min-width: 768px) {
+        .globe-container {
+          height: 420px;
+        }
+      }
+      @media (min-width: 1024px) {
+        .globe-container {
+          height: 520px;
+        }
+      }
+      .globe-marker {
+        position: absolute;
+        width: 14px;
+        height: 14px;
+        border-radius: 9999px;
+        background: linear-gradient(180deg, #ff6b8a, #f43f5e);
+        border: 2px solid white;
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+        transform: translate(-50%, -50%);
+        pointer-events: auto;
+        cursor: pointer;
+        transition: transform 160ms ease, opacity 160ms ease;
+      }
+      .globe-marker.hidden {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.6);
+        pointer-events: none;
+      }
+      .globe-marker-label {
+        position: absolute;
+        top: calc(100% + 6px);
+        left: 50%;
+        transform: translateX(-50%);
+        white-space: nowrap;
+        font-size: 12px;
+        background: rgba(0, 0, 0, 0.75);
+        color: white;
+        padding: 6px 8px;
+        border-radius: 8px;
+        display: none;
+      }
+      .globe-marker:hover .globe-marker-label {
+        display: block;
+      }
+
+      model-viewer {
+        width: 100%;
+        height: 100%;
+      }
       /* Reveal-on-scroll utility styles */
       .reveal {
         opacity: 0;
@@ -82,6 +146,22 @@
       .material-symbols-outlined {
         font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
       }
+      html {
+        scroll-behavior: smooth;
+      }
+      .feature-card {
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+        border: none;
+        transition: all 0.3s ease;
+      }
+      
+      .feature-card:hover {
+         border: 2px solid #1193d4;
+      }
+    
+      
     </style>
   </head>
   <body
@@ -131,7 +211,7 @@
               >
               <a
                 class="text-sm font-medium text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
-                href="#"
+                href="#about-section"
                 >About</a
               >
             </div>
@@ -184,6 +264,16 @@
               url('https://lh3.googleusercontent.com/aida-public/AB6AXuCPyCtHxoPwUoHcdS1tkl1CEddcPqPlzfbppSysMwlz4SqfLanP0RBIkQa9svVp39MQQaspqS5Dq2BsSbqFgCrKIjnBB4JkjpoSxF8U6USqJjVOagGMvyt3ttJZY86Dfh3FBX5yN9f2fa5GaPc8cfmJMhofXXvZnyu20-WXhR1dDU75fbP4Kn-XI8-rzpbgZULwrufDpBYt0IUS7H2t0Gyv1bxeKPTE-9b-BGPl30829Pgpphnah_rmWsYrDVEzdgkHCDYUu2DX38sE');
           "
         >
+          <div class="globe-container">
+            <model-viewer
+              id="globe-viewer"
+              src="assets/model/earth.glb"
+              alt="A 3D model"
+              auto-rotate
+              camera-controls
+            ></model-viewer>
+          </div>
+
           <div class="max-w-3xl px-4 reveal" data-delay="220">
             <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight">
               Explore India's Coastal Wonders
@@ -192,6 +282,7 @@
               Discover pristine beaches, thrilling activities, and real-time
               safety updates for an unforgettable coastal experience.
             </p>
+
             <a
               href="searchbeach.html"
               class="mt-8 inline-block bg-primary text-white font-bold text-base px-8 py-3 rounded-full hover:bg-primary/90 transition-all transform hover:scale-105 shadow-xl reveal"
@@ -201,6 +292,96 @@
             </a>
           </div>
         </div>
+        <section id="activity-section" class="py-12">
+          <h2
+            class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 reveal"
+            data-delay="80"
+          >
+            Coastal Activities
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="group relative rounded-xl overflow-hidden shadow-lg reveal transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+              data-delay="140"
+            >
+              <div
+                class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
+              ></div>
+              <img
+                class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                src="https://images.unsplash.com/photo-1502680390402-2a71d6414240?w=800&h=600&fit=crop&auto=format"
+                alt="Surfing"
+              />
+              <div
+                class="absolute inset-0 z-20 flex flex-col justify-end p-6 text-white"
+              >
+                <h3 class="text-2xl font-bold">Surfing</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Ride the waves at India's best surf spots.
+                </p>
+              </div>
+            </div>
+            <div
+              class="group relative rounded-xl overflow-hidden shadow-lg reveal transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 bg-surface-light dark:bg-surface-dark"
+              data-delay="180"
+            >
+              <div class="p-6 flex flex-col justify-between h-full">
+                <div>
+                  <h3
+                    class="text-2xl font-bold text-text-light dark:text-text-dark"
+                  >
+                    Scuba Diving
+                  </h3>
+                  <p
+                    class="mt-1 text-sm text-text-muted-light dark:text-text-muted-dark"
+                  >
+                    Explore the vibrant underwater world. Here's a preview of
+                    what you might see!
+                  </p>
+                </div>
+                <div
+                  class="mt-4 h-48 rounded-lg bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-text-muted-light dark:text-text-muted-dark"
+                >
+                  <!-- Placeholder for 3D model -->
+                
+                    <iframe
+                      title="Swimming Male Scuba Diver Dave"
+                      frameborder="0"
+                      allowfullscreen
+                      
+                      allow="autoplay; fullscreen; xr-spatial-tracking"
+                      style="width: 100%; height: 100%; border-radius: 0.5rem;"
+                      
+                      src="https://sketchfab.com/models/8972de90072a4bad9e21a4afa41edc21/embed?autostart=1&ui_controls=0&ui_infos=0&ui_inspector=0&ui_stop=0&ui_watermark=0&ui_help=0"
+                    >
+                    </iframe>
+                 
+                </div>
+              </div>
+            </div>
+            <div
+              class="group relative rounded-xl overflow-hidden shadow-lg reveal transition-all duration-300 hover:shadow-2xl hover:-translate-y-1"
+              data-delay="220"
+            >
+              <div
+                class="absolute inset-0 z-10 bg-gradient-to-t from-black/70 via-black/40 to-transparent"
+              ></div>
+              <img
+                class="w-full h-80 object-cover transition-transform duration-300 group-hover:scale-105"
+                src="https://images.unsplash.com/photo-1559494007-2f699c451b3a?w=800&h=600&fit=crop&auto=format"
+                alt="Kayaking"
+              />
+              <div
+                class="absolute inset-0 z-20 flex flex-col justify-end p-6 text-white"
+              >
+                <h3 class="text-2xl font-bold">Kayaking</h3>
+                <p class="mt-1 text-sm text-slate-300">
+                  Paddle through serene coastal waters and mangroves.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
         <section id="live-alerts-section" class="py-12">
           <h2
             class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 reveal"
@@ -327,6 +508,149 @@
             </div>
           </div>
         </section>
+        <section id="about-section" class="py-12">
+          <h2
+            class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 reveal"
+            data-delay="80"
+          >
+            About Coastal Guide
+          </h2>
+          <div
+            class="bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 md:p-8 reveal"
+            data-delay="160"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+              <div>
+                <p
+                  class="text-text-muted-light dark:text-text-muted-dark mb-4"
+                >
+                  Coastal Guide is your ultimate companion for exploring the
+                  breathtaking coastlines of India. Our mission is to provide
+                  you with accurate, real-time information to ensure your beach
+                  trips are both safe and unforgettable.
+                </p>
+                <p
+                  class="text-text-muted-light dark:text-text-muted-dark"
+                >
+                  From live weather and tide data to safety alerts and
+                  activity recommendations, we've got you covered. Plan your
+                  trips, discover hidden gems, and stay informed with our
+                  comprehensive guide. Whether you're a surfer, a sunbather, or
+                  an adventurer, Coastal Guide helps you make the most of every
+                  moment by the sea.
+                </p>
+              </div>
+              <div class="rounded-lg overflow-hidden">
+                <model-viewer
+                  src="assets/model/beach.glb"
+                  alt="A 3D model of a beach"
+                  camera-orbit="20deg 75deg 0m"
+                  max-camera-orbit="auto 90deg auto"
+                  auto-rotate
+                  camera-controls
+                  ar
+                  shadow-intensity="1"
+                  style="width: 100%; height: 400px;"
+                  disable-zoom
+                ></model-viewer>
+              </div>
+            </div>
+          </div>
+        </section>
+        <section id="features-section" class="py-12">
+          <h2
+            class="text-3xl font-bold tracking-tight text-slate-900 dark:text-white mb-6 reveal"
+            data-delay="80"
+          >
+            Available Features
+          </h2>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translate-y-1"
+              data-delay="120"
+            >
+              <span
+                class="material-symbols-outlined text-4xl text-primary mb-4"
+                >partly_cloudy_day</span
+              >
+              <h3 class="text-xl font-bold mb-2">Live Weather & Tides</h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Get up-to-the-minute weather forecasts and tide times for any
+                beach to plan your day perfectly.
+              </p>
+            </div>
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translate-y-1"
+              data-delay="160"
+            >
+              <span
+                class="material-symbols-outlined text-4xl text-primary mb-4"
+                >travel_explore</span
+              >
+              <h3 class="text-xl font-bold mb-2">
+                Comprehensive Beach Directory
+              </h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Search and filter through our extensive database of Indian
+                coastal beaches to find your next destination.
+              </p>
+            </div>
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translate-y-1"
+              data-delay="200"
+            >
+              <span class="material-symbols-outlined text-4xl text-primary mb-4"
+                >public</span
+              >
+              <h3 class="text-xl font-bold mb-2">Interactive Globe & Map</h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Visualize beach locations on an interactive 3D globe and a
+                detailed 2D map.
+              </p>
+            </div>
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translatey-1"
+              data-delay="240"
+            >
+              <span
+                class="material-symbols-outlined text-4xl text-primary mb-4"
+                >edit_calendar</span
+              >
+              <h3 class="text-xl font-bold mb-2">Smart Trip Planner</h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Plan your beach visits and receive personalized safety
+                recommendations based on conditions.
+              </p>
+            </div>
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translate-y-1"
+              data-delay="280"
+            >
+              <span class="material-symbols-outlined text-4xl text-primary mb-4"
+                >warning</span
+              >
+              <h3 class="text-xl font-bold mb-2">Real-Time Safety Alerts</h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Stay informed with live alerts for high tides, strong
+                currents, and adverse weather conditions.
+              </p>
+            </div>
+            <div
+              class="feature-card bg-surface-light dark:bg-surface-dark rounded-xl shadow-lg p-6 reveal transition-all duration-300 hover:-translate-y-1"
+              data-delay="320"
+            >
+              <span
+                class="material-symbols-outlined text-4xl text-primary mb-4"
+                >person</span
+              >
+              <h3 class="text-xl font-bold mb-2">Personalized Profiles</h3>
+              <p class="text-text-muted-light dark:text-text-muted-dark">
+                Save your favorite beaches, manage planned trips, and share
+                reviews with the community.
+              </p>
+            </div>
+          </div>
+        </section>
       </main>
       <footer class="bg-white dark:bg-slate-900/50 mt-12">
         <div class="container mx-auto px-6 py-12">
@@ -387,7 +711,7 @@
                 <li>
                   <a
                     class="text-sm text-text-muted-light dark:text-text-muted-dark hover:text-primary transition-colors"
-                    href="#"
+                    href="#about-section"
                     >About Us</a
                   >
                 </li>
@@ -422,7 +746,9 @@
           <div
             class="border-t border-border-light dark:border-border-dark mt-8 pt-8 text-center text-sm text-text-muted-light dark:text-text-muted-dark"
           >
-            <p>© 2024 Coastal Tourism. All rights reserved.</p>
+            <p>
+              © 2025 Coastal Tourism by Vinod Kumar. All rights reserved.
+            </p>
           </div>
         </div>
       </footer>
@@ -456,7 +782,7 @@
                 entry.target.classList.add("revealed");
                 // optional: unobserve after reveal
                 io.unobserve(entry.target);
-              }
+              } 
             });
           },
           {
@@ -511,6 +837,7 @@
       })();
     </script>
     <script src="assets/js/auth.js" type="module"></script>
+
     <script type="module">
       import {
         OPENWEATHER_API_KEY,
